@@ -1,0 +1,23 @@
+2016.01.29 - COMP1640 - Meeting minutes 03
+1. Participated members:
+- KhanhTT
+- HoangLS
+- BachNL
+- ThangSD
+2. Individual reports:
+- BachNL:
+	+ Not Finished Setup environment.
+	+ Still doing study technologies and tools.
+	+ Did not have the demo of AngularJS yet.
+- HoangLS:
+	+ Finished setup environment.
+- ThangSD: 
+	+ Just joined project.
+3. Create new project & push to repository:
+	+ Haven't done it yet.
+4. Next meeting, missing member AnhVQ must be contacted.
+5. Next meeting:
+	+ Time: 2016.01.31 - 21h00 PM - Online.
+	+ Items to complete:
+		* Setup development environment.	
+		* Demo AngularJS.
