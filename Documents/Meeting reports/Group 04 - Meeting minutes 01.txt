@@ -1,0 +1,11 @@
+COMP1460 - Group 04
+Meeting Minutes - Meeting 01
+
+Today activities:
+	+ Roles assignment:
+		* KhanhTT: Scrum master, everyone else: developers.
+	+ Setup repository.
+	+ Indentify functions.
+	+ Product Backlog.
+Next meeting schedule:
+	+ Sat, 23th Jan, 2016.
