@@ -36,5 +36,14 @@ E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.dll
 E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.pdb
 E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.Migrations.InitialCreate.resources
 E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.csproj.GenerateResource.Cache
-E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.Migrations.UpdateCourseIdType.resources
-E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.Migrations.AddCourse_CourseCode_Column.resources
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.ServiceLocation.dll
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.Unity.Configuration.dll
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.Unity.dll
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.Unity.RegistrationByConvention.dll
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Unity.WebApi.dll
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.ServiceLocation.pdb
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.ServiceLocation.xml
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.Unity.xml
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.Unity.Configuration.xml
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.Migrations.UpdateDatabase.resources

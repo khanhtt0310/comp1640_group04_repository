@@ -7,13 +7,13 @@ namespace Group04_CMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class UpdateCourseIdType : IMigrationMetadata
+    public sealed partial class UpdateDatabase : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateCourseIdType));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(UpdateDatabase));
         
         string IMigrationMetadata.Id
         {
-            get { return "201602241854512_UpdateCourseIdType"; }
+            get { return "201603011644095_UpdateDatabase"; }
         }
         
         string IMigrationMetadata.Source

@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using Group04_CMS.Models;
 
 namespace Group04_CMS.DAL
@@ -23,6 +24,13 @@ namespace Group04_CMS.DAL
                     m.MapLeftKey("CourseId");
                     m.MapRightKey("UserId");
                     m.ToTable("CourseUser");
+                });
+            modelBuilder.Entity<Role>().HasMany(c => c.Users).WithMany(i => i.Roles)
+                .Map(m =>
+                {
+                    m.MapLeftKey("RoleId");
+                    m.MapRightKey("UserId");
+                    m.ToTable("RoleUser");
                 });
         }
     }
