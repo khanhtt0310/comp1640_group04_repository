@@ -6,21 +6,23 @@ using System.Net.Http;
 using System.Web.Http;
 using Group04_CMS.Services;
 using Group04_CMS.ViewModels;
+using Microsoft.Practices.Unity;
 
 namespace Group04_CMS.ApiControllers
 {
     public class AccountController : ApiController
     {
-        private IAccountService _accountSvc;
+        [Dependency]
+        public IAccountService AccountSvc { get; set; }
 
-        public AccountController(IAccountService accountService)
+        public AccountController()
         {
-            _accountSvc = accountService;
+            
         }
 
         public ApiSimpleResult<RoleModel> AddRole(string roleName)
         {
-            var response = _accountSvc.CreateRole(roleName);
+            var response = AccountSvc.CreateRole(roleName);
             ApiSimpleResult<RoleModel> result = new ApiSimpleResult<RoleModel>
             {
                 StatusString = "Successful",
@@ -32,7 +34,7 @@ namespace Group04_CMS.ApiControllers
 
         public ApiSimpleResult<UserModel> AddUser(string userName, int roleId)
         {
-            var response = _accountSvc.CreateUser(userName, roleId);
+            var response = AccountSvc.CreateUser(userName, roleId);
             ApiSimpleResult<UserModel> result = new ApiSimpleResult<UserModel>
             {
                 StatusString = "Successful",
@@ -44,7 +46,7 @@ namespace Group04_CMS.ApiControllers
 
         public ApiSimpleResult<List<UserModel>> GetUsers()
         {
-            var response = _accountSvc.GetUsers();
+            var response = AccountSvc.GetUsers();
             var result = new ApiSimpleResult<List<UserModel>>
             {
                 StatusString = "Successful",
@@ -59,7 +61,7 @@ namespace Group04_CMS.ApiControllers
 
         public ApiSimpleResult<List<RoleModel>> GetRoles()
         {
-            var response = _accountSvc.GetRoles();
+            var response = AccountSvc.GetRoles();
             var result = new ApiSimpleResult<List<RoleModel>>
             {
                 StatusString = "Successful",

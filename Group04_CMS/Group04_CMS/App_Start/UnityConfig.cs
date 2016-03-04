@@ -15,7 +15,7 @@ namespace Group04_CMS
             // it is NOT necessary to register your controllers
             
             // e.g. container.RegisterType<ITestService, TestService>();
-            container.RegisterType<IAccountService, AccountService>(new HierarchicalLifetimeManager());
+            container.RegisterType<IAccountService, AccountService>();
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
     }
