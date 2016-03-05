@@ -1,24 +1,340 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿.edusec-link-box {
+    background: none repeat scroll 0 0 #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+    display: block;
+    margin-bottom: 15px;
+    min-height: 90px;
+    width: 100%;
+    border: 1px solid #ddd;
+    position:relative;
+}
+.edusec-link-box-content {
+    margin-left: 90px;
+    padding: 5px 10px;
+}
+.edusec-link-box-text {
+    text-transform: uppercase;
+    display: block;
+    font-size: 14px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.edusec-link-box-number {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+}
+.edusec-link-box-icon {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0.2);
+    border-radius: 2px 0 0 2px;
+    display: block;
+    float: left;
+    font-size: 45px;
+    height: 90px;
+    line-height: 90px;
+    text-align: center;
+    width: 90px;
+}
+.edusec-link-box-desc {
+    color:#aaa;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
+.edusec-link-box-bottom {
+    position:absolute;
+    bottom:2px;
+    right:3px;
+}
+.msg-of-day {
+    float:left;
+    width:100%;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.edusec-page-header-1 {
+   font-size:19px !important;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.edusec-page-header-2 {
+   font-size:16px !important;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.edusec-border-bottom-warning {
+  	border-bottom: 1px solid #f39c12;
+}
+.edusec-border-bottom-primary {
+  	border-bottom: 1px solid #3C8DBC;
+}
+
+.edusec-page-header-btn {
+   padding-bottom:14px;
+}
+
+.notice-main {
+    height: 70px;
+    margin-bottom: 12px;
+    padding: 3px;
+     margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.notice-disp-date {
+    float: left;
+    font-size: 17px;
+    height: 55px;
+    position: relative;
+    top: 12px;
+    vertical-align: middle;
+    width: 100px;
+}
+.notice-body {
+    width: 100%;
+}
+.notice-title{
+    display: block;
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.notice-desc {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+}
+
+.news-main {
+    height: 150px;
+    margin-bottom: 12px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.news-disp-date {
+    float: left;
+    font-size: 17px;
+    height: 55px;
+    position: relative;
+    top: 12px;
+    vertical-align: middle;
+    width: 100px;
+}
+.news-body {
+    width: 100%;
+}
+.news-disp-class {
+    float: left;
+    font-size: 17px;
+    height: 55px;
+    position: relative;
+    text-wrap: inherit;
+    top: 12px;
+    text-wrap: normal;
+    vertical-align: middle;
+    width: 30%;
+}
+.attendance-body {
+    width: 90%;
+}
+.news-title{
+    display: block;
+    font-size: 20px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.news-desc {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: pre-wrap;
+    margin-left: 10px;
+    margin-top: 10px;
+   
+
+}
+
+.edusec-img-disp {
+	border: 5px solid #fff;
+	box-shadow: 0 2px 3px rgba(0, 0, 0, 0.25);
+	width:135px;
+	height:135px;
+	margin: 15px;
+}
+
+form div.required label.control-label:after {
+  content:" * ";
+  color:red;
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e151";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e152";
+}
+
+.sort-numerical a.asc:after {
+    content: "\e153";
+}
+
+.sort-numerical a.desc:after {
+    content: "\e154";
+}
+
+.sort-ordinal a.asc:after {
+    content: "\e155";
+}
+
+.sort-ordinal a.desc:after {
+    content: "\e156";
+}
+
+.edusec-form-bg {
+    background-color: #F8F8F8;
+}
+
+.btn-view {
+    width:100px;
+}
+
+.btn-grid {
+    width:100px;
+}
+
+.btn-create {
+    width:100px;
+}
+
+.detail-view th {
+    width:15%;	
+}
+
+.with-button {
+	padding-bottom: 12px;
+}
+
+.navbar-nav > .module-menu > .dropdown-menu {
+  margin: 0 !important;
+  padding: 0 !important;
+  top: 100%;
+  width: 290px;
+}
+.navbar-nav > .module-menu > .dropdown-menu > li .menu {
+  padding: 5px !important;
+}
+.navbar-nav > .module-menu > .dropdown-menu > li .menu li {
+  list-style: none outside none;
+  float: left;
+  padding: 10px;
+  text-align: center;
+  width: 33%;
+}
+.navbar-nav > .module-menu > .dropdown-menu > li .menu > li > a:hover{ background: none; }
+.navbar-nav > .module-menu > .dropdown-menu > li .menu > li > a > h4 {
+  color: #444444;
+  font-size: 15px;
+  padding: 0;
+  position: relative;
+}
+
+.navbar-nav > .module-menu .dropdown-menu .slimScrollDiv,
+.navbar-nav > .module-menu .dropdown-menu .slimScrollDiv .menu {
+  height: 350px !important;
+}
+
+.sidebar-mini.sidebar-collapse .sidebar-menu > li > a > span {
+    width: 200px !important;
+}
+.sidebar-mini.sidebar-collapse .sidebar-menu > li > .treeview-menu {
+    width: 200px !important;
+}
+
+.user-panel > .info {
+left: 0 !important;
+padding: 0 !important;
+position: inherit !important;
+text-align: center !important;
+white-space: normal !important;
+text-transform: uppercase;
+line-height: 2 !important;
+}
+/*This css used for back to top button*/
+#slideToTop {
+	position: fixed;
+    bottom: 20px;
+    right: 25px;
+    width: 40px;
+    height: 40px;
+    color: #eee;
+    font-size: '';
+    line-height: 40px;
+    text-align: center;
+    background-color: #222d32;
+    cursor: pointer;
+    border-radius: 5px;
+    z-index: 99999;
+    opacity: 0.7;
+    display: none;
+}
+#slideToTop:hover {	
+	 opacity: 1;
+}
+/*th {
+    text-align: center;
+    font-family: Segoe UI;
+	transition: all 0.8s;
+}
+td {
+    text-align: center;
+	border-right: 1px dotted #ACACAC;
+}
+th, td:last-child {
+    border-right: none
+}
+th:hover {
+    color: white;
+	background: orangered;
+}
+tr {
+	transition: all 0.15s;
+}
+tr:hover {
+    font-weight: bold
+}
+th:hover:last-child {
+    background: none;
+}
+.index-text-align {
+    text-align: center
+}*/
+td {
+	border-right: 1px solid #d2d6de;
+}
+td:last-child {
+    border-right: none
+}
+
+.table-hover>tr>th>img {
+    width: 80px;
+    height: 100px;
 }

@@ -11,13 +11,23 @@ namespace Group04_CMS.DAL
 {
     public class ApplicationDbContext: DbContext
     {
+        public ApplicationDbContext() :
+            base("Name=group04CMSConnection")
+        {
+            //Configuration.ProxyCreationEnabled = false;
+            //Configuration.LazyLoadingEnabled = false;
+
+            Database.SetInitializer<ApplicationDbContext>(null);
+        }
         public DbSet<Role> Roles { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<GeneralStatus> GeneralStatuses { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
             modelBuilder.Entity<Course>().HasMany(c => c.Users).WithMany(i => i.Courses)
                 .Map(m =>
                 {
@@ -32,6 +42,19 @@ namespace Group04_CMS.DAL
                     m.MapRightKey("UserId");
                     m.ToTable("RoleUser");
                 });
+            modelBuilder.Entity<User>()
+                .HasRequired(c => c.Status)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Role>()
+                .HasRequired(c => c.Status)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Course>()
+                .HasRequired(c => c.Status)
+                .WithMany()
+                .WillCascadeOnDelete(false);
+
         }
     }
 }

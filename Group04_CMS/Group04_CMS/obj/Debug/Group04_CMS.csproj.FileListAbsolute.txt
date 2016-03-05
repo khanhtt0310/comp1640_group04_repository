@@ -34,8 +34,6 @@ E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\System.Web.Http.WebHo
 E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.csprojResolveAssemblyReference.cache
 E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.dll
 E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.pdb
-E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.Migrations.InitialCreate.resources
-E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.csproj.GenerateResource.Cache
 E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.ServiceLocation.dll
 E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.Unity.Configuration.dll
 E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.Unity.dll
@@ -46,4 +44,5 @@ E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.S
 E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.Unity.xml
 E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.Unity.Configuration.xml
 E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\bin\Microsoft.Practices.Unity.RegistrationByConvention.xml
-E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.Migrations.UpdateDatabase.resources
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.Migrations.DataInitialization.resources
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS\obj\Debug\Group04_CMS.csproj.GenerateResource.Cache
