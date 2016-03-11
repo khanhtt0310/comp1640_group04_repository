@@ -13,6 +13,6 @@ namespace Group04_CMS.Services
         List<UserModel> GetUsers();
         UserModel CreateUser(string userName, int roleId);
         List<RoleModel> GetRoles();
-        RoleModel CreateRole(string roleName);
+        RoleModel CreateRole(RoleModelQuery roleModelQuery);
     }
 }

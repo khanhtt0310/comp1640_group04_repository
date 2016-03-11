@@ -1,0 +1,90 @@
+﻿@using MIS.Common
+@using MIS.Web.Models
+@model MIS.Web.Models.DepartmentTeacherViewModel
+
+@{
+    ViewBag.Title = @UIString.TitlePageDepartmentTeacher;
+}
+
+<section class="content-header">
+    <h1 class="fa fa-list">
+        @UIString.TitlePageManageLarge
+        <small> @UIString.FieldNameDepartmentTeacherId</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
+        <li><a href="@Url.Action("Index", "DepartmentTeacher")">@UIString.TitlePageDepartmentTeacher</a></li>
+        <li class="active">@UIString.BreadCrumbEdit</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        <i class="fa fa-edit"></i>
+                        @UIString.BreadCrumbEdit @UIString.FieldNameDepartmentTeacherId
+                    </h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                @using (Html.BeginForm("Edit", "DepartmentTeacher", FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="box-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="row">
+                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+                                @Html.LabelFor(model => model.DepartmentId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.DepartmentId, (IEnumerable<SelectListItem>)ViewBag.DepartmentList, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+                                @Html.LabelFor(model => model.TeacherId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.TeacherId, (IEnumerable<SelectListItem>)ViewBag.TeacherList, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TeacherId, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+                                @Html.LabelFor(model => model.RoleId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.RoleId, (IEnumerable<SelectListItem>)ViewBag.RoleList, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.RoleId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                                @Html.LabelFor(model => model.StatusId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.StatusId, (IEnumerable<SelectListItem>)ViewBag.StatusList, "-----" + @UIString.DropListSelect + " " + @UIString.FieldNameStatusId + "-----", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-8 col-sm-6 col-xs-12">
+                                @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <a class="btn btn-default  btn-view " href="@Url.Action("Index", "DepartmentTeacher")" title="@MIS.Common.UIString.ButtonBack">
+                            <i class="fa fa-chevron-circle-left"></i>
+                            @MIS.Common.UIString.ButtonBack
+                        </a>
+                        <button type="submit" class="btn btn-info  btn-view" title="@MIS.Common.UIString.ButtonEdit">
+                            <i class=" fa fa-edit"></i>
+                            @MIS.Common.UIString.ButtonEdit
+                        </button>
+
+                    </div>
+                    <!-- /.box-footer -->
+                }
+            </div>
+        </div>
+    </div>
+</section>
+}    

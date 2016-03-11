@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Group04_CMS", "Group04_CMS\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Group04.CMS.Tests", "Group04.CMS.Tests\Group04.CMS.Tests.csproj", "{EF046A12-C443-4910-8554-F5FA7604C2A1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Group04_CMS.Common", "Group04_CMS.Common\Group04_CMS.Common.csproj", "{49872AE3-C15B-48E6-805D-120B76861EFC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{EF046A12-C443-4910-8554-F5FA7604C2A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF046A12-C443-4910-8554-F5FA7604C2A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF046A12-C443-4910-8554-F5FA7604C2A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49872AE3-C15B-48E6-805D-120B76861EFC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49872AE3-C15B-48E6-805D-120B76861EFC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49872AE3-C15B-48E6-805D-120B76861EFC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49872AE3-C15B-48E6-805D-120B76861EFC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

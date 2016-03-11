@@ -1,0 +1,87 @@
+﻿@using MIS.Common
+@model MIS.Web.Models.ProgramViewModel
+
+@{
+    ViewBag.Title = "Program Management";
+}
+
+<section class="content-header">
+    <h1 class="fa fa-list">
+        Manage
+        <small> Module Class</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Program Management</a></li>
+        <li class="active">Edit</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        <i class="fa fa-eye"></i>
+                        Edit Program
+                    </h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                @using (Html.BeginForm("Edit", "Program", FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="box-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class=" row">
+                            <div class="form-group col-md-4 col-sm-6">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-4 col-sm-6">
+                                @Html.LabelFor(model => model.Code, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-4 col-sm-6">
+                                @Html.LabelFor(model => model.SchoolId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.SchoolId, (IEnumerable<SelectListItem>)ViewBag.SchoolList, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.SchoolId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                                @Html.LabelFor(model => model.StatusId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.StatusId, (IEnumerable<SelectListItem>)ViewBag.StatusList, "-----" + @UIString.DropListSelect + " " + @UIString.FieldNameStatusId + "-----", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-8 col-sm-6 col-xs-12">
+                                @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <a class="btn btn-default  btn-view " href="@Url.Action("Index", "Program")" title="@MIS.Common.UIString.ButtonBack">
+                            <i class="fa fa-chevron-circle-left"></i>
+                            @MIS.Common.UIString.ButtonBack
+                        </a>
+                        <button type="submit" class="btn btn-info  btn-view" title="@MIS.Common.UIString.ButtonEdit">
+                            <i class=" fa fa-edit"></i>
+                            @MIS.Common.UIString.ButtonEdit
+                        </button>
+
+                    </div>
+                    <!-- /.box-footer -->
+                }
+            </div>
+        </div>
+    </div>
+</section>

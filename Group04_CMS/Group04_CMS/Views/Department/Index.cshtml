@@ -1,0 +1,153 @@
+﻿@using MIS.Common
+@model IEnumerable<MIS.Web.Models.DepartmentViewModel>
+
+
+    @{
+        ViewBag.Title = "Department Management";
+    }
+
+    <section class="content-header">
+        <h1>
+            <i class="fa fa-list"></i>
+            Manage
+            <small> Department</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+            <li><a href="#">Department Management</a></li>
+            <li class="active">Search</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box box-info">
+                    <div class=" box-header">
+                        <h3 class="box-title">
+                            <i class="fa fa-search"></i>
+                            View Department List
+                        </h3>
+                        <div class="box-tools">
+                            <p class="text-right btn-grid-group">
+
+                                <a class="btn btn-primary btn-sm" href="@Url.Action("Create")" title="@MIS.Common.UIString.ButtonAdd">
+                                    <i class="fa fa-plus"></i>@MIS.Common.UIString.ButtonAdd
+                                </a>
+
+                                <a class="btn bg-orange btn-sm" href="#" title="@MIS.Common.UIString.ButtonPDF">
+                                    <i class="fa fa-file-pdf-o "></i>@MIS.Common.UIString.ButtonPDF
+                                </a>
+
+                                <a class="btn bg-teal btn-sm" href="#" title="@MIS.Common.UIString.ButtonEXCEL">
+                                    <i class="fa fa-file-excel-o"></i>@MIS.Common.UIString.ButtonEXCEL
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-striped table-hover">
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Code)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Name)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CollegeId)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.StatusId)
+                                    </th>
+
+                                    <th></th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Code)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.College.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Status.StatusName)
+                                        </td>
+                                        <td class="row">
+                                            <div class="col-sm-12">
+                                                <a href="@Url.Action("Details", "Department", new { id = item.Id })" title="@UIString.ButtonViewDetail"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                                <a href="@Url.Action("Edit", "Department", new { id = item.Id })" title="@UIString.ButtonEdit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                                <a href="#" onclick="javascript:deleteItem(@item.Id);" title="@UIString.ButtonDelete"><span class="glyphicon glyphicon-trash"></span></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="~/Scripts/toastr.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootbox.min.js"></script>
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        $(document).ready(function () {
+            var msg = "@ViewBag.Message";
+            if (msg != "") {
+                toastr["success"](msg);
+            }
+        });
+
+        function deleteItem(id) {
+            bootbox.dialog({
+                message: "@Message.ConfirmationDeletion @UIString.ObjectDepartment?",
+                title: "@UIString.TitleDialogConfirmDelete @UIString.ObjectDepartment",
+                buttons: {
+                    cancel: {
+                        label: "@UIString.ButtonConfirmDeleteNo",
+                        className: "btn-default",
+                        callback: function () {
+                            bootbox.hideAll();
+                        }
+                    },
+                    ok: {
+                        label: "@UIString.ButtonConfirmDeleteYes",
+                        className: "btn-primary",
+                        callback: function () {
+                            location.href = "@Url.Action("Delete", "Department")/" + id;
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>

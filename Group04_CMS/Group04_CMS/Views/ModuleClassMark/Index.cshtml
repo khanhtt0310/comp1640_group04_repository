@@ -1,0 +1,184 @@
+﻿@using MIS.Common
+@using MIS.Web.Models
+@model IEnumerable<ModuleClassMarkViewModel>
+
+    @{
+        ViewBag.Title = @UIString.FieldNameStudentModuleClassFinalMarks;
+    }
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+<script >
+    $(function () {
+        $('#ModuleClass').change(function () {
+
+            var typeSelected = $('#ModuleClass :selected').val();
+            typeSelected = typeSelected == "" ? 0 : typeSelected;
+            var url = '@Url.Action("Index", "ModuleClassMark")' + "/?moduleClassId=" + typeSelected;
+            location.href = url;
+        });
+    });
+    function navigate() {
+        var moduleClassId = $('#ModuleClass').val();
+        //if (moduleClassId.length<=0) {
+        //    alert("please choice class!");
+        //    return;
+        //}
+        var url = '@Url.Action("Create", "ModuleClassMark")' + "/?selectedValue=" + moduleClassId;
+        location.href = url;
+    }
+</script>
+                     
+    <section class="content-header">
+        <h1>
+            <i class="fa fa-list"></i>
+            @UIString.TitlePageManageLarge
+            <small> @UIString.FieldNameStudentModuleClassFinalMarks</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
+            <li class="active">@UIString.FieldNameStudentModuleClassFinalMarks</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            <i class="fa fa-search"></i>
+                            @UIString.BreadCrumbView @UIString.FieldNameStudentModuleClassFinalMarks
+                        </h3>
+                        <div class="box-tools">
+                            <p class="text-right btn-grid-group">
+                                <a class="btn btn-primary btn-sm" href="#" onclick="navigate();" title="@UIString.ButtonAdd">
+                                    <i class="fa fa-plus"></i> @UIString.ButtonAdd
+                                </a>
+
+                                <a class="btn bg-orange btn-sm" href="#" title="@UIString.ButtonPDF">
+                                    <i class="fa fa-file-pdf-o "></i> @UIString.ButtonPDF
+                                </a>
+
+                                <a class="btn bg-teal btn-sm" href="#" title="@UIString.ButtonEXCEL">
+                                    <i class="fa fa-file-excel-o"></i> @UIString.ButtonEXCEL
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                    <div style="margin-left: 20px; margin-bottom: 10px">
+                        @Html.Label("Module Class: ", htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("ModuleClass", "--- Choice Module Class ---")
+                    </div>
+
+                    <div class="box-body table-responsive no-padding">
+
+                        <table class="table table-striped table-hover">
+                            <tbody>
+
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.studentInformation.Code)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.studentInformation.FullName)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.gradeGroup)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Value)
+                                    </th>
+                                   
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.Comment)
+                                    </th>
+
+                                    <th></th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.studentInformation.Code)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.studentInformation.FullName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.gradeGroup.GradeGroupName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Value)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Comment)
+                                        </td>
+                                        <td class="row">
+                                            <div class="col-sm-12">
+                                                <a href="@Url.Action("Index", "ModuleClassMark", new { id = item.Id })" title="@UIString.ButtonViewDetail"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                                <a href="@Url.Action("Index", "ModuleClassMark", new { id = item.Id })" title="@UIString.ButtonEdit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                                @*<a href="#" onclick="javascript:deleteItem(@item.Id);" title="@UIString.ButtonDelete"><span class="glyphicon glyphicon-trash"></span></a>*@
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="~/Scripts/toastr.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootbox.min.js"></script>
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        $(document).ready(function () {
+            var msg = "@ViewBag.Message";
+            if (msg != "") {
+                toastr["success"](msg);
+            }
+        });
+
+        function deleteItem(id) {
+            bootbox.dialog({
+                message: "@Message.ConfirmationDeletion @UIString.FieldNameBatchId?",
+                title: "@UIString.TitleDialogConfirmDelete @UIString.FieldNameBatchId",
+                buttons: {
+                    cancel: {
+                        label: "@UIString.ButtonConfirmDeleteNo",
+                        className: "btn-default",
+                        callback: function () {
+                            bootbox.hideAll();
+                        }
+                    },
+                    ok: {
+                        label: "@UIString.ButtonConfirmDeleteYes",
+                        className: "btn-primary",
+                        callback: function () {
+                            location.href = "@Url.Action("Delete", "Batch")/" + id;
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>
+
+   

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Http;
 using Group04_CMS.DAL;
+using Group04_CMS.Helpers;
 using Group04_CMS.Models;
 using Group04_CMS.ViewModels;
 
@@ -57,10 +58,20 @@ namespace Group04_CMS.Services
         }
 
         [HttpPost]
-        public RoleModel CreateRole(string roleName)
+        public RoleModel CreateRole(RoleModelQuery roleModelQuery)
         {
             RoleModel result = new RoleModel();
-            var role = new Role { RoleName = roleName };
+            var status = new GeneralStatus
+            {
+                StatusName = roleModelQuery.Status, 
+                CreateTime = DateTime.UtcNow,
+                UpdateTime = DateTime.UtcNow
+            };
+            db.GeneralStatuses.Add(status);
+            var role = new Role { RoleName = roleModelQuery.RoleName, 
+                StatusId = status.StatusId,
+                Note = roleModelQuery.Note
+            };
             db.Roles.Add(role);
             db.SaveChanges();
             result = new RoleModel

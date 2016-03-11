@@ -13,5 +13,10 @@ namespace Group04_CMS.Controllers
         {
             return View();
         }
+
+        public ActionResult CreateRole()
+        {
+            return View();
+        }
     }
 }

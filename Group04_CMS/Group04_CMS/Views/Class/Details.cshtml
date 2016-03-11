@@ -1,0 +1,126 @@
+﻿@using MIS.Common
+@using MIS.Web.Models
+@model MIS.Web.Models.ClassViewModel
+
+@{
+    ViewBag.Title = @UIString.TitlePageClass;
+}
+
+<section class="content-header">
+    <h1 class="fa fa-list">
+        @UIString.TitlePageManageLarge
+        <small> @UIString.FieldNameClassId</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
+        <li><a href="@Url.Action("Index", "Class")">@UIString.TitlePageClass</a></li>
+        <li class="active">@UIString.BreadCrumbDetails</li>
+    </ol>
+    <div class="box-tools">
+        <p class="text-right btn-grid-group">
+
+            <a class="btn btn-default btn-view" href="@Url.Action("Index", "Class")" title="@MIS.Common.UIString.ButtonBack">
+                <i class="fa fa-chevron-circle-left"></i>
+                @MIS.Common.UIString.ButtonBack
+            </a>
+
+            <a class="btn btn-info btn-view" href="@Url.Action("Edit", "Class", new { id = Model.Id })" title="@MIS.Common.UIString.ButtonEdit">
+                <i class="fa fa-edit"></i>
+                @MIS.Common.UIString.ButtonEdit
+            </a>
+
+            <a class="btn btn-danger btn-view" href="#" onclick="javascript:deleteItem(@Model.Id);" title="@MIS.Common.UIString.ButtonDelete">
+                <i class="fa fa-trash"></i>
+                @MIS.Common.UIString.ButtonDelete
+            </a>
+        </p>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        <i class="fa fa-eye"></i>
+                        @UIString.FieldNameClassId @UIString.BreadCrumbDetails
+                    </h3>
+                </div>
+                <div class="box-body">
+                    <div class="box-body no-padding table-responsive">
+                        <table class="table table-striped table-bordered detail-view" id="w0">
+                            <tbody class="table-hover">
+                                <tr class="odd">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.ClassName)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.ClassName)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.ClassCode)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.ClassCode)</td>
+                                </tr>
+                                <tr class="even">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.CollegeId)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.College.Name)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.CampusId)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.Campus.Name)</td>
+                                </tr>
+                                <tr class="odd">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.ProgramId)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.Program.Name)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.BatchId)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.Batch.Name)</td>
+                                </tr>
+                                <tr class="even">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.TeacherId)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.Teacher.TeacherName)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.StatusId)</th>
+                                    <td class="col-sm-4"><span class="label label-success">@Html.DisplayFor(model => model.Status.StatusName)</span></td>
+                                </tr>
+                                <tr class="odd">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.CreatedTime)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.CreatedTime.DateTime)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.CreatedUserId)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.CreatedUserId)</td>
+                                </tr>
+                                <tr class="even">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.UpdatedTime)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.UpdatedTime.DateTime)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.UpdatedUserId)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.UpdatedUserId)</td>
+                                </tr>
+                                <tr class="odd">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Note)</th>
+                                    <td colspan="3">@Html.DisplayFor(model => model.Note)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="~/Scripts/bootbox.min.js"></script>
+<script type="text/javascript">
+        function deleteItem(id) {
+            bootbox.dialog({
+                message: "@Message.ConfirmationDeletion @UIString.FieldNameClassId?",
+                title: "@UIString.TitleDialogConfirmDelete @UIString.FieldNameClassId",
+                buttons: {
+                    cancel: {
+                        label: "@UIString.ButtonConfirmDeleteNo",
+                        className: "btn-default",
+                        callback: function () {
+                            bootbox.hideAll();
+                        }
+                    },
+                    ok: {
+                        label: "@UIString.ButtonConfirmDeleteYes",
+                        className: "btn-primary",
+                        callback: function () {
+                            location.href = "@Url.Action("Delete", "Class")/" + id;
+                        }
+                    }
+                }
+            });
+        }
+</script>

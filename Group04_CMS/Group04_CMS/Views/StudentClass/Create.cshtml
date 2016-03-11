@@ -1,0 +1,74 @@
+﻿@using MIS.Common
+@using MIS.Web.Models
+@model MIS.Web.Models.StudentClassViewModel
+
+@{
+    ViewBag.Title = @UIString.TitlePageStudentClass;
+}
+
+<section class="content-header">
+    <h1>
+        <i class="fa fa-list"></i>
+        @UIString.TitlePageManageLarge
+        <small> @UIString.ObjectStudentClass</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
+        <li><a href="@Url.Action("Index", "StudentClass")">@UIString.TitlePageStudentClass</a></li>
+        <li class="active">@UIString.BreadCrumbCreate</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        <i class="fa fa-plus-square"></i>
+                        @UIString.BreadCrumbCreate @UIString.ObjectStudentClass
+                    </h3>
+                </div>
+
+                <!-- /.box-header -->
+                <!-- form start -->
+                @using (Html.BeginForm("Create", "StudentClass", FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="box-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="row">
+                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                @Html.LabelFor(model => model.ClassId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.ClassId, (IEnumerable<SelectListItem>)ViewBag.ClassList, "-----" + @UIString.DropListSelect + " " + @UIString.FieldNameClassId + "-----", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ClassId, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-6 col-sm-6 col-xs-12">
+                                @Html.LabelFor(model => model.StudentId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.StudentId, (IEnumerable<SelectListItem>)ViewBag.StudentList, "-----" + @UIString.DropListSelect + " " + @UIString.FieldNameStudentInformationId + "-----", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.StudentId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+
+                        <a class="btn btn-default btn-view" href="@Url.Action("Index", "StudentClass")" title="@MIS.Common.UIString.ButtonBack">
+                            <i class="fa fa-chevron-circle-left"></i>
+                            @MIS.Common.UIString.ButtonBack
+                        </a>
+
+                        <button type="submit" class="btn btn-primary btn-view" title="@MIS.Common.UIString.ButtonSubmit">
+                            @MIS.Common.UIString.ButtonSubmit
+                        </button>
+
+                    </div>
+                    <!-- /.box-footer -->
+                }
+                <!-- /.box-footer -->
+
+            </div>
+        </div>
+    </div>
+</section>

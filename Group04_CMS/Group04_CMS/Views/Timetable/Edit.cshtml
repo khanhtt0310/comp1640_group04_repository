@@ -1,0 +1,146 @@
+﻿@using MIS.Common
+@model MIS.Web.Models.TimeTableViewModel
+@{
+    ViewBag.Title = @UIString.TitlePageHome;
+}
+
+<section class="content-header">
+    <h1 class="fa fa-list">
+        @UIString.TitlePageTimetable
+        <small> @UIString.FieldNameTimeTableId</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
+        <li><a href="@Url.Action("Index", "TimeTable")"> @UIString.TitlePageTimetable</a></li>
+        <li class="active"> @UIString.BreadCrumbEdit</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        <i class="fa fa-eye"></i>
+                        @UIString.BreadCrumbEdit @UIString.FieldNameTimeTableId
+                    </h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                @using (Html.BeginForm("Edit", "TimeTable", FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="box-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class="row">
+                            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                                @Html.LabelFor(model => model.RunningDate, htmlAttributes: new { @class = "control-label" })
+                                @Html.TextBoxFor(model => model.RunningDate, "{0:MM/dd/yyyy}", new { @class = "form-control  hasDatepicker", placeholder = @UIString.FieldNameTimeTableRunningDate })
+                                @Html.ValidationMessageFor(model => model.RunningDate, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-sm-4 col-sm-6">
+                                @Html.LabelFor(model => model.StartTime, new { @class = "control-label" })
+                                <div class="input-group bootstrap-timepicker timepicker">
+                                    @Html.EditorFor(model => model.StartTime, new { htmlAttributes = new { type = "text", value = "", @class = "form-control" } })
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.StartTime, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-4 col-sm-6">
+                                @Html.LabelFor(model => model.EndTime, new { @class = "control-label" })
+                                <div class="input-group bootstrap-timepicker timepicker">
+                                    @Html.EditorFor(model => model.EndTime, new { htmlAttributes = new { type = "text", value = "", @class = "form-control" } })
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                </div>
+                                @Html.ValidationMessageFor(model => model.EndTime, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4 col-sm-6">
+                                @Html.LabelFor(model => model.CollegeId, new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.CollegeId, (IEnumerable<SelectListItem>)ViewBag.CollegeList, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CollegeId, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-sm-4 col-sm-6">
+                                @Html.LabelFor(model => model.RoomId, new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.RoomId, (IEnumerable<SelectListItem>)ViewBag.RoomList, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.RoomId, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-4 col-sm-6">
+                                @Html.LabelFor(model => model.ModuleClassId, new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.ModuleClassId, (IEnumerable<SelectListItem>)ViewBag.ModuleClassList, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.ModuleClassId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class=" form-group col-md-4 col-sm-6">
+                                @Html.LabelFor(model => model.TeacherId, new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.TeacherId, (IEnumerable<SelectListItem>)ViewBag.TeacherList, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.TeacherId, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                                @Html.LabelFor(model => model.StatusId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.StatusId, (IEnumerable<SelectListItem>)ViewBag.StatusList, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.StatusId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <a class="btn btn-default  btn-view " href="@Url.Action("Index", "TimeTable")" title="@UIString.ButtonBack">
+                            <i class="fa fa-chevron-circle-left"></i>
+                            @UIString.ButtonBack
+                        </a>
+                        <button type="submit" class="btn btn-info  btn-view" title="@UIString.ButtonEdit">
+                            <i class=" fa fa-edit"></i>
+                            @UIString.ButtonEdit
+                        </button>
+
+                    </div>
+                    <!-- /.box-footer -->
+                }
+            </div>
+        </div>
+    </div>
+</section>
+@section css {
+    <link rel="stylesheet" href="~/Scripts/plugins/timepicker/bootstrap-timepicker.css">
+    <link rel="stylesheet" href="~/Scripts/plugins/datepicker/datepicker3.css">
+}
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/plugins/datepicker/bootstrap-datepicker.js"> </script>
+    <script type="text/javascript" src="~/Scripts/plugins/timepicker/bootstrap-timepicker.js"> </script>
+    <script type="text/javascript">
+        $(function () {
+            $('#RunningDate').datepicker({
+                showClose: true,
+                showClear: true,
+                toolbarPlacement: 'top'
+
+            });
+
+            $('#StartTime').timepicker({
+                showInputs: false
+            });
+
+            $('#EndTime').timepicker({
+                showInputs: false
+            });
+
+
+        });
+    </script>
+}

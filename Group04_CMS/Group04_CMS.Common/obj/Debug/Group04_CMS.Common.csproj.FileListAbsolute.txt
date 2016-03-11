@@ -1,0 +1,8 @@
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS.Common\bin\Debug\Group04_CMS.Common.dll
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS.Common\bin\Debug\Group04_CMS.Common.pdb
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS.Common\obj\Debug\Group04_CMS.Common.csprojResolveAssemblyReference.cache
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS.Common\obj\Debug\Group04_CMS.Common.Global.Messages.resources
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS.Common\obj\Debug\Group04_CMS.Common.Global.UIString.resources
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS.Common\obj\Debug\Group04_CMS.Common.csproj.GenerateResource.Cache
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS.Common\obj\Debug\Group04_CMS.Common.dll
+E:\comp1640_group04_repository\Group04_CMS\Group04_CMS.Common\obj\Debug\Group04_CMS.Common.pdb
