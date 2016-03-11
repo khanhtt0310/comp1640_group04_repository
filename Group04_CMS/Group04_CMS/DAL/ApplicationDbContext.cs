@@ -50,10 +50,6 @@ namespace Group04_CMS.DAL
                 .HasRequired(c => c.Status)
                 .WithMany()
                 .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Course>()
-                .HasRequired(c => c.Status)
-                .WithMany()
-                .WillCascadeOnDelete(false);
 
         }
     }
