@@ -240,4 +240,7 @@
   <data name="FieldNameStatus" xml:space="preserve">
     <value>Status</value>
   </data>
+  <data name="TitleDialogConfirmDelete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
 </root>

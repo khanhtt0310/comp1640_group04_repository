@@ -61,6 +61,15 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to delete this.
+        /// </summary>
+        public static string ConfirmationDeletion {
+            get {
+                return ResourceManager.GetString("ConfirmationDeletion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} is required..
         /// </summary>
         public static string ValidationRequired {

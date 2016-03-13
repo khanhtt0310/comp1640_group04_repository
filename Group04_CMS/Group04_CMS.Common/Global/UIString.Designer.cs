@@ -412,6 +412,15 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string TitleDialogConfirmDelete {
+            get {
+                return ResourceManager.GetString("TitleDialogConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage.
         /// </summary>
         public static string TitlePageManageLarge {

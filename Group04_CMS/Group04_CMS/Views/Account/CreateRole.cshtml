@@ -19,7 +19,7 @@
     </ol>
 </section>
 
-<section class="content" ng-app="accountApp">
+<section class="content" ng-app="accountApp" ng-controller="accountController">
     <div class="row">
         <div class="col-md-12">
             <div class="box box-primary">
@@ -35,7 +35,7 @@
                 @using (Html.BeginForm(new { role = "form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <div class="box-body" ng-controller="accountController">
+                    <div class="box-body">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
                         <div class="row">
@@ -47,7 +47,7 @@
                                     htmlAttributes = new
                                     {
                                         @class = "form-control",
-                                        data_ng_model = "RoleName"
+                                        ng_model = "RoleName"
                                     }
                                 })
                                 @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
@@ -67,10 +67,26 @@
                         <div class="row">
                             <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                 @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.EditorFor(model => model.Note, new { htmlAttributes = new
+                                {
+                                    @class = "form-control",
+                                    ng_model = "Note"
+                                } })
                                 @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
                             </div>
                         </div>
+                    </div>
+                    <div class="box-footer">
+
+                        <a class="btn btn-default btn-view" href="@Url.Action("Index", "Role")" title="@UIString.ButtonBack">
+                            <i class="fa fa-chevron-circle-left"></i>
+                            @UIString.ButtonBack
+                        </a>
+
+                        <button class="btn btn-primary btn-view" ng-click="addRole()" title="@UIString.ButtonSubmit">
+                            @UIString.ButtonSubmit
+                        </button>
+
                     </div>
                 }
 

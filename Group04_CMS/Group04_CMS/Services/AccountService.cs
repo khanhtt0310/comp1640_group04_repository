@@ -49,7 +49,7 @@ namespace Group04_CMS.Services
         {
             List<RoleModel> results = new List<RoleModel>();
             var query = from u in db.Roles
-                        select new RoleModel { RoleId = u.RoleId, RoleName = u.RoleName };
+                        select new RoleModel { RoleId = u.RoleId, RoleName = u.RoleName, Note = u.Note, GeneralStatus = u.Status};
             if (query.Any())
             {
                 results = query.ToList();
