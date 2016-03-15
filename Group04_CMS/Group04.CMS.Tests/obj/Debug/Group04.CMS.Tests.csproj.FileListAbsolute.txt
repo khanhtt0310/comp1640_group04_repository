@@ -78,3 +78,11 @@ C:\Users\i-enterAsia\Desktop\comp1640_group04_repository\Group04_CMS\Group04.CMS
 C:\Users\i-enterAsia\Desktop\comp1640_group04_repository\Group04_CMS\Group04.CMS.Tests\obj\Debug\Group04.CMS.Tests.csprojResolveAssemblyReference.cache
 C:\Users\i-enterAsia\Desktop\comp1640_group04_repository\Group04_CMS\Group04.CMS.Tests\obj\Debug\Group04.CMS.Tests.dll
 C:\Users\i-enterAsia\Desktop\comp1640_group04_repository\Group04_CMS\Group04.CMS.Tests\obj\Debug\Group04.CMS.Tests.pdb
+E:\comp1640_group04_repository\Group04_CMS\Group04.CMS.Tests\bin\Debug\Microsoft.Practices.Unity.Configuration.dll
+E:\comp1640_group04_repository\Group04_CMS\Group04.CMS.Tests\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.dll
+E:\comp1640_group04_repository\Group04_CMS\Group04.CMS.Tests\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\comp1640_group04_repository\Group04_CMS\Group04.CMS.Tests\bin\Debug\System.Web.Helpers.dll
+E:\comp1640_group04_repository\Group04_CMS\Group04.CMS.Tests\bin\Debug\Unity.Mvc5.dll
+E:\comp1640_group04_repository\Group04_CMS\Group04.CMS.Tests\bin\Debug\Microsoft.Practices.Unity.Configuration.xml
+E:\comp1640_group04_repository\Group04_CMS\Group04.CMS.Tests\bin\Debug\Microsoft.Practices.Unity.RegistrationByConvention.xml
+E:\comp1640_group04_repository\Group04_CMS\Group04.CMS.Tests\bin\Debug\System.Web.Helpers.xml
