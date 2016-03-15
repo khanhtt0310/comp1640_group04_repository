@@ -13,6 +13,7 @@ namespace Group04_CMS.Models
         public int RoleId { get; set; }
         [StringLength(255)]
         public string RoleName { get; set; }
+        public string Note { get; set; }
         public virtual ICollection<User> Users { get; set; }
 
         [ForeignKey("Status")]

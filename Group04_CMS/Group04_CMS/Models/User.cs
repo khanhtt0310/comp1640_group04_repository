@@ -15,6 +15,8 @@ namespace Group04_CMS.Models
         public int StatusId { get; set; }
         [StringLength(100)]
         public string UserName { get; set; }
+        [StringLength(150)]
+        public string Email { get; set; }
         [StringLength(100)]
         public string Password { get; set; }
         public virtual ICollection<Role> Roles { get; set; }

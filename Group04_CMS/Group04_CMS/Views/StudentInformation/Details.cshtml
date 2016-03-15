@@ -1,0 +1,151 @@
+﻿@using MIS.Common
+@model MIS.Web.Models.StudentInformationViewModel
+
+@{
+    ViewBag.Title = @UIString.TitlePageStudentInformation;
+}
+
+<section class="content-header">
+    <h1 class="fa fa-list">
+        @UIString.TitlePageManageLarge
+        <small> @UIString.ObjectStudentInformation</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
+        <li><a href="@Url.Action("Index", "StudentInformation")">@UIString.TitlePageStudentInformation</a></li>
+        <li class="active">@UIString.BreadCrumbDetails</li>
+    </ol>
+    <div class="box-tools">
+        <p class="text-right btn-grid-group">
+
+            <a class="btn btn-default btn-view" href="@Url.Action("Index", "StudentInformation")" title="@UIString.ButtonBack">
+                <i class="fa fa-chevron-circle-left"></i>
+                @UIString.ButtonBack
+            </a>
+
+            <a class="btn btn-info btn-view" href="@Url.Action("Edit", "StudentInformation", new {id = Model.Id})" title="@UIString.ButtonEdit">
+                <i class="fa fa-edit"></i>
+                @UIString.ButtonEdit
+            </a>
+
+            <a class="btn btn-danger btn-view" href="#" onclick="javascript:deleteItem(@Model.Id);" title="@UIString.ButtonDelete">
+                <i class="fa fa-trash"></i>
+                @UIString.ButtonDelete
+            </a>
+        </p>
+    </div>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        <i class="fa fa-eye"></i>
+                        @UIString.ObjectStudentInformation @UIString.BreadCrumbDetails
+                    </h3>
+                </div>
+                <div class="box-body">
+                    <div class="box-body no-padding table-responsive">
+                        <table class="table table-striped table-bordered detail-view" id="w0">
+                            <tbody class="table-hover">
+                                <tr class="even">
+                                </tr>
+                                <tr class="odd">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.FullName)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.FullName)</td>
+                                    <th class="col-sm-2">@UIString.FieldStudentInformationAvatar</th>
+                                    <th class="col-sm-4"><img src="@Url.Content(Model.ImageUrl)" alt="Image" /></th>
+                                </tr>
+                                <tr class="even">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Code)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.Code)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Email)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.Email)</td>
+                                </tr>
+                                <tr class="odd">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.DateOfBirth)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.DateOfBirth)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.PhoneNumber)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.PhoneNumber)</td>
+                                </tr>
+                                <tr class="even">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.CollegeId)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.College.Name)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.CampusId)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.Campus.Name)</td>
+                                </tr>
+                                <tr class="odd">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.BatchId)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.Batch.Name)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.SchoolId)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.School.Name)</td>
+                                </tr>
+                                <tr class="even">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Address)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.Address)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.StudentStatusId)</th>
+                                    <td class="col-sm-4"><span class="label label-success">@Html.DisplayFor(model => model.StudentStatus.Name)</span></td>
+                                </tr>
+                                <tr class="odd">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.ParentName)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.ParentName)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.ParentPhoneNumb)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.ParentPhoneNumb)</td>
+                                </tr>
+                                <tr class="even">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.ParentEmail)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.ParentEmail)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.ParentAddress)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.ParentAddress)</td>
+                                </tr>
+                                <tr class="odd">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.CreatedDate)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.CreatedDate.DateTime)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.CreatedBy)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.CreatedBy)</td>
+                                </tr>
+                                <tr class="even">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.UpdatedDate)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.UpdatedDate.DateTime)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.UpdatedBy)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.UpdatedBy)</td>
+                                </tr>
+                                <tr class="odd">
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Note)</th>
+                                    <td colspan="3">@Html.DisplayFor(model => model.Note)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript" src="~/Scripts/bootbox.min.js"></script>
+<script type="text/javascript">
+        function deleteItem(id) {
+            bootbox.dialog({
+                message: "@Message.ConfirmationDeletion @UIString.ObjectStudentInformation?",
+                title: "@UIString.TitleDialogConfirmDelete @UIString.ObjectStudentInformation",
+                buttons: {
+                    cancel: {
+                        label: "@UIString.ButtonConfirmDeleteNo",
+                        className: "btn-default",
+                        callback: function () {
+                            bootbox.hideAll();
+                        }
+                    },
+                    ok: {
+                        label: "@UIString.ButtonConfirmDeleteYes",
+                        className: "btn-primary",
+                        callback: function () {
+                            location.href = "@Url.Action("Delete", "StudentInformation")/" + id;
+                        }
+                    }
+                }
+            });
+        }
+</script>

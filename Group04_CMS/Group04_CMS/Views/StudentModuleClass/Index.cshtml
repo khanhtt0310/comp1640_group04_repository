@@ -1,0 +1,149 @@
+﻿@using MIS.Common
+@using MIS.Web.Models
+@model IEnumerable<StudentModuleClassViewModel>
+
+    @{
+        ViewBag.Title = @UIString.TitlePageStudentModuleClass;
+    }
+
+    <section class="content-header">
+        <h1>
+            <i class="fa fa-list"></i>
+            @UIString.TitlePageManageLarge
+            <small> @UIString.FieldNameStudentModuleClassId</small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
+            <li class="active">@UIString.TitlePageStudentModuleClass</li>
+        </ol>
+    </section>
+
+    <section class="content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">
+                            <i class="fa fa-search"></i>
+                            @UIString.BreadCrumbView @UIString.FieldNameStudentModuleClassId
+                        </h3>
+                        <div class="box-tools">
+                            <p class="text-right btn-grid-group">
+
+                                <a class="btn btn-primary btn-sm" href="@Url.Action("Create")" title="@UIString.ButtonAdd">
+                                    <i class="fa fa-plus"></i> @UIString.ButtonAdd
+                                </a>
+
+                                <a class="btn bg-orange btn-sm" href="#" title="@UIString.ButtonPDF">
+                                    <i class="fa fa-file-pdf-o "></i> @UIString.ButtonPDF
+                                </a>
+
+                                <a class="btn bg-teal btn-sm" href="#" title="@UIString.ButtonEXCEL">
+                                    <i class="fa fa-file-excel-o"></i> @UIString.ButtonEXCEL
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-striped table-hover">
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.ModuleClassId)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.StudentInformationId)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.SemesterId)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FinalMarks)
+                                    </th>
+
+                                    <th></th>
+                                </tr>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ModuleClass.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.StudentInformation.FullName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Semester.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FinalMarks)
+                                        </td>
+                                        <td class="row">
+                                            <div class="col-sm-12">
+                                                <a href="@Url.Action("Details", "StudentModuleClass", new { id = item.Id })" title="@UIString.ButtonViewDetail"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                                <a href="@Url.Action("Edit", "StudentModuleClass", new { id = item.Id })" title="@UIString.ButtonEdit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                                <a href="#" onclick="javascript:deleteItem(@item.Id);" title="@UIString.ButtonDelete"><span class="glyphicon glyphicon-trash"></span></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="~/Scripts/toastr.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootbox.min.js"></script>
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        $(document).ready(function () {
+            var msg = "@ViewBag.Message";
+            if (msg != "") {
+                toastr["success"](msg);
+            }
+        });
+
+        function deleteItem(id) {
+            bootbox.dialog({
+                message: "@Message.ConfirmationDeletion @UIString.FieldNameStudentModuleClassId?",
+                title: "@UIString.TitleDialogConfirmDelete @UIString.FieldNameStudentModuleClassId",
+                buttons: {
+                    cancel: {
+                        label: "@UIString.ButtonConfirmDeleteNo",
+                        className: "btn-default",
+                        callback: function () {
+                            bootbox.hideAll();
+                        }
+                    },
+                    ok: {
+                        label: "@UIString.ButtonConfirmDeleteYes",
+                        className: "btn-primary",
+                        callback: function () {
+                            location.href = "@Url.Action("Delete", "StudentModuleClass")/" + id;
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>

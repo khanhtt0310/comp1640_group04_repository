@@ -1,0 +1,87 @@
+﻿
+@model MIS.Web.Models.StudentStatusViewModel
+
+@{
+    ViewBag.Title = "Student Status Management";
+}
+
+<section class="content-header">
+    <h1 class="fa fa-list">
+        Manage
+        <small> Student Status</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="#">Student Status Management</a></li>
+        <li class="active">Edit</li>
+    </ol>
+</section>
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        <i class="fa fa-eye"></i>
+                        Edit Student Status
+                    </h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                @using (Html.BeginForm("Edit", "StudentStatus", FormMethod.Post, new { role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="box-body">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                        <div class=" row">
+                            <div class="form-group col-md-6 col-sm-6">
+                                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group col-md-6 col-sm-6">
+                                @Html.LabelFor(model => model.CollegeId, htmlAttributes: new { @class = "control-label" })
+                                @Html.DropDownListFor(model => model.CollegeId, (IEnumerable<SelectListItem>)ViewBag.CollegeList, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.CollegeId, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="row">
+                          
+
+                            <div class="col-sm-12">
+                                @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label" })
+                                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                            </div>
+
+
+                        </div>
+
+
+
+                        <div class="row">
+
+                        </div>
+
+                    </div>
+                    <div class="box-footer">
+                        <a class="btn btn-default  btn-view " href="@Url.Action("Index", "StudentStatus")" title="@MIS.Common.UIString.ButtonBack">
+                            <i class="fa fa-chevron-circle-left"></i>
+                            @MIS.Common.UIString.ButtonBack
+                        </a>
+                        <button type="submit" class="btn btn-info  btn-view" title="@MIS.Common.UIString.ButtonEdit">
+                            <i class=" fa fa-edit"></i>
+                            @MIS.Common.UIString.ButtonEdit
+                        </button>
+
+                    </div>
+                    <!-- /.box-footer -->
+                }
+            </div>
+        </div>
+    </div>
+</section>

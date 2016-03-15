@@ -1,0 +1,205 @@
+﻿@using MIS.Common
+@model List<MIS.Web.Models.ModuleClassMarkViewModel>
+
+    @{
+        ViewBag.Title = @MIS.Common.UIString.TitlePageModule;
+    }
+               <style>
+                   .states {
+                       color: orangered;
+                       background-color: green;
+                   }
+               </style>
+<script src="~/Scripts/jquery-2.1.4.min.js"></script>
+<script>
+    $(function() {
+        $('#ModuleClass').change(function() {
+
+            var typeSelected = $('#ModuleClass :selected').val();
+            typeSelected = typeSelected == "" ? 0 : typeSelected;
+            var url = '@Url.Action("Create", "ModuleClassMark")' + "/?selectedValue=" + typeSelected;
+            location.href = url;
+        });
+    });
+    function navigate() {
+        var moduleClassId = $('#ModuleClass').val();
+        var url = '@Url.Action("Index", "ModuleClassMark")' + "/?moduleClassId=" + moduleClassId;
+        location.href = url;
+    }
+    
+
+    $(document).ready(function () {
+        
+        $("#Grade option[value='-1']").attr("disabled", "disabled");
+        
+        $("#Grade option[value='-1']").addClass("states");
+    });
+
+</script>
+    <section class="content-header">
+        <h1>
+            <i class="fa fa-list"></i>
+            @MIS.Common.UIString.TitlePageManageLarge
+            <small>@MIS.Common.UIString.FieldNameModuleId </small>
+        </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i>@MIS.Common.UIString.BreadCrumbHome</a></li>
+            <li><a href="#">@MIS.Common.UIString.FieldNameModuleId</a></li>
+            <li class="active">@MIS.Common.UIString.BreadCrumbView</li>
+        </ol>
+    </section>
+
+<section class="content">
+    
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <i class="fa fa-search"></i>
+                        @MIS.Common.UIString.BreadCrumbView @MIS.Common.UIString.FieldNameModuleId
+                    </h3>
+                    <div class="box-tools">
+                        <p class="text-right btn-grid-group">
+
+                            <a class="btn bg-orange btn-sm" href="#" title="@MIS.Common.UIString.ButtonPDF">
+                                <i class="fa fa-file-pdf-o "></i>@MIS.Common.UIString.ButtonPDF
+                            </a>
+
+                            <a class="btn bg-teal btn-sm" href="#" title="@MIS.Common.UIString.ButtonEXCEL">
+                                <i class="fa fa-file-excel-o"></i>@MIS.Common.UIString.ButtonEXCEL
+                            </a>
+                        </p>
+                    </div>
+                </div>
+@using (Html.BeginForm("AddMark", "ModuleClassMark", FormMethod.Post, new { role = "form" }))
+{
+                <div class="box-body table-responsive no-padding">
+                    <div class="form-group col-md-4 col-sm-12 col-xs-12">
+                        @Html.Label("Module Class: ", htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("ModuleClass", "------ Choice Module Class ------")
+                    </div>
+                    @*<div class="form-group col-md-3 col-sm-12 col-xs-12">
+                        @Html.Label("Grade groud: ", htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("GradeGroup", (SelectList)ViewBag.GradeGroup, new { style = "width:150px;" })
+                    </div>*@
+                    <div class="form-group col-md-4 col-sm-12 col-xs-12">
+                        @Html.Label("Grade type: ", htmlAttributes: new { @class = "control-label" })
+                        @Html.DropDownList("Grade", "------ Choice Grade Type ------")
+                    </div>
+                </div>
+              
+                    @Html.AntiForgeryToken()
+                    <div class="box-body table-responsive no-padding">
+                        <table class="table table-striped table-hover">
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model[0].studentInformation.Code)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model[0].studentInformation.FullName)
+                                    </th>
+
+                                    <th>
+                                        @Html.DisplayNameFor(model => model[0].Value)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model[0].Comment)
+                                    </th>
+                                </tr>
+                                @for (int i = 0; i < Model.Count(); i++)
+                                {
+                                    <tr>
+                                        @Html.HiddenFor(modelItem => modelItem[i].StudentId)
+                                        @Html.HiddenFor(modelItem => modelItem[i].GradeGroupId)
+                                        @Html.HiddenFor(modelItem => modelItem[i].ModuleClassId)
+                                        <td>
+                                            @Html.DisplayFor(modelItem => modelItem[i].Code)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => modelItem[i].FullName)
+                                        </td>
+                                        
+                                        <td>
+                                            @Html.EditorFor(modelItem => modelItem[i].Value, new { @Value = "",@Type="nuymber" })
+                                        </td>
+
+                                        <td>
+                                            @Html.EditorFor(modelItem => modelItem[i].Comment)
+                                        </td>
+                                        
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="box-footer">
+
+                        <a class="btn btn-default btn-view" href="#" onclick="navigate();" title="@MIS.Common.UIString.ButtonBack">
+                            <i class="fa fa-chevron-circle-left"></i>
+                            @MIS.Common.UIString.ButtonBack
+                        </a>
+
+                        <button type="submit" class="btn btn-primary btn-view" title="@MIS.Common.UIString.ButtonSubmit">
+                            @MIS.Common.UIString.ButtonSubmit
+                        </button>
+
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+    <script src="~/Scripts/toastr.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootbox.min.js"></script>
+    <script type="text/javascript">
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": true,
+            "progressBar": false,
+            "positionClass": "toast-top-center",
+            "preventDuplicates": true,
+            "onclick": null,
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+
+        $(document).ready(function () {
+            var msg = "@ViewBag.Message";
+            if (msg != "") {
+                toastr["success"](msg);
+            }
+        });
+
+        function deleteItem(id) {
+            bootbox.dialog({
+                message: "@Message.ConfirmationDeletion @UIString.ObjectModule?",
+                title: "@UIString.TitleDialogConfirmDelete @UIString.ObjectModule",
+                buttons: {
+                    cancel: {
+                        label: "@UIString.ButtonConfirmDeleteNo",
+                        className: "btn-default",
+                        callback: function () {
+                            bootbox.hideAll();
+                        }
+                    },
+                    ok: {
+                        label: "@UIString.ButtonConfirmDeleteYes",
+                        className: "btn-primary",
+                        callback: function () {
+                            location.href = "@Url.Action("Delete", "Module")/" + id;
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>

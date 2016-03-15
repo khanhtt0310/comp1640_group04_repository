@@ -53,10 +53,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Group04_CMS.Common\Group04_CMS.Common.csproj">
+      <Project>{49872ae3-c15b-48e6-805d-120b76861efc}</Project>
+      <Name>Group04_CMS.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Group04_CMS\Group04_CMS.csproj">
       <Project>{5bde6f87-3a31-462c-8afb-f08a7eab537e}</Project>
       <Name>Group04_CMS</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
