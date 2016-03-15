@@ -9,7 +9,7 @@ namespace Group04_CMS.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
         }
 
         protected override void Seed(DAL.ApplicationDbContext context)
