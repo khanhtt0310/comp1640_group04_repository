@@ -1,10 +1,8 @@
-using Microsoft.Practices.Unity;
-using System.Web.Http;
-using Group04_CMS.Services;
-using Unity.WebApi;
 using System.Web.Mvc;
+using Microsoft.Practices.Unity;
+using Unity.Mvc5;
 
-namespace Group04_CMS
+namespace Group04.CMS.Tests
 {
     public static class UnityConfig
     {
@@ -16,9 +14,8 @@ namespace Group04_CMS
             // it is NOT necessary to register your controllers
             
             // e.g. container.RegisterType<ITestService, TestService>();
-            container.RegisterType<IAccountService, AccountService>();
-            DependencyResolver.SetResolver(new Unity.Mvc5.UnityDependencyResolver(container));
-            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+            
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
     }
 }

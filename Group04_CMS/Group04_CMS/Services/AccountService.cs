@@ -44,6 +44,20 @@ namespace Group04_CMS.Services
             return result;
         }
 
+        public RoleModel GetRoleDetail(int roleId)
+        {
+            RoleModel result = new RoleModel();
+            var roles = db.Roles.Where(r => r.RoleId == roleId);
+            if (roles.Any())
+            {
+                var role = roles.First();
+                result.RoleId = role.RoleId;
+                result.RoleName = role.RoleName;
+                result.Note = role.Note;
+                result.GeneralStatus = role.Status;
+            }
+            return result;
+        }
 
         public List<RoleModel> GetRoles()
         {

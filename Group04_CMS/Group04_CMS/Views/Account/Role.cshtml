@@ -9,7 +9,7 @@
 <section class="content-header">
     <h1>
         <i class="fa fa-list"></i>
-        @UIString.TitlePageManageLarge
+        @UIString.TitlePageManageLarge,
         <small> @UIString.FieldNameRoleId</small>
     </h1>
     <ol class="breadcrumb">
@@ -63,9 +63,10 @@
                                 <td>{{ r.GeneralStatus.StatusName }}</td>
                                 <td class="row">
                                     <div class="col-sm-12">
-                                        <a href="@Url.Action("RoleDetail", "Account", new { id = "{{r.RoleId}}" })" title="@UIString.ButtonViewDetail"><span class="glyphicon glyphicon-eye-open"></span></a>
-                                        <a href="@Url.Action("Edit", "Account", new { id = "{{r.RoleId}}" })" title="@UIString.ButtonEdit"><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a href="#" onclick="javascript:deleteItem('{{r.RoleId}}');" title="@UIString.ButtonDelete"><span class="glyphicon glyphicon-trash"></span></a>
+                                        <a ng-href="@Url.Action("RoleDetail", "Account")/{{r.RoleId}}" title="@UIString.ButtonViewDetail"><span class="glyphicon glyphicon-eye-open"></span></a>
+@*                                        <a href="@Url.Action("RoleDetail", "Account", new {id = "{{ r.RoleId }}"})" title="@UIString.ButtonViewDetail"><span class="glyphicon glyphicon-eye-open"></span></a>*@
+                                        <a href="@Url.Action("Edit", "Account", new {id = "{{r.RoleId}}"})" title="@UIString.ButtonEdit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a href="#" onclick=" javascript:deleteItem('{{r.RoleId}}'); " title="@UIString.ButtonDelete"><span class="glyphicon glyphicon-trash"></span></a>
                                     </div>
                                 </td>
                             </tr>

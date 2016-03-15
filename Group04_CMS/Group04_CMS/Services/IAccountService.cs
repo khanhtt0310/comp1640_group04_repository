@@ -14,5 +14,6 @@ namespace Group04_CMS.Services
         UserModel CreateUser(string userName, int roleId);
         List<RoleModel> GetRoles();
         RoleModel CreateRole(RoleModelQuery roleModelQuery);
+        RoleModel GetRoleDetail(int roleId);
     }
 }
