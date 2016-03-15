@@ -26,7 +26,8 @@ namespace Group04_CMS
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/AdminLTE.css" ));
+                      "~/Content/AdminLTE.css",
+                      "~/Content/site.css"));
 
 
             bundles.Add(new ScriptBundle("~/EducationManager/bundles/jquery").Include(
@@ -46,7 +47,8 @@ namespace Group04_CMS
 
             bundles.Add(new StyleBundle("~/EducationManager/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/AdminLTE.css"));
+                      "~/Content/AdminLTE.css",
+                      "~/Content/site.css"));
 
             bundles.Add(new ScriptBundle("~/Teacher/bundles/jquery").Include(
                     "~/Scripts/jquery-{version}.js"));
@@ -65,7 +67,8 @@ namespace Group04_CMS
 
             bundles.Add(new StyleBundle("~/Teacher/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/AdminLTE.css"));
+                      "~/Content/AdminLTE.css",
+                      "~/Content/site.css"));
         }
     }
 }
