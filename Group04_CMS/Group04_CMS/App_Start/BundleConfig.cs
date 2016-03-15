@@ -9,7 +9,7 @@ namespace Group04_CMS
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
-                        "~/Scripts/jquery-{version}.js"));
+                        "~/Scripts/jquery-2.1.4.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*",
@@ -35,12 +35,11 @@ namespace Group04_CMS
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/AdminLTE.css",
-                      "~/Content/site.css"));
+                      "~/Content/AdminLTE.css"));
 
 
             bundles.Add(new ScriptBundle("~/EducationManager/bundles/jquery").Include(
-            "~/Scripts/jquery-{version}.js"));
+            "~/Scripts/jquery-2.1.4.js"));
 
             bundles.Add(new ScriptBundle("~/EducationManager/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -56,11 +55,10 @@ namespace Group04_CMS
 
             bundles.Add(new StyleBundle("~/EducationManager/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/AdminLTE.css",
-                      "~/Content/site.css"));
+                      "~/Content/AdminLTE.css"));
 
             bundles.Add(new ScriptBundle("~/Teacher/bundles/jquery").Include(
-                    "~/Scripts/jquery-{version}.js"));
+                    "~/Scripts/jquery-2.1.4.js"));
 
             bundles.Add(new ScriptBundle("~/Teacher/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -76,8 +74,7 @@ namespace Group04_CMS
 
             bundles.Add(new StyleBundle("~/Teacher/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/AdminLTE.css",
-                      "~/Content/site.css"));
+                      "~/Content/AdminLTE.css"));
         }
     }
 }
