@@ -18,7 +18,7 @@ namespace Group04_CMS.ApiControllers
 
         public AccountController()
         {
-            
+
         }
 
         [HttpPost]
@@ -35,9 +35,9 @@ namespace Group04_CMS.ApiControllers
         }
 
         [HttpPost]
-        public ApiSimpleResult<UserModel> AddUser(string userName, int roleId)
+        public ApiSimpleResult<UserModel> AddUser(UserQueryModel user)
         {
-            var response = AccountSvc.CreateUser(userName, roleId);
+            var response = AccountSvc.CreateUser(user);
             ApiSimpleResult<UserModel> result = new ApiSimpleResult<UserModel>
             {
                 StatusString = "Successful",
@@ -91,6 +91,22 @@ namespace Group04_CMS.ApiControllers
                 Data = generalStatusList
             };
 
+            return result;
+        }
+
+        [HttpPost]
+        public ApiSimpleResult<RoleModel> GetRoleDetails(int roleId)
+        {
+            var response = AccountSvc.GetRoleDetail(roleId);
+            var result = new ApiSimpleResult<RoleModel>
+            {
+                StatusString = "Successful",
+                Message = "Get all roles successfully"
+            };
+            if (response != null)
+            {
+                result.Data = response;
+            }
             return result;
         }
     }

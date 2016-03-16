@@ -22,7 +22,14 @@ namespace Group04_CMS.Controllers
         {
             return View();
         }
-
+        public ActionResult CreateUser()
+        {
+            return View();
+        }
+        public ActionResult UserRole()
+        {
+            return View();
+        }
         public ActionResult CreateRole()
         {
             return View();
@@ -34,6 +41,11 @@ namespace Group04_CMS.Controllers
         public ActionResult RoleDetail(int id)
         {
             RoleModel model = AccountSvc.GetRoleDetail(id);
+            return View(model);
+        }
+        public ActionResult EditRole(int id)
+        {
+            var model = AccountSvc.GetRoleDetail(id);
             return View(model);
         }
     }

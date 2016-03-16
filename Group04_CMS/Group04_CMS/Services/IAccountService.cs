@@ -11,7 +11,7 @@ namespace Group04_CMS.Services
     public interface IAccountService
     {
         List<UserModel> GetUsers();
-        UserModel CreateUser(string userName, int roleId);
+        UserModel CreateUser(UserQueryModel user);
         List<RoleModel> GetRoles();
         RoleModel CreateRole(RoleModelQuery roleModelQuery);
         RoleModel GetRoleDetail(int roleId);

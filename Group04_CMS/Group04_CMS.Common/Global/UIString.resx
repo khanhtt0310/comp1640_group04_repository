@@ -243,4 +243,34 @@
   <data name="TitleDialogConfirmDelete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="FieldNameCreateBy" xml:space="preserve">
+    <value>Create By</value>
+  </data>
+  <data name="FieldNameCreateDate" xml:space="preserve">
+    <value>Create Date</value>
+  </data>
+  <data name="FieldNameStatusId" xml:space="preserve">
+    <value>Status</value>
+  </data>
+  <data name="FieldNameUpdateBy" xml:space="preserve">
+    <value>Update By</value>
+  </data>
+  <data name="FieldNameUpdateDate" xml:space="preserve">
+    <value>Update Date</value>
+  </data>
+  <data name="FieldNameUserId" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="FieldNameUserRoleId" xml:space="preserve">
+    <value>User Role</value>
+  </data>
+  <data name="ObjectUser" xml:space="preserve">
+    <value>User</value>
+  </data>
+  <data name="TitlePageUser" xml:space="preserve">
+    <value>User Management</value>
+  </data>
+  <data name="TitlePageUserRole" xml:space="preserve">
+    <value>User Role Management</value>
+  </data>
 </root>

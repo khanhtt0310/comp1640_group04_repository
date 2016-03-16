@@ -17,7 +17,7 @@ namespace Group04_CMS.Services
         {
             List<UserModel> results = new List<UserModel>();
             var query = from u in db.Users
-                            select new UserModel{Id = u.UserId, UserName = u.UserName};
+                            select new UserModel{Id = u.UserId, UserName = u.UserName, Email = u.Email, Status = u.Status };
             if (query.Any())
             {
                 results = query.ToList();
@@ -26,20 +26,25 @@ namespace Group04_CMS.Services
         }
 
         [HttpPost]
-        public UserModel CreateUser(string userName, int roleId)
+        public UserModel CreateUser(UserQueryModel userQuery)
         {
+            var status = new GeneralStatus
+            {
+                StatusName = userQuery.Status,
+                CreateTime = DateTime.UtcNow,
+                UpdateTime = DateTime.UtcNow
+            };
+            db.GeneralStatuses.Add(status);
             UserModel result = new UserModel();
-            var role = db.Roles.FirstOrDefault(p => p.RoleId == roleId);
-            var user = new User {UserName = userName};
+            var user = new User { UserName = userQuery.UserName, Email = userQuery.Email, StatusId = status.StatusId };
             db.Users.Add(user);
-            user.Roles.Add(role);
             db.SaveChanges();
             result = new UserModel
             {
-                RoleId = role.RoleId,
-                RoleName = role.RoleName,
                 Id = user.UserId,
-                UserName = user.UserName
+                UserName = user.UserName,
+                Email = user.Email,
+                Status = user.Status
             };
             return result;
         }

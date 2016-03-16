@@ -185,10 +185,13 @@
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\IAccountService.cs" />
     <Compile Include="ViewModels\ApiSimpleResult.cs" />
+    <Compile Include="ViewModels\CourseModel.cs" />
     <Compile Include="ViewModels\GeneralStatusModel.cs" />
     <Compile Include="ViewModels\RoleModel.cs" />
     <Compile Include="ViewModels\RoleModelQuery.cs" />
     <Compile Include="ViewModels\UserModel.cs" />
+    <Compile Include="ViewModels\UserQueryModel.cs" />
+    <Compile Include="ViewModels\UserRoleModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminLTE.css" />
@@ -1860,6 +1863,9 @@
     <Content Include="Views\Courses\Details.cshtml" />
     <Content Include="Views\Courses\Edit.cshtml" />
     <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\Account\CreateUser.cshtml" />
+    <Content Include="Views\Account\UserRole.cshtml" />
+    <Content Include="Views\Account\EditRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -376,6 +376,24 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create By.
+        /// </summary>
+        public static string FieldNameCreateBy {
+            get {
+                return ResourceManager.GetString("FieldNameCreateBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create Date.
+        /// </summary>
+        public static string FieldNameCreateDate {
+            get {
+                return ResourceManager.GetString("FieldNameCreateDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
         public static string FieldNameNote {
@@ -412,6 +430,60 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Status.
+        /// </summary>
+        public static string FieldNameStatusId {
+            get {
+                return ResourceManager.GetString("FieldNameStatusId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update By.
+        /// </summary>
+        public static string FieldNameUpdateBy {
+            get {
+                return ResourceManager.GetString("FieldNameUpdateBy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Date.
+        /// </summary>
+        public static string FieldNameUpdateDate {
+            get {
+                return ResourceManager.GetString("FieldNameUpdateDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        public static string FieldNameUserId {
+            get {
+                return ResourceManager.GetString("FieldNameUserId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Role.
+        /// </summary>
+        public static string FieldNameUserRoleId {
+            get {
+                return ResourceManager.GetString("FieldNameUserRoleId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        public static string ObjectUser {
+            get {
+                return ResourceManager.GetString("ObjectUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string TitleDialogConfirmDelete {
@@ -435,6 +507,24 @@ namespace Group04_CMS.Common.Global {
         public static string TitlePageRole {
             get {
                 return ResourceManager.GetString("TitlePageRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Management.
+        /// </summary>
+        public static string TitlePageUser {
+            get {
+                return ResourceManager.GetString("TitlePageUser", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User Role Management.
+        /// </summary>
+        public static string TitlePageUserRole {
+            get {
+                return ResourceManager.GetString("TitlePageUserRole", resourceCulture);
             }
         }
     }
