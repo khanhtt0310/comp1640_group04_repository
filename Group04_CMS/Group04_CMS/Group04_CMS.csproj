@@ -175,6 +175,7 @@
       <DependentUpon>201603050334425_AddRoleNote.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Faculty.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\GeneralStatus.cs" />
     <Compile Include="Models\Role.cs" />

@@ -3,43 +3,60 @@
 @{
     ViewBag.Title = "Index";
 }
+<section class="content-header">
+    <h1><i class="fa fa-list-ol"></i> Courses List</h1>
+</section>
+<section class="content">
+    <div class="box box-solid col-xs-12">
+        <div class="box-header with-border">
+            <a href="/Courses/Create" class="btn btn-primary pull-right">
+                <i class="fa fa-plus-circle"></i> Add a Course
+            </a>
+        </div>
+        <div class="box-body">
+            <table class="table table-striped">
+                <tr>
+                    <th>Course Code</th>
+                    <th class="hidden-xs">Course Name</th>
+                    <th class="hidden-xs">Course Status</th>
+                    <th></th>
+                </tr>
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.CourseStatus)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseStatus)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CourseId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CourseId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CourseId })
-        </td>
-    </tr>
-}
-
-</table>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CourseCode)
+                        </td>
+                        <td class="hidden-xs">
+                            @Html.DisplayFor(modelItem => item.CourseName)
+                        </td>
+                        @if (item.CourseStatus == "0")
+                        {
+                            <td class="hidden-xs">Activated</td>
+                        }
+                        else if (item.CourseStatus == "1")
+                        {
+                            <td class="hidden-xs">De-activated</td>
+                        }
+                        else if (item.CourseStatus == "1")
+                        {
+                            <td class="hidden-xs">Deleted</td>
+                        }
+                        else
+                        {
+                            <td class="hidden-xs"></td>
+                        }
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.CourseId }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.CourseId })
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="box-footer">
+            <div class="form-group col-xs-12"></div>
+        </div>
+    </div>
+</section>

@@ -36,16 +36,7 @@ namespace Group04_CMS.Controllers
 
         public ActionResult Create()
         {
-            Dictionary<string, string> courseStatus = new Dictionary<string, string>();
-            IList<SelectListItem> CourseStatusList = new List<SelectListItem>();
-            courseStatus.Add("Activated", "0");
-            courseStatus.Add("De-activated", "1");
-            courseStatus.Add("Deleted", "2");
-            foreach (KeyValuePair<string, string> pair in courseStatus)
-            {
-                CourseStatusList.Add(new SelectListItem() { Text = pair.Key, Value = pair.Value, Selected = false });
-            }
-            ViewData["CourseStatusList"] = CourseStatusList;
+            ViewData["CourseStatusList"] = CreateCourseStatusDropdownlist();
             return View();
         }
 
@@ -74,6 +65,7 @@ namespace Group04_CMS.Controllers
             {
                 return HttpNotFound();
             }
+            ViewData["CourseStatusList"] = CreateCourseStatusDropdownlist();
             return View(course);
         }
 
@@ -121,6 +113,20 @@ namespace Group04_CMS.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        protected IList<SelectListItem> CreateCourseStatusDropdownlist()
+        {
+            Dictionary<string, string> courseStatus = new Dictionary<string, string>();
+            IList<SelectListItem> CourseStatusList = new List<SelectListItem>();
+            courseStatus.Add("Activated", "0");
+            courseStatus.Add("De-activated", "1");
+            courseStatus.Add("Deleted", "2");
+            foreach (KeyValuePair<string, string> pair in courseStatus)
+            {
+                CourseStatusList.Add(new SelectListItem() { Text = pair.Key, Value = pair.Value, Selected = false });
+            }
+            return CourseStatusList;
         }
     }
 }

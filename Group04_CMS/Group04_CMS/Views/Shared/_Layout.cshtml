@@ -24,7 +24,7 @@
     <div class="wrapper">
         <header class="main-header">
             <a href="@Url.Action("IndexStudent", "Home")" class="logo">
-                <span class="logo-mini"><b>A</b>LT</span>
+                <span class="logo-mini"><b>G4-CMS</b></span>
                 <span class="logo-lg"><b>G4-CMS</b></span>
             </a>
             <nav class="navbar navbar-static-top" role="navigation">
@@ -35,8 +35,8 @@
                     <ul class="nav navbar-nav">
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="~/img/avatar.png" class="user-image" alt="User Image">
-                                <span class="hidden-xs">Khanhtt</span>
+                                <img src="~/img/user-avartar.jpg" class="user-image" alt="User Image">
+                                <span class="hidden-xs">User</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="user-header">
@@ -56,23 +56,18 @@
                                 </li>
                             </ul>
                         </li>
-                        <li>
-                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                        </li>
                     </ul>
                 </div>
-
             </nav>
         </header>
-
         <aside class="main-sidebar">
             <section class="sidebar">
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="~/img/avatar.png" class="img-circle" alt="User Image">
+                        <img src="~/img/user-avartar.jpg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>Khanhtt</p>
+                        <p>User</p>
                     </div>
                 </div>
                 <ul class="sidebar-menu">
@@ -96,9 +91,7 @@
                             <i class="fa fa-sitemap"></i> <span>Course Management</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Index", "Courses")"><i class="fa fa-plus"></i> Courses List</a></li>
-                        </ul>
-                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Index", "Courses")"><i class="fa fa-list-ol"></i> Courses List</a></li>
                             <li><a href="@Url.Action("Create", "Courses")"><i class="fa fa-plus"></i> Add a Course</a></li>
                         </ul>
                     </li>

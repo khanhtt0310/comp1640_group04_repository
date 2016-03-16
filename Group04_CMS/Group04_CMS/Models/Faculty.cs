@@ -3,22 +3,20 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Group04_CMS.Models
 {
-    public class Course
+    public class Faculty
     {
-        public int CourseId { get; set; }
-
-        [Required]
-        [StringLength(10)]
-        public string CourseCode { get; set; }
+        public int FacultyId { get; set; }
 
         [Required]
         [StringLength(255)]
-        public string CourseName { get; set; }
+        public string FacultyName { get; set; }
 
         [Required]
         [StringLength(1)]
-        public string CourseStatus { get; set; }
+        public string FacultyStatus { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
+
+        public virtual ICollection<Course> Courses { get; set; }
     }
 }
