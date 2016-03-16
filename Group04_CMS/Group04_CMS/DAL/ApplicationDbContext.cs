@@ -9,19 +9,20 @@ using Group04_CMS.Models;
 
 namespace Group04_CMS.DAL
 {
-    public class ApplicationDbContext: DbContext
+    public class ApplicationDbContext : DbContext
     {
-        public ApplicationDbContext() :
-            base("Name=group04CMSConnection")
+        public ApplicationDbContext()
+            : base("Name=group04CMSConnection")
         {
-            //Configuration.ProxyCreationEnabled = false;
-            //Configuration.LazyLoadingEnabled = false;
-
             Database.SetInitializer<ApplicationDbContext>(null);
         }
+
         public DbSet<Role> Roles { get; set; }
+
         public DbSet<User> Users { get; set; }
+
         public DbSet<Course> Courses { get; set; }
+
         public DbSet<GeneralStatus> GeneralStatuses { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

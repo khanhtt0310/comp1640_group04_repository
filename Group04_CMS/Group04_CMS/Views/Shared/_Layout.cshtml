@@ -77,7 +77,7 @@
                 </div>
                 <ul class="sidebar-menu">
                     <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> <span>Homepage</span></a></li>
-                    <li class="treeview active">
+                    <li class="treeview">
                         <a href="#">
                             <i class="fa fa-university"></i> <span>Academics</span>
                         </a>
@@ -96,7 +96,10 @@
                             <i class="fa fa-sitemap"></i> <span>Course Management</span> <i class="fa fa-angle-left pull-right"></i>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="@Url.Action("Create", "Course")"><i class="fa fa-plus"></i> Add a Course</a></li>
+                            <li><a href="@Url.Action("Index", "Courses")"><i class="fa fa-plus"></i> Courses List</a></li>
+                        </ul>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Create", "Courses")"><i class="fa fa-plus"></i> Add a Course</a></li>
                         </ul>
                     </li>
                 </ul>

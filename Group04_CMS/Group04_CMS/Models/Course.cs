@@ -7,11 +7,14 @@ namespace Group04_CMS.Models
     {
         public int CourseId { get; set; }
 
+        [Required]
         [StringLength(10)]
         public string CourseCode { get; set; }
 
+        [Required]
         public string CourseName { get; set; }
 
+        [Required]
         [StringLength(1)]
         public string CourseStatus { get; set; }
 
