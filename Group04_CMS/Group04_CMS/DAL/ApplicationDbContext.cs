@@ -25,32 +25,34 @@ namespace Group04_CMS.DAL
 
         public DbSet<GeneralStatus> GeneralStatuses { get; set; }
 
+        public DbSet<UserRole> UserRoles { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-            modelBuilder.Entity<Course>().HasMany(c => c.Users).WithMany(i => i.Courses)
-                .Map(m =>
-                {
-                    m.MapLeftKey("CourseId");
-                    m.MapRightKey("UserId");
-                    m.ToTable("CourseUser");
-                });
-            modelBuilder.Entity<Role>().HasMany(c => c.Users).WithMany(i => i.Roles)
-                .Map(m =>
-                {
-                    m.MapLeftKey("RoleId");
-                    m.MapRightKey("UserId");
-                    m.ToTable("RoleUser");
-                });
-            modelBuilder.Entity<User>()
-                .HasRequired(c => c.Status)
-                .WithMany()
-                .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Role>()
-                .HasRequired(c => c.Status)
-                .WithMany()
-                .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Course>().HasMany(c => c.Users).WithMany(i => i.Courses)
+            //    .Map(m =>
+            //    {
+            //        m.MapLeftKey("CourseId");
+            //        m.MapRightKey("UserId");
+            //        m.ToTable("CourseUser");
+            //    });
+            //modelBuilder.Entity<Role>().HasMany(c => c.Users).WithMany(i => i.Roles)
+            //    .Map(m =>
+            //    {
+            //        m.MapLeftKey("RoleId");
+            //        m.MapRightKey("UserId");
+            //        m.ToTable("UserRole");
+            //    });
+            //modelBuilder.Entity<User>()
+            //    .HasRequired(c => c.Status)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
+            //modelBuilder.Entity<Role>()
+            //    .HasRequired(c => c.Status)
+            //    .WithMany()
+            //    .WillCascadeOnDelete(false);
         }
     }
 }

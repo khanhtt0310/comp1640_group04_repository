@@ -1,1 +1,1 @@
-﻿angular.module('group04_CMS', []);
+﻿var cmsApp = angular.module('cmsApp', ['ui.bootstrap']);

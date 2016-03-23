@@ -22,11 +22,25 @@ namespace Group04_CMS.Controllers
         {
             return View();
         }
+        public ActionResult EditUser(int id)
+        {
+            var model = AccountSvc.GetUserDetails(id);
+            return View(model);
+        }
+        public ActionResult UserDetail(int id)
+        {
+            var model = AccountSvc.GetUserDetails(id);
+            return View(model);
+        }
         public ActionResult CreateUser()
         {
             return View();
         }
         public ActionResult UserRole()
+        {
+            return View();
+        }
+        public ActionResult CreateUserRole()
         {
             return View();
         }
@@ -46,6 +60,11 @@ namespace Group04_CMS.Controllers
         public ActionResult EditRole(int id)
         {
             var model = AccountSvc.GetRoleDetail(id);
+            return View(model);
+        }
+        public ActionResult UserRoleDetail(int id)
+        {
+            UserRoleModel model = AccountSvc.GetUserRoleDetail(id);
             return View(model);
         }
     }

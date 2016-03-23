@@ -18,12 +18,6 @@ namespace Group04_CMS
             bundles.Add(new ScriptBundle("~/bundles/angular").Include(
                         "~/Scripts/angular.min.js"));
 
-           bundles.Add(new ScriptBundle("~/bundles/Account").Include(
-                        "~/Scripts/Group04_CMS/Account/account.module.js",
-                        "~/Scripts/Group04_CMS/Account/account.controller.js",
-                        "~/Scripts/Group04_CMS/Account/accountService.js"
-                    ));
-
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
@@ -75,6 +69,24 @@ namespace Group04_CMS
             bundles.Add(new StyleBundle("~/Teacher/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/AdminLTE.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/cmsApp").Include(
+                        "~/Scripts/Group04_CMS/cms.module.js",
+                        "~/Scripts/angular-ui/ui-bootstrap-tpls.js"
+                        ));
+
+            bundles.Add(new ScriptBundle("~/bundles/Account").Include(
+                        "~/Scripts/Group04_CMS/Account/account.controller.js",
+                        "~/Scripts/Group04_CMS/Account/accountService.js",
+                        "~/Scripts/Group04_CMS/Account/account.directive.js"
+                    ));
+
+//            bundles.Add(new ScriptBundle("~/bundles/Role").Include(
+//                        "~/Scripts/Group04_CMS/Role/role.controller.js",
+//                        "~/Scripts/Group04_CMS/Role/roleService.js",
+//                        "~/Scripts/Group04_CMS/Role/role.directive.js"
+//                    ));
+
         }
     }
 }

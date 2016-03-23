@@ -1,4 +1,4 @@
-COMP1640 - Meeting minutes 01
+2016.02.10 - COMP1640 - Meeting minutes 02
 1. Participated members:
 - KhanhTT
 - HoangLS
@@ -14,8 +14,7 @@ COMP1640 - Meeting minutes 01
 		* Study MVC and Angularjs
 - Inprogress tasks:
 	+ Khanhtt:
-		* Create Repository on Gihub
- 		* Create video of guide using Github
+		* Analyzer requirements
 		* Create Product backlog
 		* Break Userstories on easybacklog.com
 	+ HoangLs:
@@ -25,5 +24,6 @@ COMP1640 - Meeting minutes 01
 		* Analyzer requirements
 		* Study MVC and Angularjs 
 3. Next meeting:
+	+ Date: 2016.02.17 
 	+ Items to complete:
 		* Report progress

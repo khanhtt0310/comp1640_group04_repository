@@ -166,13 +166,9 @@
     <Compile Include="Helpers\GlobalString.cs" />
     <Compile Include="Helpers\Loggin\ILogger.cs" />
     <Compile Include="Helpers\Loggin\Logger.cs" />
-    <Compile Include="Migrations\201603050248037_DataInitialization.cs" />
-    <Compile Include="Migrations\201603050248037_DataInitialization.Designer.cs">
-      <DependentUpon>201603050248037_DataInitialization.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603050334425_AddRoleNote.cs" />
-    <Compile Include="Migrations\201603050334425_AddRoleNote.Designer.cs">
-      <DependentUpon>201603050334425_AddRoleNote.cs</DependentUpon>
+    <Compile Include="Migrations\201603221318041_InitializeDatabase.cs" />
+    <Compile Include="Migrations\201603221318041_InitializeDatabase.Designer.cs">
+      <DependentUpon>201603221318041_InitializeDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Faculty.cs" />
@@ -180,6 +176,7 @@
     <Compile Include="Models\GeneralStatus.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Services\AccountService.cs" />
@@ -231,6 +228,7 @@
     <Content Include="Content\skins\_all-skins.min.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
+    <Content Include="Content\ui-bootstrap-csp.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -296,6 +294,10 @@
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap-tpls.min.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.js" />
+    <Content Include="Scripts\angular-ui\ui-bootstrap.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootbox.min.js" />
@@ -324,13 +326,16 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="Scripts\Group04_CMS\Account\account.directive.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DropDownAction.js" />
-    <Content Include="Scripts\Group04_CMS\AccountController.js" />
-    <Content Include="Scripts\Group04_CMS\Account\account.module.js" />
-    <Content Include="Scripts\Group04_CMS\cms.module.js" />
     <Content Include="Scripts\Group04_CMS\Account\account.controller.js" />
     <Content Include="Scripts\Group04_CMS\Account\accountService.js" />
+    <Content Include="Scripts\Group04_CMS\cms.config.js" />
+    <Content Include="Scripts\Group04_CMS\cms.module.js" />
+    <Content Include="Scripts\Group04_CMS\Role\role.controller.js" />
+    <Content Include="Scripts\Group04_CMS\Role\role.directive.js" />
+    <Content Include="Scripts\Group04_CMS\Role\roleService.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-dj.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-er.js" />
     <Content Include="Scripts\i18n\angular-locale_aa-et.js" />
@@ -1866,11 +1871,13 @@
     <Content Include="Views\Account\CreateUser.cshtml" />
     <Content Include="Views\Account\UserRole.cshtml" />
     <Content Include="Views\Account\EditRole.cshtml" />
+    <Content Include="Views\Account\UserDetail.cshtml" />
+    <Content Include="Views\Account\EditUser.cshtml" />
+    <Content Include="Views\Account\CreateUserRole.cshtml" />
+    <Content Include="Views\Account\UserRoleDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Group04_CMS\Controllers\" />
-    <Folder Include="Scripts\Group04_CMS\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1880,18 +1887,15 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603050248037_DataInitialization.resx">
-      <DependentUpon>201603050248037_DataInitialization.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603050334425_AddRoleNote.resx">
-      <DependentUpon>201603050334425_AddRoleNote.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Group04_CMS.Common\Group04_CMS.Common.csproj">
       <Project>{49872ae3-c15b-48e6-805d-120b76861efc}</Project>
       <Name>Group04_CMS.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201603221318041_InitializeDatabase.resx">
+      <DependentUpon>201603221318041_InitializeDatabase.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

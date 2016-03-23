@@ -1,38 +1,38 @@
 ﻿@using Group04_CMS.Common.Global
-@model Group04_CMS.ViewModels.RoleModel
+@model Group04_CMS.ViewModels.UserRoleModel
 
 @{
-    ViewBag.Title = @UIString.TitlePageRole;
+    ViewBag.Title = @UIString.TitlePageUserRole;
 }
 
 @Scripts.Render("~/bundles/Account")
 <section class="content-header" ng-controller="accountController">
     <h1 class="fa fa-list">
         @UIString.TitlePageManageLarge
-        <small> @UIString.FieldNameRoleId</small>
+        <small> @UIString.FieldNameUserRoleId</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
-        <li><a href="@Url.Action("Role", "Account")">@UIString.TitlePageRole</a></li>
+        <li><a href="@Url.Action("UserRole", "Account")">@UIString.TitlePageUserRole</a></li>
         <li class="active">@UIString.BreadCrumbDetails</li>
     </ol>
     <div class="box-tools">
         <p class="text-right btn-grid-group">
 
-            <a class="btn btn-default btn-view" href="@Url.Action("Role", "Account")" title="@UIString.ButtonBack">
+            <a class="btn btn-default btn-view" href="@Url.Action("UserRole", "Account")" title="@UIString.ButtonBack">
                 <i class="fa fa-chevron-circle-left"></i>
                 @UIString.ButtonBack
             </a>
 
-            <a class="btn btn-info btn-view" href="@Url.Action("EditRole", "Account", new { id = Model.RoleId })" title="@UIString.ButtonEdit">
+            <a class="btn btn-info btn-view" href="@Url.Action("EditUserRole", "Account", new { id = Model.UserRoleId })" title="@UIString.ButtonEdit">
                 <i class="fa fa-edit"></i>
                 @UIString.ButtonEdit
             </a>
 
-@*            <a class="btn btn-danger btn-view" href="#" onclick="javascript:deleteItem(@Model.RoleId);" title="@UIString.ButtonDelete">*@
-@*                <i class="fa fa-trash"></i>*@
-@*                @UIString.ButtonDelete*@
-@*            </a>*@
+            @*            <a class="btn btn-danger btn-view" href="#" onclick="javascript:deleteItem(@Model.RoleId);" title="@UIString.ButtonDelete">*@
+            @*                <i class="fa fa-trash"></i>*@
+            @*                @UIString.ButtonDelete*@
+            @*            </a>*@
         </p>
     </div>
 </section>

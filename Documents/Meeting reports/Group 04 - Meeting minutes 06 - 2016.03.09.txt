@@ -1,0 +1,22 @@
+2016.03.09 - COMP1640 - Meeting minutes 06
+1. Participated members:
+- KhanhTT
+- HoangLS
+2. Progress reports:
+- Done tasks:
+	+ Khanhtt:
+ 		* Analyze requirement
+		* Create documents for sprint 02
+		* Break tasks on trello.com
+- Inprogress tasks:
+	+ Khanhtt:
+		* Manage Users
+		* Manage Courses
+		* Complete UserRoles
+	+ HoangLs:
+		* Manage Courses  
+3. Next meeting:
+	+ Time: 2016.03.16 
+	+ Items to complete:
+		* Report progress
+		* Sprint 02 review

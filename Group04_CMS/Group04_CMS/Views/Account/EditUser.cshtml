@@ -6,96 +6,73 @@
 }
 
 @Scripts.Render("~/bundles/Account")
-
 <section class="content-header">
-    <h1>
-        <i class="fa fa-list"></i>
+    <h1 class="fa fa-list">
         @UIString.TitlePageManageLarge
-        <small> @UIString.FieldNameRoleId</small>
+        <small> @UIString.FieldNameUserId</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
-        <li><a href="@Url.Action("Index", "Account")">@UIString.TitlePageRole</a></li>
-        <li class="active">@UIString.BreadCrumbCreate</li>
+        <li><a href="@Url.Action("Index", "Account")">@UIString.TitlePageUser</a></li>
+        <li class="active">@UIString.BreadCrumbEdit</li>
     </ol>
 </section>
 
 <section class="content" ng-controller="accountController">
     <div class="row">
         <div class="col-md-12">
-            <div class="box box-primary">
+            <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">
-                        <i class="fa fa-plus-square"></i>
-                        @UIString.BreadCrumbCreate @UIString.FieldNameUserId
+                        <i class="fa fa-edit"></i>
+                        @UIString.BreadCrumbEdit @UIString.FieldNameUserId
                     </h3>
                 </div>
-
                 <!-- /.box-header -->
                 <!-- form start -->
-                @using (Html.BeginForm(new { role = "form" }))
-                {
+                <form ng-init="getCurrentUser()">
                     @Html.AntiForgeryToken()
                     <div class="box-body">
                         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
                         <div class="row">
                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                @Html.LabelFor(model => model.UserName, htmlAttributes: new { @class = "control-label" })
-                                @*<input type="text" ng-model ="RoleName"/>*@
-                                @Html.EditorFor(model => model.UserName, new
-                                {
-                                    htmlAttributes = new
-                                    {
-                                        @class = "form-control",
-                                        ng_model = "UserName"
-                                    }
-                                })
+                                <label class="control-label">Role Name</label>
+                                <input type="text" class="form-control" ng-model="currentUser.UserName" />
                                 @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
                             </div>
 
                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                 @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label" })
-                                <select ng-model="selectedStatus" class="dropdown form-control" required>
-                                    <option value="" selected>-- Choose status --</option>
-                                    <option ng-repeat="s in statusData"
-                                            value="{{s.StatusId}}">
-                                        {{s.StatusName}}
-                                    </option>
+                                <select ng-model="currentUser.Status.StatusName" class="form-control">
+                                    <option data-ng-repeat="s in statusData" value="{{s.StatusId}}" ng-selected="currentUser.Status.StatusName==s.StatusName">{{s.StatusName}}</option>
                                 </select>
+                                @Html.ValidationMessageFor(model => model.Status.StatusId, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                 @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Email, new
-                           {
-                               htmlAttributes = new
-                                   {
-                                       @class = "form-control",
-                                       ng_model = "Email"
-                                   }
-                           })
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", ng_model = "currentUser.Email" } })
                                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                             </div>
                         </div>
                     </div>
                     <div class="box-footer">
-
-                        <a class="btn btn-default btn-view" href="@Url.Action("Index", "Account")" title="@UIString.ButtonBack">
+                        <a class="btn btn-default  btn-view " href="@Url.Action("Index", "Account")" title="@UIString.ButtonBack">
                             <i class="fa fa-chevron-circle-left"></i>
                             @UIString.ButtonBack
                         </a>
-
-                        <button class="btn btn-primary btn-view" ng-click="addUser()" title="@UIString.ButtonSubmit">
-                            @UIString.ButtonSubmit
+                        <button class="btn btn-info  btn-view" ng-click="editUser()" title="@UIString.ButtonEdit">
+                            <i class=" fa fa-edit"></i>
+                            @UIString.ButtonEdit
                         </button>
 
                     </div>
-                }
-
+                    <!-- /.box-footer -->
+                </form>
             </div>
         </div>
     </div>
 </section>
+
 

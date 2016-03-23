@@ -6,6 +6,7 @@
 }
 
 @Scripts.Render("~/bundles/Account")
+@*<script src="~/Scripts/angular-ui/ui-bootstrap-tpls.js"></script>*@
 <section class="content-header">
     <h1>
         <i class="fa fa-list"></i>
@@ -18,7 +19,7 @@
     </ol>
 </section>
 
-<section class="content" ng-app="accountApp" ng-controller="accountController">
+<section class="content" ng-controller="accountController">
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -41,7 +42,7 @@
                         <tbody>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.RoleName)
+                                    Role Name
                                 </th>
                                 <th>
                                     Created By
@@ -64,9 +65,8 @@
                                 <td class="row">
                                     <div class="col-sm-12">
                                         <a ng-href="@Url.Action("RoleDetail", "Account")/{{r.RoleId}}" title="@UIString.ButtonViewDetail"><span class="glyphicon glyphicon-eye-open"></span></a>
-@*                                        <a href="@Url.Action("RoleDetail", "Account", new {id = "{{ r.RoleId }}"})" title="@UIString.ButtonViewDetail"><span class="glyphicon glyphicon-eye-open"></span></a>*@
-                                        <a href="@Url.Action("Edit", "Account", new {id = "{{r.RoleId}}"})" title="@UIString.ButtonEdit"><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a href="#" onclick=" javascript:deleteItem('{{r.RoleId}}'); " title="@UIString.ButtonDelete"><span class="glyphicon glyphicon-trash"></span></a>
+                                        <a ng-href="@Url.Action("EditRole", "Account")/{{r.RoleId}}" title="@UIString.ButtonEdit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a ng-really-message="Are you sure want to delete role: {{r.RoleName}} ?" ng-really-click="removeRole(r)" item="r" title="@UIString.ButtonDelete"><span class="glyphicon glyphicon-trash"></span></a>
                                     </div>
                                 </td>
                             </tr>
@@ -77,55 +77,6 @@
         </div>
     </div>
 </section>
-<script src="~/Scripts/toastr.js"></script>
-<script type="text/javascript" src="~/Scripts/bootbox.min.js"></script>
-<script type="text/javascript">
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": true,
-            "progressBar": false,
-            "positionClass": "toast-top-center",
-            "preventDuplicates": true,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
 
-        $(document).ready(function () {
-            var msg = "@ViewBag.Message";
-            if (msg != "") {
-                toastr["success"](msg);
-            }
-        });
 
-        function deleteItem(id) {
-            bootbox.dialog({
-                message: "@Messages.ConfirmationDeletion @UIString.FieldNameRoleId?",
-                title: "@UIString.TitleDialogConfirmDelete @UIString.FieldNameRoleId",
-                buttons: {
-                    cancel: {
-                        label: "@UIString.ButtonConfirmDeleteNo",
-                        className: "btn-default",
-                        callback: function () {
-                            bootbox.hideAll();
-                        }
-                    },
-                    ok: {
-                        label: "@UIString.ButtonConfirmDeleteYes",
-                        className: "btn-primary",
-                        callback: function () {
-                            location.href = "@Url.Action("Delete", "Role")/" + id;
-                        }
-                    }
-                }
-            });
-        }
-</script>
 

@@ -1,0 +1,19 @@
+2016.03.23 - COMP1640 - Meeting minutes 08
+1. Participated members:
+- KhanhTT
+- HoangLS
+2. Progress reports:
+- Done tasks: 
+	+ Iternal brainstorming
+	+ Break tasks document for sprint 03
+- Inprogress tasks:
+	+ KhanhTT:
+		* Manage Students
+		* Manage Faculties
+		* Manage FacultyCourses  
+		* Manage StudentCourses
+3. Next meeting:
+	+ Date: 2016.03.30
+	+ Items to complete:
+		* Report progress.
+		* Sprint 03 review

@@ -6,6 +6,7 @@
 }
 
 @Scripts.Render("~/bundles/Account")
+@*<script src="~/Scripts/angular-ui/ui-bootstrap-tpls.js"></script>*@
 <section class="content-header">
     <h1>
         <i class="fa fa-list"></i>
@@ -18,7 +19,7 @@
     </ol>
 </section>
 
-<section class="content" ng-app="accountApp" ng-controller="accountController">
+<section class="content" ng-controller="accountController">
     <div class="row">
         <div class="col-xs-12">
             <div class="box">
@@ -41,7 +42,7 @@
                         <tbody>
                             <tr>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.UserName)
+                                    User Name
                                 </th>
                                 <th>
                                     Email
@@ -63,9 +64,9 @@
                                 <td>{{ u.Status.StatusName }}</td>
                                 <td class="row">
                                     <div class="col-sm-12">
-                                        <a ng-href="@Url.Action("UserDetail", "Account")/{{u.UserId}}" title="@UIString.ButtonViewDetail"><span class="glyphicon glyphicon-eye-open"></span></a>
-                                        <a ng-href="@Url.Action("EditUser", "Account")/{{u.UserId}}" title="@UIString.ButtonEdit"><span class="glyphicon glyphicon-pencil"></span></a>
-                                        <a href="#" onclick=" javascript:deleteitem('{{r.roleid}}'); " title=" @UIString.ButtonDelete "><span class=" glyphicon glyphicon-trash"></span></a>
+                                        <a ng-href="@Url.Action("UserDetail", "Account")/{{u.Id}}" title="@UIString.ButtonViewDetail"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                        <a ng-href="@Url.Action("EditUser", "Account")/{{u.Id}}" title="@UIString.ButtonEdit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a ng-really-message="Are you sure want to delete user: {{u.UserName}} ?" ng-really-click="removeUser(u)" item="r" title="@UIString.ButtonDelete"><span class="glyphicon glyphicon-trash"></span></a>
                                     </div>
                                 </td>
                             </tr>
@@ -76,55 +77,4 @@
         </div>
     </div>
 </section>
-<script src="~/Scripts/toastr.js"></script>
-<script type="text/javascript" src="~/Scripts/bootbox.min.js"></script>
-<script type="text/javascript">
-        toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": true,
-            "progressBar": false,
-            "positionClass": "toast-top-center",
-            "preventDuplicates": true,
-            "onclick": null,
-            "showDuration": "300",
-            "hideDuration": "1000",
-            "timeOut": "5000",
-            "extendedTimeOut": "1000",
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
-        };
 
-        $(document).ready(function () {
-            var msg = "@ViewBag.Message";
-            if (msg != "") {
-                toastr["success"](msg);
-            }
-        });
-
-        function deleteItem(id) {
-            bootbox.dialog({
-                message: "@Messages.ConfirmationDeletion @UIString.ObjectUser?",
-                title: "@UIString.TitleDialogConfirmDelete @UIString.ObjectUser",
-                buttons: {
-                    cancel: {
-                        label: "@UIString.ButtonConfirmDeleteNo",
-                        className: "btn-default",
-                        callback: function () {
-                            bootbox.hideAll();
-                        }
-                    },
-                    ok: {
-                        label: "@UIString.ButtonConfirmDeleteYes",
-                        className: "btn-primary",
-                        callback: function () {
-                            location.href = "@Url.Action("Delete", "User")/" + id;
-                        }
-                    }
-                }
-            });
-        }
-
-</script>

@@ -1,17 +1,8 @@
-COMP1640 - Meeting minutes 01
+COMP1640 - Meeting minutes
 1. Participated members:
 - KhanhTT
 - HoangLS
 2. Progress reports:
-- Done tasks:
-	+ Khanhtt:
-		* Create Repository on Gihub
- 		* Create video of guide using Github
-		* Create Product backlog
-		* Break Userstories on easybacklog.com
-	+ HoangLs:
-		* Analyzer requirements
-		* Study MVC and Angularjs
 - Inprogress tasks:
 	+ Khanhtt:
 		* Create Repository on Gihub

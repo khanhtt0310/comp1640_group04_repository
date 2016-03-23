@@ -1,0 +1,115 @@
+Muddadi Hemaanusha 	
+3/26/15
+
+
+Hi Thanks, 
+
+I resolved this issue, 
+
+In order to preserve the special characters and to search the query term in multiple fields for exact match it is better to change the settings as shown below. 
+
+Settings I updated: 
+
+PUT /my_index/_settings?pretty=true 
+{ 
+"settings" : { 
+    "analysis": { 
+      "analyzer": { 
+        "wordAnalyzer": { 
+          "type": "custom", 
+          "tokenizer": "whitespace", 
+          "filter": [ 
+            "word_delimiter_for_phone","nGram_filter" 
+          ] 
+        } 
+      }, 
+      "filter": { 
+        "word_delimiter_for_phone": { 
+          "type": "word_delimiter", 
+          "catenate_all": true, 
+          "generate_number_parts ": false, 
+          "split_on_case_change": false, 
+          "generate_word_parts": false, 
+          "split_on_numerics": false, 
+          "preserve_original": true 
+        }, 
+      
+            "nGram_filter": { 
+               "type": "nGram", 
+               "min_gram": 1, 
+               "max_gram": 20, 
+               "token_chars": [ 
+                  "letter" 
+               ] 
+            } 
+      } 
+    } 
+} 
+} 
+
+
+Mapping settings: 
+{ 
+“mappings”:{ 
+
+   "face" : { 
+         "properties" : { 
+            "{field-1}id" : { 
+               "type" : "string", 
+               "index_name" : "change", 
+               "analyzer": "wordAnalyzer" 
+                
+            }, 
+            "{field-2}name" : { 
+                "type" : "string", 
+               "index_name" : "change", 
+               "analyzer": "wordAnalyzer" 
+            }, 
+            "{field-3}Year": 
+            { 
+                "type" : "string", 
+               "index_name" : "change", 
+               "analyzer": "wordAnalyzer" 
+            }, 
+            "{field-4}Make": 
+            { 
+                "type" : "string", 
+               "index_name" : "change", 
+               "analyzer": "wordAnalyzer" 
+            } 
+         } 
+      } 
+
+
+
+and the query we can use: 
+
+GET my_index/face/_search 
+{ 
+   "query": { 
+       "match": { 
+          "change": 
+          { 
+              "query": "A/T o", 
+              "type": "phrase_prefix" 
+          } 
+       } 
+   } 
+} 
+
+
+By this we can search for that term in all the fields. In order to search in only single field we can give that field name in the place of "change" in match query. 
+
+And for to change in mappings I am able to update the analyzers, but not the index_name, for to add index_name I have deleted the index and again done the mapping as above. 
+- show quoted text -
+ 
+
+
+Muddadi Hemaanusha 	
+3/27/15
+
+
+- show quoted text -
+-- 
+View this message in context: http://elasticsearch-users.115913.n3.nabble.com/Unable-to-preserve-special-characters-in-search-results-of-ElasticSearch-tp4072409p4072648.html 
+- show quoted text -

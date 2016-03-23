@@ -1,0 +1,25 @@
+2016.02.17 - COMP1640 - Meeting minutes 03
+1. Participated members:
+- KhanhTT
+- HoangLS
+2. Progress reports:
+- Done tasks:
+	+ Khanhtt:
+ 		* Analyzer requirements
+		* Create Product backlog
+		* Break Userstories on easybacklog.com
+	+ HoangLs:
+		* Analyzer requirements
+		* Study MVC and Angularjs
+- Inprogress tasks:
+	+ Khanhtt:
+		* Analyze requirements
+		* Create documents for sprint 01
+		* Break tasks on trello.com
+	+ HoangLs:
+		* Analyze requirements
+		* Create meeting report  
+3. Next meeting:
+	+ Date: 2016.02.24 
+	+ Items to complete:
+		* Report progress

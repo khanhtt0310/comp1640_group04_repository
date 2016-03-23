@@ -1,5 +1,5 @@
-﻿angular.module('accountApp').controller('accountController', ['$scope', 'accountService',
-    function ($scope, accountService) {
+﻿cmsApp.controller('accountController', ['$scope', 'accountService', '$window',
+    function ($scope, accountService, $window) {
         // get all role function
         $scope.roles = [];
         $scope.getRoles = function () {
@@ -37,14 +37,6 @@
             $scope.statusData = response.Data;
         });
 
-        // Get Role Detail
-        //$scope.role = {};
-        //$scope.getRoleDetails = function () {
-        //    accountService.getRoleDetails($stateParamsProvider.id).success(function (response) {
-        //        $scope.role = response.Data;
-        //    });
-        //};
-
         // Get Users
         $scope.users = [];
         $scope.getUsers = function () {
@@ -55,7 +47,6 @@
         // Add user
         $scope.user = {};
         $scope.addUser = function () {
-            alert("Add user");
             $scope.UserId = 0;
             var newUser = {
                 UserId: $scope.RoleId,
@@ -74,5 +65,102 @@
                 function (error) {
                     // error
                 });
+        };
+
+        $scope.saveUser = function() {
+            accountService.saveUser($scope.currentUser, function (response) {
+                
+            });
+        };
+        // get user details
+        $scope.currentUser = {};
+        $scope.getCurrentUser = function() {
+            var absoluteUrlPath = $window.location.href;
+            var results = String(absoluteUrlPath).split('/');
+            if (results != null && results.length > 0) {
+                var userId = results[results.length - 1];
+                accountService.getUserDetails(userId).success(function(response) {
+                    $scope.currentUser = response.Data;
+                });
+            }
+        };
+        // delete user
+        $scope.removeUser = function (user) {
+            accountService.deleteUser(user).success(function (response) {
+                if (response != null && response.Data != null) {
+                    var index = $scope.roles.indexOf(response.Data.UserId);
+                    $scope.users.splice(index, 1);
+                }
+            });
+        };
+        
+        // Get current Role
+        $scope.currentRole = {};
+        $scope.getCurrentRole = function () {
+            var absoluteUrlPath = $window.location.href;
+            var results = String(absoluteUrlPath).split("/");
+            if (results != null && results.length > 0) {
+                var roleId = results[results.length - 1];
+                accountService.getRoleDetails(roleId).success(function(response) {
+                    $scope.currentRole = response.Data;
+                });
+            }
+        };
+
+        // save role
+        $scope.editRole = function () {
+            var role = $scope.currentRole;
+            accountService.saveRole(role, function (data) {
+
+            });
+        };
+
+        // delete role
+        $scope.removeRole = function (role) {
+            accountService.deleteRole(role).success(function(response) {
+                if (response != null && response.Data != null) {
+                    var index = $scope.roles.indexOf(response.Data.RoleId);
+                    $scope.roles.splice(index, 1);
+                }
+            });
+        };
+
+        // add user role
+        $scope.userRole = {};
+        $scope.addUserRole = function () {
+            var userRoleModel = {
+                UserId: $scope.selectedUser,
+                RoleId: $scope.selectedRole,
+                Note: $scope.Note
+            };
+            if ($scope.selectedStatus === "1")
+                userRoleModel.Status = 'Active';
+            else {
+                userRoleModel.Status = 'Inactive';
+            }
+            accountService.createUserRole(userRoleModel).success(function (response) {
+                $scope.userRole = response.Data;
+            });
+        };
+
+        // get user roles
+        $scope.userRoles = [];
+        $scope.getUserRoles = function () {
+            accountService.getUserRoles().success(function (response) {
+                $scope.userRoles = response.Data;
+            });
+        };
+
+        // Get user role details
+        $scope.getUserRoleDetails = function () {
+            var absoluteUrlPath = $window.location.href;
+            var results = String(absoluteUrlPath).split("/");
+            if (results != null && results.length > 0) {
+                var userRoleId = results[results.length - 1];
+                accountService.getUserRoleDetails(userRoleId).success(function (response) {
+                    $scope.userRole = response.Data;
+                });
+            }
+            
         };
     }]);
