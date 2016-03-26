@@ -2,44 +2,41 @@
 @model Group04_CMS.ViewModels.UserRoleModel
 
 @{
-    ViewBag.Title = @UIString.TitlePageRole;
+    ViewBag.Title = @UIString.TitlePageUserRole;
 }
 
 @Scripts.Render("~/bundles/Account")
 <section class="content-header">
-    <h1>
-        <i class="fa fa-list"></i>
+    <h1 class="fa fa-list">
         @UIString.TitlePageManageLarge
         <small> @UIString.FieldNameUserRoleId</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
-        <li><a href="@Url.Action("UserRole", "Account")">@UIString.TitlePageUserRole</a></li>
-        <li class="active">@UIString.BreadCrumbCreate</li>
+        <li><a href="@Url.Action("Index", "Account")">@UIString.TitlePageUserRole</a></li>
+        <li class="active">@UIString.BreadCrumbEdit</li>
     </ol>
 </section>
 
 <section class="content" ng-controller="accountController">
     <div class="row">
         <div class="col-md-12">
-            <div class="box box-primary">
+            <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">
-                        <i class="fa fa-plus-square"></i>
-                        @UIString.BreadCrumbCreate @UIString.FieldNameUserRoleId
+                        <i class="fa fa-edit"></i>
+                        @UIString.BreadCrumbEdit @UIString.FieldNameUserRoleId
                     </h3>
                 </div>
-
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form name="userRoleForm">
+                <form ng-init="getUserRoleDetails()" name="userRoleForm">
                     <div class="box-body">
                         <div class="row">
                             <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                 <label class="control-label">Role</label>
-                                <select ng-init="getRoles()" ng-model="selectedRole" class="dropdown form-control" ng-required="true">
-                                    <option value="" selected>-- Choose status --</option>
-                                    <option ng-repeat="r in roles"
+                                <select ng-init="getRoles()" ng-model="userRole.RoleName" class="dropdown form-control" ng-required="true">
+                                    <option ng-repeat="r in roles" ng-selected="userRole.RoleName == r.RoleName"
                                             value="{{r.RoleId}}">
                                         {{r.RoleName}}
                                     </option>
@@ -47,9 +44,8 @@
                             </div>
                             <div class="form-group col-md-4 col-sm-6 col-xs-12">
                                 <label class="control-label">User</label>
-                                <select ng-init="getUsers()" ng-model="selectedUser" class="dropdown form-control" ng-required="true">
-                                    <option value="" selected>-- Choose status --</option>
-                                    <option ng-repeat="u in users"
+                                <select ng-init="getUsers()" ng-model="userRole.UserName" class="dropdown form-control" ng-required="true">
+                                    <option ng-repeat="u in users" ng-selected="userRole.UserName == u.UserName"
                                             value="{{u.Id}}">
                                         {{u.UserName}}
                                     </option>
@@ -57,9 +53,9 @@
                             </div>
                             <div class="form-group col-md-4 col-sm-12 col-xs-12">
                                 <label class="control-label">Status</label>
-                                <select ng-init="getGeneralStatusList()" ng-model="selectedStatus" class="dropdown form-control" ng-required="true">
-                                    <option value="" selected>-- Choose status --</option>
-                                    <option ng-repeat="s in statusData"
+                                <select ng-init="getGeneralStatusList()" ng-model="userRole.Status"
+                                        class="dropdown form-control" ng-required="true">
+                                    <option ng-repeat="s in statusData" ng-selected="userRole.Status == s.StatusName"
                                             value="{{s.StatusId}}">
                                         {{s.StatusName}}
                                     </option>
@@ -69,7 +65,7 @@
                         <div class="row">
                             <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                 <label class="control-label">Note</label>
-                                <input type="text" class="form-control" ng-model="Note" ng-required="true" />
+                                <input type="text" class="form-control" ng-model="userRole.Note" ng-required="true" />
                             </div>
                         </div>
                     </div>
@@ -79,14 +75,17 @@
                             @UIString.ButtonBack
                         </a>
 
-                        <button class="btn btn-primary btn-view" ng-click="userRoleForm.$valid && addUserRole()" title="@UIString.ButtonSubmit">
+                        <button class="btn btn-primary btn-view" ng-click="userRoleForm.$valid && editUserRole()" title="@UIString.ButtonSubmit">
                             @UIString.ButtonSubmit
                         </button>
 
                     </div>
+                    <!-- /.box-footer -->
                 </form>
-
             </div>
         </div>
     </div>
 </section>
+
+
+

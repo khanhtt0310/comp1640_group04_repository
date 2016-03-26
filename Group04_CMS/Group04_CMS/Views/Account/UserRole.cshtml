@@ -48,14 +48,22 @@
                                     User
                                 </th>
                                 <th>
+                                    Created Date
+                                </th>
+                                <th>
                                     Note
+                                </th>
+                                <th>
+                                    Status
                                 </th>
                                 <th></th>
                             </tr>
                             <tr ng-repeat="ur in userRoles">
                                 <td>{{ ur.RoleName }}</td>
                                 <td>{{ ur.UserName }}</td>
+                                <td>{{ur.GeneralStatus.CreateTime | date: 'medium' }}</td>
                                 <td>{{ur.Note}}</td>
+                                <td>{{ur.Status}}</td>
                                 <td class="row">
                                     <div class="col-sm-12">
                                         <a ng-href="@Url.Action("UserRoleDetail", "Account")/{{ur.UserRoleId}}" title="@UIString.ButtonViewDetail"><span class="glyphicon glyphicon-eye-open"></span></a>

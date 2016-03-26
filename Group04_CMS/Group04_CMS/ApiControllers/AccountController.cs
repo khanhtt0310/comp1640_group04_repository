@@ -197,5 +197,24 @@ namespace Group04_CMS.ApiControllers
             }
             return result;
         }
+
+        [HttpPost]
+        public ApiSimpleResult<UserRoleModel> DeleteUserRole(UserRoleModel userRole)
+        {
+            var response = AccountSvc.DeleteUserRole(userRole);
+            return response;
+        }
+
+        [HttpPost]
+        public ApiSimpleResult<UserRoleModel> SaveUserRole(UserRoleModel userRole)
+        {
+            var response = AccountSvc.SaveUserRole(userRole);
+            var result = new ApiSimpleResult<UserRoleModel>
+            {
+                StatusString = response.StatusCode.ToString(),
+            };
+
+            return result;
+        }
     }
 }

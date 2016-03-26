@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Security.AccessControl;
 
 namespace Group04_CMS.Models
 {
@@ -20,5 +21,7 @@ namespace Group04_CMS.Models
         public string CourseStatus { get; set; }
 
         public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Faculty> Faculties { get; set; }
+        public virtual ICollection<Student> Students { get; set; } 
     }
 }

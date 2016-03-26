@@ -2,7 +2,7 @@
 @model Group04_CMS.ViewModels.UserModel
 
 @{
-    ViewBag.Title = @UIString.TitlePageRole;
+    ViewBag.Title = @UIString.TitlePageUser;
 }
 
 @Scripts.Render("~/bundles/Account")
@@ -28,11 +28,6 @@
                 <i class="fa fa-edit"></i>
                 @UIString.ButtonEdit
             </a>
-
-            @*<a class="btn btn-danger btn-view" href="#" onclick="javascript:deleteItem(@Model.RoleId);" title="@UIString.ButtonDelete">
-                <i class="fa fa-trash"></i>
-                @UIString.ButtonDelete
-            </a>*@
         </p>
     </div>
 </section>
@@ -52,26 +47,20 @@
                         <table class="table table-striped table-bordered detail-view" id="w0">
                             <tbody class="table-hover">
                                 <tr class="odd">
-                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.RoleName)</th>
-                                    <td class="col-sm-4">@Html.DisplayFor(model => model.RoleName)</td>
-                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Status.CreateTime)</th>
-                                    <td class="col-sm-4">@Html.DisplayFor(model => model.Status.CreateTime.DateTime)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.UserName)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.UserName)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Email)</th>
+                                    <td colspan="3">@Html.DisplayFor(model => model.Email)</td>
                                 </tr>
                                 <tr class="even">
-                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Status.CreateUserId)</th>
-                                    <td class="col-sm-4">@Html.DisplayFor(model => model.Status.CreateUserId)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Status.CreateTime)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.Status.CreateTime.DateTime)</td>
                                     <th class="col-sm-2">@Html.DisplayNameFor(model => model.Status.UpdateTime)</th>
                                     <td class="col-sm-4">@Html.DisplayFor(model => model.Status.UpdateTime.DateTime)</td>
                                 </tr>
-                                <tr class="odd">
-                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Status.UpdateUserId)</th>
-                                    <td class="col-sm-4">@Html.DisplayFor(model => model.Status.UpdateUserId)</td>
-                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Status.StatusId)</th>
-                                    <td class="col-sm-4"><span class="label label-success">@Html.DisplayFor(model => model.Status.StatusId)</span></td>
-                                </tr>.
                                 <tr class="even">
-                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Email)</th>
-                                    <td colspan="3">@Html.DisplayFor(model => model.Email)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Status)</th>
+                                    <td class="col-sm-4"><span class="label label-success">@Html.DisplayFor(model => model.Status.StatusName)</span></td>
                                 </tr>
                             </tbody>
                         </table>

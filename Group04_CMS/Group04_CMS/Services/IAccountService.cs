@@ -24,5 +24,7 @@ namespace Group04_CMS.Services
         ApiSimpleResult<UserRole> CreateUserRole(UserRoleModel userRole);
         List<UserRoleModel> GetUserRoles();
         UserRoleModel GetUserRoleDetail(int userRoleId);
+        ApiSimpleResult<UserRoleModel> DeleteUserRole(UserRoleModel userRole);
+        HttpResponseMessage SaveUserRole(UserRoleModel userRole);
     }
 }

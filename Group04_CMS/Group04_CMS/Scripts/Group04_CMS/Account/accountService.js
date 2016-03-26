@@ -72,5 +72,22 @@
             url: baseAddress + 'api/account/GetUserRoleDetails/' + userRoleId
         });
     };
+
+    self.deleteUserRole = function(userRole) {
+        return $http({
+            method: 'POST',
+            url: baseAddress + 'api/account/DeleteUserRole',
+            data: userRole
+        });
+    };
+
+    self.saveUserRole = function (userRole) {
+        return $http({
+            method: 'POST',
+            url: baseAddress + 'api/account/SaveUserRole',
+            data: userRole
+        });
+    };
+
     return self;
 }]);

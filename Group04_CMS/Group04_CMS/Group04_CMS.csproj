@@ -170,11 +170,18 @@
     <Compile Include="Migrations\201603221318041_InitializeDatabase.Designer.cs">
       <DependentUpon>201603221318041_InitializeDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603261157374_AddStudentCourseMark.cs" />
+    <Compile Include="Migrations\201603261157374_AddStudentCourseMark.Designer.cs">
+      <DependentUpon>201603261157374_AddStudentCourseMark.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Faculty.cs" />
     <Compile Include="Models\Course.cs" />
+    <Compile Include="Models\FacultyCourse.cs" />
     <Compile Include="Models\GeneralStatus.cs" />
     <Compile Include="Models\Role.cs" />
+    <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\StudentCourse.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1875,6 +1882,7 @@
     <Content Include="Views\Account\EditUser.cshtml" />
     <Content Include="Views\Account\CreateUserRole.cshtml" />
     <Content Include="Views\Account\UserRoleDetail.cshtml" />
+    <Content Include="Views\Account\EditUserRole.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1895,6 +1903,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201603221318041_InitializeDatabase.resx">
       <DependentUpon>201603221318041_InitializeDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603261157374_AddStudentCourseMark.resx">
+      <DependentUpon>201603261157374_AddStudentCourseMark.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

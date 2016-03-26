@@ -11,6 +11,7 @@
         // add new role
         $scope.newRole = {};
         $scope.addRole = function () {
+            
             $scope.RoleId = 0;
             var role = {
                     RoleId: $scope.RoleId,
@@ -74,7 +75,7 @@
         };
         // get user details
         $scope.currentUser = {};
-        $scope.getCurrentUser = function() {
+        $scope.getCurrentUser = function () {
             var absoluteUrlPath = $window.location.href;
             var results = String(absoluteUrlPath).split('/');
             if (results != null && results.length > 0) {
@@ -93,7 +94,7 @@
                 }
             });
         };
-        
+
         // Get current Role
         $scope.currentRole = {};
         $scope.getCurrentRole = function () {
@@ -158,9 +159,27 @@
             if (results != null && results.length > 0) {
                 var userRoleId = results[results.length - 1];
                 accountService.getUserRoleDetails(userRoleId).success(function (response) {
+                    console.log(response.Data);
                     $scope.userRole = response.Data;
                 });
             }
             
+        };
+
+        // Delete UserRole
+        $scope.removeUserRole = function (userRole) {
+            accountService.deleteUserRole(userRole).success(function (response) {
+                if (response != null && response.Data != null) {
+                    var index = $scope.roles.indexOf(response.Data.UserRoleId);
+                    $scope.userRoles.splice(index, 1);
+                }
+            });
+        };
+        // save UserRole
+        $scope.editUserRole = function () {
+            var currentUserRole = $scope.userRole;
+            accountService.saveUserRole(currentUserRole, function (data) {
+
+            });
         };
     }]);

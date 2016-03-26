@@ -30,30 +30,25 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form ng-init="getCurrentRole()">
-                    @Html.AntiForgeryToken()
+                <form ng-init="getCurrentRole()" name="roleForm">
                     <div class="box-body">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="row">
                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                 <label class="control-label">Role Name</label>
-                                <input type="text" class="form-control" ng-model="currentRole.RoleName" />
-                                @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+                                <input type="text" class="form-control" ng-model="currentRole.RoleName" ng-required="true" />
                             </div>
 
                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                 <label class="control-label">Status</label>
-                                <select ng-model="currentRole.Status" class="form-control">
+                                <select ng-model="currentRole.Status" class="form-control" ng-required="true">
                                     <option data-ng-repeat="s in statusData" value="{{s.StatusId}}" ng-selected="currentRole.Status==s.StatusName">{{s.StatusName}}</option>
                                 </select>
-                                @Html.ValidationMessageFor(model => model.GeneralStatus.StatusId, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                @Html.LabelFor(model => model.Note, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Note, new { htmlAttributes = new { @class = "form-control", ng_model = "currentRole.Note" } })
-                                @Html.ValidationMessageFor(model => model.Note, "", new { @class = "text-danger" })
+                                <label class="control-label">Note</label>
+                                <input type="text" class="form-control" ng-model="currentRole.Note" ng-required="true" />
                             </div>
                         </div>
                     </div>
@@ -62,7 +57,7 @@
                             <i class="fa fa-chevron-circle-left"></i>
                             @UIString.ButtonBack
                         </a>
-                        <button class="btn btn-info  btn-view" ng-click="editRole()" title="@UIString.ButtonEdit">
+                        <button class="btn btn-info  btn-view" ng-click="roleForm.$valid && editRole()" title="@UIString.ButtonEdit">
                             <i class=" fa fa-edit"></i>
                             @UIString.ButtonEdit
                         </button>

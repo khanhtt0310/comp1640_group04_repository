@@ -2,7 +2,7 @@
 @model Group04_CMS.ViewModels.UserModel
 
 @{
-    ViewBag.Title = @UIString.TitlePageRole;
+    ViewBag.Title = @UIString.TitlePageUser;
 }
 
 @Scripts.Render("~/bundles/Account")
@@ -30,30 +30,25 @@
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form ng-init="getCurrentUser()">
-                    @Html.AntiForgeryToken()
+                <form ng-init="getCurrentUser()" name="userForm">
                     <div class="box-body">
-                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                         <div class="row">
                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                <label class="control-label">Role Name</label>
-                                <input type="text" class="form-control" ng-model="currentUser.UserName" />
-                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                <label class="control-label">User Name</label>
+                                <input type="text" class="form-control" ng-model="currentUser.UserName" ng-required="true" />
                             </div>
 
                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label" })
-                                <select ng-model="currentUser.Status.StatusName" class="form-control">
+                                <label class="control-label">Status</label>
+                                <select ng-model="currentUser.Status.StatusName" class="form-control" ng-required="true">
                                     <option data-ng-repeat="s in statusData" value="{{s.StatusId}}" ng-selected="currentUser.Status.StatusName==s.StatusName">{{s.StatusName}}</option>
                                 </select>
-                                @Html.ValidationMessageFor(model => model.Status.StatusId, "", new { @class = "text-danger" })
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label" })
-                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", ng_model = "currentUser.Email" } })
-                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                <label class="control-label">Email</label>
+                                <input type="text" class="form-control" ng-model="currentUser.Email" ng-required="true" />
                             </div>
                         </div>
                     </div>
@@ -62,7 +57,7 @@
                             <i class="fa fa-chevron-circle-left"></i>
                             @UIString.ButtonBack
                         </a>
-                        <button class="btn btn-info  btn-view" ng-click="editUser()" title="@UIString.ButtonEdit">
+                        <button class="btn btn-info  btn-view" ng-click="userForm.$valid && editUser()" title="@UIString.ButtonEdit">
                             <i class=" fa fa-edit"></i>
                             @UIString.ButtonEdit
                         </button>

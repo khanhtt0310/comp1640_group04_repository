@@ -14,14 +14,14 @@ using Group04_CMS.ViewModels;
 
 namespace Group04_CMS.Services
 {
-    public class AccountService: IAccountService
+    public class AccountService : IAccountService
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         public List<UserModel> GetUsers()
         {
             List<UserModel> results = new List<UserModel>();
             var query = from u in db.Users
-                            select new UserModel{Id = u.UserId, UserName = u.UserName, Email = u.Email, Status = u.Status };
+                        select new UserModel { Id = u.UserId, UserName = u.UserName, Email = u.Email, Status = u.Status };
             if (query.Any())
             {
                 results = query.ToList();
@@ -95,8 +95,8 @@ namespace Group04_CMS.Services
         {
             var status = db.GeneralStatuses.Find(user.Status.StatusId);
             db.Entry(status).State = EntityState.Deleted;
-            var updateUser = db.Users.Find(user.RoleId);
-            db.Entry(updateUser).State = EntityState.Deleted;
+            var deleteUser = db.Users.Find(user.Id);
+            db.Entry(deleteUser).State = EntityState.Deleted;
             var result = new ApiSimpleResult<UserModel>();
             try
             {
@@ -132,7 +132,7 @@ namespace Group04_CMS.Services
         {
             List<RoleModel> results = new List<RoleModel>();
             var query = from u in db.Roles
-                        select new RoleModel { RoleId = u.RoleId, RoleName = u.RoleName, Note = u.Note, GeneralStatus = u.Status};
+                        select new RoleModel { RoleId = u.RoleId, RoleName = u.RoleName, Note = u.Note, GeneralStatus = u.Status };
             if (query.Any())
             {
                 results = query.ToList();
@@ -146,12 +146,14 @@ namespace Group04_CMS.Services
             RoleModel result = new RoleModel();
             var status = new GeneralStatus
             {
-                StatusName = roleModelQuery.Status, 
+                StatusName = roleModelQuery.Status,
                 CreateTime = DateTime.Now,
                 UpdateTime = DateTime.Now
             };
             db.GeneralStatuses.Add(status);
-            var role = new Role { RoleName = roleModelQuery.RoleName, 
+            var role = new Role
+            {
+                RoleName = roleModelQuery.RoleName,
                 StatusId = status.StatusId,
                 Note = roleModelQuery.Note
             };
@@ -243,25 +245,84 @@ namespace Group04_CMS.Services
         {
             List<UserRoleModel> results = new List<UserRoleModel>();
             var query = from u in db.UserRoles
-                        select new UserRoleModel { UserRoleId = u.UserRoleId, RoleId = u.RoleId, RoleName = u.Role.RoleName, UserId = u.UserId, UserName = u.User.UserName, Note = u.Note };
+                        select new UserRoleModel
+                        {
+                            UserRoleId = u.UserRoleId,
+                            RoleId = u.RoleId,
+                            RoleName = u.Role.RoleName,
+                            UserId = u.UserId,
+                            UserName = u.User.UserName,
+                            Status = u.Status.StatusName,
+                            GeneralStatus = u.Status,
+                            Note = u.Note
+                        };
             if (query.Any())
             {
                 results = query.ToList();
             }
             return results;
         }
-        public UserRoleModel GetUserRoleDetail(int userRoleId) 
+        public UserRoleModel GetUserRoleDetail(int userRoleId)
         {
             UserRoleModel result = new UserRoleModel();
             var userRoles = db.UserRoles.Where(r => r.UserRoleId == userRoleId);
             if (userRoles.Any())
             {
                 var userRole = userRoles.First();
+                result.UserRoleId = userRole.UserRoleId;
                 result.RoleId = userRole.RoleId;
                 result.RoleName = userRole.Role.RoleName;
                 result.Note = userRole.Note;
                 result.UserId = userRole.UserId;
                 result.UserName = userRole.User.UserName;
+                result.Status = userRole.Status.StatusName;
+                result.GeneralStatus = userRole.Status;
+            }
+            return result;
+        }
+
+        [HttpPost]
+        public HttpResponseMessage SaveUserRole(UserRoleModel userRole)
+        {
+            var status = db.GeneralStatuses.Find(userRole.GeneralStatus.StatusId);
+            status.UpdateTime = DateTime.Now;
+            status.StatusName = userRole.GeneralStatus.StatusName;
+            db.Entry(status).State = EntityState.Modified;
+            var updateUserRole = db.UserRoles.Find(userRole.UserRoleId);
+            updateUserRole.RoleId = userRole.RoleId;
+            updateUserRole.UserId = userRole.UserId;
+            updateUserRole.Note = userRole.Note;
+            db.Entry(updateUserRole).State = EntityState.Modified;
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return new HttpResponseMessage(HttpStatusCode.NotFound);
+            }
+            return new HttpResponseMessage(HttpStatusCode.OK);
+        }
+
+        [HttpPost]
+        public ApiSimpleResult<UserRoleModel> DeleteUserRole(UserRoleModel userRole)
+        {
+            var status = db.GeneralStatuses.Find(userRole.GeneralStatus.StatusId);
+            db.Entry(status).State = EntityState.Deleted;
+            var updateUserRole = db.UserRoles.Find(userRole.UserRoleId);
+            db.Entry(updateUserRole).State = EntityState.Deleted;
+            ApiSimpleResult<UserRoleModel> result = new ApiSimpleResult<UserRoleModel>();
+            try
+            {
+                db.SaveChanges();
+                result.StatusString = "Successful";
+                result.Message = "Delete data successfully";
+                result.Data = userRole;
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                result.Message = "Error";
+                result.StatusString = "Error";
             }
             return result;
         }

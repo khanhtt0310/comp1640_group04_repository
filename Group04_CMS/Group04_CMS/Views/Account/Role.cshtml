@@ -45,7 +45,7 @@
                                     Role Name
                                 </th>
                                 <th>
-                                    Created By
+                                    Note
                                 </th>
                                 <th>
                                     Created Date
@@ -59,8 +59,8 @@
 
                             <tr ng-repeat="r in roles">
                                 <td>{{ r.RoleName }}</td>
-                                <td>{{ r.GeneralStatus.CreateUserId }}</td>
-                                <td>{{ r.GeneralStatus.CreateTime }}</td>
+                                <td>{{ r.Note }}</td>
+                                <td>{{ r.GeneralStatus.CreateTime | date: 'medium'}}</td>
                                 <td>{{ r.GeneralStatus.StatusName }}</td>
                                 <td class="row">
                                     <div class="col-sm-12">

@@ -28,11 +28,6 @@
                 <i class="fa fa-edit"></i>
                 @UIString.ButtonEdit
             </a>
-
-@*            <a class="btn btn-danger btn-view" href="#" onclick="javascript:deleteItem(@Model.RoleId);" title="@UIString.ButtonDelete">*@
-@*                <i class="fa fa-trash"></i>*@
-@*                @UIString.ButtonDelete*@
-@*            </a>*@
         </p>
     </div>
 </section>
@@ -54,25 +49,19 @@
                                 <tr class="odd">
                                     <th class="col-sm-2">@Html.DisplayNameFor(model => model.RoleName)</th>
                                     <td class="col-sm-4">@Html.DisplayFor(model => model.RoleName)</td>
-                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.GeneralStatus.CreateTime)</th>
-                                    <td class="col-sm-4">@Html.DisplayFor(model => model.GeneralStatus.CreateTime.DateTime)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Note)</th>
+                                    <td colspan="3">@Html.DisplayFor(model => model.Note)</td>
                                 </tr>
                                 <tr class="even">
-                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.GeneralStatus.CreateUserId)</th>
-                                    <td class="col-sm-4">@Html.DisplayFor(model => model.GeneralStatus.CreateUserId)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.GeneralStatus.CreateTime)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.GeneralStatus.CreateTime.DateTime)</td>
                                     <th class="col-sm-2">@Html.DisplayNameFor(model => model.GeneralStatus.UpdateTime)</th>
                                     <td class="col-sm-4">@Html.DisplayFor(model => model.GeneralStatus.UpdateTime.DateTime)</td>
                                 </tr>
                                 <tr class="odd">
-                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.GeneralStatus.UpdateUserId)</th>
-                                    <td class="col-sm-4">@Html.DisplayFor(model => model.GeneralStatus.UpdateUserId)</td>
-                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.GeneralStatus.StatusId)</th>
-                                    <td class="col-sm-4"><span class="label label-success">@Html.DisplayFor(model => model.GeneralStatus.StatusId)</span></td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Status)</th>
+                                    <td class="col-sm-4"><span class="label label-success">@Html.DisplayFor(model => model.GeneralStatus.StatusName)</span></td>
                                 </tr>.
-                                <tr class="even">
-                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Note)</th>
-                                    <td colspan="3">@Html.DisplayFor(model => model.Note)</td>
-                                </tr>
                             </tbody>
                         </table>
                     </div>

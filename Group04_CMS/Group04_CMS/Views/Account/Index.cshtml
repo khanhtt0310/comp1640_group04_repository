@@ -60,7 +60,7 @@
                             <tr ng-repeat="u in users">
                                 <td>{{ u.UserName }}</td>
                                 <td>{{ u.Email }}</td>
-                                <td>{{ u.Status.CreateTime }}</td>
+                                <td>{{ u.Status.CreateTime | date: 'medium' }}</td>
                                 <td>{{ u.Status.StatusName }}</td>
                                 <td class="row">
                                     <div class="col-sm-12">

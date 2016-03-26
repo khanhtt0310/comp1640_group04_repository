@@ -67,5 +67,10 @@ namespace Group04_CMS.Controllers
             UserRoleModel model = AccountSvc.GetUserRoleDetail(id);
             return View(model);
         }
+        public ActionResult EditUserRole(int id)
+        {
+            UserRoleModel model = AccountSvc.GetUserRoleDetail(id);
+            return View(model);
+        }
     }
 }
