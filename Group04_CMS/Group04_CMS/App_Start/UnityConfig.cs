@@ -16,7 +16,10 @@ namespace Group04_CMS
             // it is NOT necessary to register your controllers
             
             // e.g. container.RegisterType<ITestService, TestService>();
-            container.RegisterType<IAccountService, AccountService>();
+            container
+                .RegisterType<IAccountService, AccountService>()
+                .RegisterType<IFacultyService,FacultyService>();
+            
             DependencyResolver.SetResolver(new Unity.Mvc5.UnityDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }

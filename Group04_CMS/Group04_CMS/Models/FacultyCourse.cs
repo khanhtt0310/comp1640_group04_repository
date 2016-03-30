@@ -17,6 +17,7 @@ namespace Group04_CMS.Models
         public virtual Faculty Faculty { get; set; }
         [ForeignKey("Course")]
         public int CourseId { get; set; }
+        public string Note { get; set; }
         public virtual Course Course { get; set; }
         [ForeignKey("GeneralStatus")]
         public int GeneralStatusId { get; set; }

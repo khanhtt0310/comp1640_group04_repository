@@ -1,0 +1,94 @@
+﻿@using Group04_CMS.Common.Global
+@model Group04_CMS.ViewModels.FacultyCourseModel
+
+@{
+    ViewBag.Title = @UIString.TitlePageFacultyCourse;
+}
+
+@Scripts.Render("~/bundles/Faculty")
+<section class="content-header">
+    <h1>
+        <i class="fa fa-list"></i>
+        @UIString.TitlePageManageLarge
+        <small> @UIString.FieldNameFacultyCourseId</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
+        <li><a href="@Url.Action("FacultyCourse", "Faculty")">@UIString.TitlePageFacultyCourse</a></li>
+        <li class="active">@UIString.BreadCrumbCreate</li>
+    </ol>
+</section>
+
+<section class="content" ng-controller="facultyController">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        <i class="fa fa-plus-square"></i>
+                        @UIString.BreadCrumbCreate @UIString.FieldNameFacultyCourseId
+                    </h3>
+                </div>
+
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form name="facultyCourseForm">
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                                <label class="control-label">@UIString.FieldNameFacultyId</label>
+                                <select ng-init="getFaculties()" ng-model="selectedFaculty" class="dropdown form-control" ng-required="true">
+                                    <option value="" selected>-- Choose status --</option>
+                                    <option ng-repeat="item in faculties"
+                                            value="{{item.FacultyId}}">
+                                        {{item.FacultyName}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-6 col-xs-12">
+                                <label class="control-label">@UIString.FieldNameCourseId</label>
+                                <select ng-init="getCourses()" ng-model="selectedCourse" class="dropdown form-control" ng-required="true">
+                                    <option value="" selected>-- Choose status --</option>
+                                    <option ng-repeat="item in courses"
+                                            value="{{item.CourseId}}">
+                                        {{item.CourseCode}}
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4 col-sm-12 col-xs-12">
+                                <label class="control-label">Status</label>
+                                <select ng-init="getGeneralStatusList()" ng-model="selectedStatus" class="dropdown form-control" ng-required="true">
+                                    <option value="" selected>-- Choose status --</option>
+                                    <option ng-repeat="s in statusData"
+                                            value="{{s.StatusName}}">
+                                        {{s.StatusName}}
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-12 col-sm-12 col-xs-12">
+                                <label class="control-label">@UIString.FieldNameNote</label>
+                                <input type="text" class="form-control" ng-model="Note" ng-required="true" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <a class="btn btn-default btn-view" href="@Url.Action("FacultyCourse", "Faculty")" title="@UIString.ButtonBack">
+                            <i class="fa fa-chevron-circle-left"></i>
+                            @UIString.ButtonBack
+                        </a>
+
+                        <button class="btn btn-primary btn-view" ng-click="facultyCourseForm.$valid && addFacultyCourse()" title="@UIString.ButtonSubmit">
+                            @UIString.ButtonSubmit
+                        </button>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+

@@ -77,15 +77,14 @@ namespace Group04_CMS
 
             bundles.Add(new ScriptBundle("~/bundles/Account").Include(
                         "~/Scripts/Group04_CMS/Account/account.controller.js",
-                        "~/Scripts/Group04_CMS/Account/accountService.js",
-                        "~/Scripts/Group04_CMS/Account/account.directive.js"
+                        "~/Scripts/Group04_CMS/Account/accountService.js"
+                        //"~/Scripts/Group04_CMS/Account/account.directive.js"
                     ));
 
-//            bundles.Add(new ScriptBundle("~/bundles/Role").Include(
-//                        "~/Scripts/Group04_CMS/Role/role.controller.js",
-//                        "~/Scripts/Group04_CMS/Role/roleService.js",
-//                        "~/Scripts/Group04_CMS/Role/role.directive.js"
-//                    ));
+            bundles.Add(new ScriptBundle("~/bundles/Faculty").Include(
+                        "~/Scripts/Group04_CMS/Faculty/faculty.controller.js",
+                        "~/Scripts/Group04_CMS/Faculty/facultyService.js"
+                    ));
 
         }
     }

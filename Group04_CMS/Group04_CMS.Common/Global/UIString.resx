@@ -273,4 +273,79 @@
   <data name="TitlePageUserRole" xml:space="preserve">
     <value>User Role Management</value>
   </data>
+  <data name="FieldNameFaculty" xml:space="preserve">
+    <value>Faculty Name</value>
+  </data>
+  <data name="FieldNameFacutyId" xml:space="preserve">
+    <value>Faculty</value>
+  </data>
+  <data name="ObjectFaculty" xml:space="preserve">
+    <value>Faculty</value>
+  </data>
+  <data name="TitlePageFaculty" xml:space="preserve">
+    <value>Faculty Management</value>
+  </data>
+  <data name="FieldNameCourseId" xml:space="preserve">
+    <value>Course</value>
+  </data>
+  <data name="FieldNameCreatedDate" xml:space="preserve">
+    <value>Created Date</value>
+  </data>
+  <data name="FieldNameFacultyCourseId" xml:space="preserve">
+    <value>Faculty Course</value>
+  </data>
+  <data name="FieldNameFacultyId" xml:space="preserve">
+    <value>Faculty</value>
+  </data>
+  <data name="TitlePageFacultyCourse" xml:space="preserve">
+    <value>Faculty Course Management</value>
+  </data>
+  <data name="FieldNameAddress" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="FieldNameDateOfBirth" xml:space="preserve">
+    <value>Date Of Birth</value>
+  </data>
+  <data name="FieldNameEmail" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="FieldNamePhoneNumber" xml:space="preserve">
+    <value>Phone Number</value>
+  </data>
+  <data name="FieldNameState" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="FieldNameStudent" xml:space="preserve">
+    <value>Student</value>
+  </data>
+  <data name="FieldNameStudentCode" xml:space="preserve">
+    <value>Student Code</value>
+  </data>
+  <data name="FieldNameStudentName" xml:space="preserve">
+    <value>Student Name</value>
+  </data>
+  <data name="TitlePageStudent" xml:space="preserve">
+    <value>Student Management</value>
+  </data>
+  <data name="FieldNameComment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="FieldNameFullName" xml:space="preserve">
+    <value>Full Name</value>
+  </data>
+  <data name="FieldNameGradeGroup" xml:space="preserve">
+    <value>Grade Group</value>
+  </data>
+  <data name="FieldNameMark" xml:space="preserve">
+    <value>Mark</value>
+  </data>
+  <data name="FieldNameStudentCourse" xml:space="preserve">
+    <value>Student Course</value>
+  </data>
+  <data name="FieldNameStudentCourseFinalMarks" xml:space="preserve">
+    <value>Final Marks</value>
+  </data>
+  <data name="TitlePageStudentCourse" xml:space="preserve">
+    <value>Student Course Management</value>
+  </data>
 </root>

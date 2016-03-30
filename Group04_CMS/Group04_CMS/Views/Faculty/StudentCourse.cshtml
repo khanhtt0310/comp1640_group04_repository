@@ -1,0 +1,103 @@
+﻿@using Group04_CMS.Common.Global
+@model IEnumerable<Group04_CMS.ViewModels.StudentCourseModel>
+
+@{
+    ViewBag.Title = @UIString.FieldNameStudentCourseFinalMarks;
+}
+
+@Scripts.Render("~/bundles/Faculty")
+<section class="content-header">
+    <h1>
+        <i class="fa fa-list"></i>
+        @UIString.TitlePageManageLarge
+        <small> @UIString.FieldNameStudentCourseFinalMarks</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
+        <li class="active">@UIString.FieldNameStudentCourseFinalMarks</li>
+    </ol>
+</section>
+
+<section class="content" ng-controller="facultyController">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <i class="fa fa-search"></i>
+                        @UIString.BreadCrumbView @UIString.FieldNameStudentCourseFinalMarks
+                    </h3>
+                    <div class="box-tools">
+                        <p class="text-right btn-grid-group">
+                            <a class="btn bg-orange btn-sm" href="#" title="@UIString.ButtonPDF">
+                                <i class="fa fa-file-pdf-o "></i> @UIString.ButtonPDF
+                            </a>
+
+                            <a class="btn bg-teal btn-sm" href="#" title="@UIString.ButtonEXCEL">
+                                <i class="fa fa-file-excel-o"></i> @UIString.ButtonEXCEL
+                            </a>
+                        </p>
+                    </div>
+                </div>
+                <div class="row" style="margin-left: 20px; margin-bottom: 10px">
+                    <div class="col-md-1 col-sm-1 col-xs-1">
+                        <label class="control-label">Course:</label>
+                    </div>
+                    <div class="form-group col-md-2 col-sm-2 col-xs-4">
+                        <select ng-init="getCourses()" ng-model="selectedCourse" class="dropdown form-control" ng-required="true">
+                            <option value="" selected>-- Choose status --</option>
+                            <option ng-repeat="item in courses"
+                                    value="{{item.CourseId}}">
+                                {{item.CourseCode}}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-striped table-hover" ng-init="getStudentCourses()">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    @UIString.FieldNameCode
+                                </th>
+                                <th>
+                                    @UIString.FieldNameFullName
+                                </th>
+                                <th>
+                                    @UIString.FieldNameGradeGroup
+                                </th>
+                                <th>
+                                    @UIString.FieldNameMark
+                                </th>
+                                <th>
+                                    @UIString.FieldNameComment
+                                </th>
+                            </tr>
+
+                            <tr ng-repeat="item in students">
+                                <td>{{ item.StudentCode }}</td>
+                                <td>{{ item.FullName }}</td>
+                                <td>{{ item.PhoneNumber }}</td>
+                                <td>{{ item.Email }}</td>
+                                <td>{{ item.DateOfBirth }}</td>
+                                <td>{{ item.GeneralStatus.CreateTime | date: 'medium' }}</td>
+                                <td>{{ item.Status }}</td>
+                                <td class="row">
+                                    <div class="col-sm-12">
+                                        <a ng-href="@Url.Action("StudentDetail", "Faculty")/{{item.StudentId}}" title="@UIString.ButtonViewDetail"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                        <a ng-href="@Url.Action("EditStudent", "Faculty")/{{item.StudentId}}" title="@UIString.ButtonEdit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a ng-really-message="Are you sure want to delete user: {{item.StudentCode}} ?" ng-really-click="deleteStudent(item)" item="item" title="@UIString.ButtonDelete"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+

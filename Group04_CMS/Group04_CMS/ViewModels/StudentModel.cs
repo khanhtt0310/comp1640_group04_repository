@@ -1,15 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using Group04_CMS.Models;
 
-namespace Group04_CMS.Models
+namespace Group04_CMS.ViewModels
 {
-    public class Student
+    public class StudentModel
     {
-        [Key]
         public int StudentId { get; set; }
         public string StudentCode { get; set; }
         public string Email { get; set; }
@@ -17,9 +15,8 @@ namespace Group04_CMS.Models
         public string DateOfBirth { get; set; }
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
-        [ForeignKey("GeneralStatus")]
-        public int GeneralStatusId { get; set; }
-        public virtual GeneralStatus GeneralStatus { get; set; }
-        public virtual ICollection<Course> Courses { get; set; }
+        public string Status { get; set; }
+        public GeneralStatus GeneralStatus { get; set; }
+        public List<Course> Courses { get; set; }
     }
 }

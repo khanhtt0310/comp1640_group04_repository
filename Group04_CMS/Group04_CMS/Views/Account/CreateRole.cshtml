@@ -32,19 +32,18 @@
 
                 <!-- /.box-header -->
                 <!-- form start -->
-                @using (Html.BeginForm(new { role = "form" }))
-                {
+                <form name="roleForm">
                     <div class="box-body">
 
                         <div class="row">
                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                 <label class="control-label">Role Name</label>
-                                <input class="form-control" ng-model="RoleName" required />
+                                <input class="form-control" ng-model="RoleName" ng-required="true" />
                             </div>
 
                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
                                 <label class="control-label">Status</label>
-                                <select ng-init="getGeneralStatusList()" ng-model="selectedStatus" class="dropdown form-control" required>
+                                <select ng-init="getGeneralStatusList()" ng-model="selectedStatus" class="dropdown form-control" ng-required="true" >
                                     <option value="" selected>-- Choose status --</option>
                                     <option ng-repeat="s in statusData"
                                             value="{{s.StatusId}}">
@@ -56,7 +55,7 @@
                         <div class="row">
                             <div class="form-group col-md-12 col-sm-12 col-xs-12">
                                 <label class="control-label">Note</label>
-                                <input type="text" class="form-control" ng-model="Note" required />
+                                <input type="text" class="form-control" ng-model="Note" ng-required="true" />
                             </div>
                         </div>
                     </div>
@@ -67,12 +66,12 @@
                             @UIString.ButtonBack
                         </a>
 
-                        <button class="btn btn-primary btn-view" ng-click="addRole()" title="@UIString.ButtonSubmit">
+                        <button class="btn btn-primary btn-view" ng-click="roleForm.$valid && addRole()" title="@UIString.ButtonSubmit">
                             @UIString.ButtonSubmit
                         </button>
 
                     </div>
-                }
+                </form>
 
             </div>
         </div>

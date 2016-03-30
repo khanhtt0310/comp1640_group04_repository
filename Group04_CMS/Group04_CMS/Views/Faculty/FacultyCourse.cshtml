@@ -1,0 +1,84 @@
+﻿@using Group04_CMS.Common.Global
+@model IEnumerable<Group04_CMS.ViewModels.UserRoleModel>
+
+@{
+    ViewBag.Title = @UIString.TitlePageFacultyCourse;
+}
+
+@Scripts.Render("~/bundles/Faculty")
+<section class="content-header">
+    <h1>
+        <i class="fa fa-list"></i>
+        @UIString.TitlePageManageLarge
+        <small> @UIString.FieldNameFacultyCourseId</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
+        <li class="active">@UIString.TitlePageFacultyCourse</li>
+    </ol>
+</section>
+
+<section class="content" ng-controller="facultyController">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <i class="fa fa-search"></i>
+                        @UIString.BreadCrumbView @UIString.FieldNameFacultyCourseId
+                    </h3>
+                    <div class="box-tools">
+                        <p class="text-right btn-grid-group">
+
+                            <a class="btn btn-primary btn-sm" href="@Url.Action("CreateFacultyCourse")" title="@UIString.ButtonAdd">
+                                <i class="fa fa-plus"></i> @UIString.ButtonAdd
+                            </a>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="box-body table-responsive no-padding">
+                    <table class="table table-striped table-hover" ng-init="getFacultyCourses()">
+                        <tbody>
+                            <tr>
+                                <th>
+                                    @UIString.FieldNameFacultyId
+                                </th>
+                                <th>
+                                    @UIString.FieldNameCourseId
+                                </th>
+                                <th>
+                                    @UIString.FieldNameCreatedDate
+                                </th>
+                                <th>
+                                    @UIString.FieldNameNote
+                                </th>
+                                <th>
+                                    @UIString.FieldNameStatusId
+                                </th>
+                                <th></th>
+                            </tr>
+                            <tr ng-repeat="item in facultyCourses">
+                                <td>{{ item.FacultyName }}</td>
+                                <td>{{ item.CourseName }}</td>
+                                <td>{{ item.GeneralStatus.CreateTime | date: 'medium' }}</td>
+                                <td>{{ item.Note }}</td>
+                                <td>{{ item.Status }}</td>
+                                <td class="row">
+                                    <div class="col-sm-12">
+                                        <a ng-href="@Url.Action("FacultyCourseDetail", "Faculty")/{{item.FacultyCourseId}}" title="@UIString.ButtonViewDetail"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                        <a ng-href="@Url.Action("EditFacultyCourse", "Faculty")/{{item.FacultyCourseId}}" title="@UIString.ButtonEdit"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a ng-really-message="Are you sure want to delete this one ?" ng-really-click="deleteFacultyCourse(item)" item="item" title="@UIString.ButtonDelete"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

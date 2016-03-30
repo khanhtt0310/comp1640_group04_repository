@@ -259,6 +259,15 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Address.
+        /// </summary>
+        public static string FieldNameAddress {
+            get {
+                return ResourceManager.GetString("FieldNameAddress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AttendanceTable.
         /// </summary>
         public static string FieldNameAttendanceTable {
@@ -376,6 +385,24 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Comment.
+        /// </summary>
+        public static string FieldNameComment {
+            get {
+                return ResourceManager.GetString("FieldNameComment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course.
+        /// </summary>
+        public static string FieldNameCourseId {
+            get {
+                return ResourceManager.GetString("FieldNameCourseId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create By.
         /// </summary>
         public static string FieldNameCreateBy {
@@ -394,11 +421,110 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Created Date.
+        /// </summary>
+        public static string FieldNameCreatedDate {
+            get {
+                return ResourceManager.GetString("FieldNameCreatedDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date Of Birth.
+        /// </summary>
+        public static string FieldNameDateOfBirth {
+            get {
+                return ResourceManager.GetString("FieldNameDateOfBirth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email.
+        /// </summary>
+        public static string FieldNameEmail {
+            get {
+                return ResourceManager.GetString("FieldNameEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Faculty Name.
+        /// </summary>
+        public static string FieldNameFaculty {
+            get {
+                return ResourceManager.GetString("FieldNameFaculty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Faculty Course.
+        /// </summary>
+        public static string FieldNameFacultyCourseId {
+            get {
+                return ResourceManager.GetString("FieldNameFacultyCourseId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Faculty.
+        /// </summary>
+        public static string FieldNameFacultyId {
+            get {
+                return ResourceManager.GetString("FieldNameFacultyId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Faculty.
+        /// </summary>
+        public static string FieldNameFacutyId {
+            get {
+                return ResourceManager.GetString("FieldNameFacutyId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full Name.
+        /// </summary>
+        public static string FieldNameFullName {
+            get {
+                return ResourceManager.GetString("FieldNameFullName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grade Group.
+        /// </summary>
+        public static string FieldNameGradeGroup {
+            get {
+                return ResourceManager.GetString("FieldNameGradeGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mark.
+        /// </summary>
+        public static string FieldNameMark {
+            get {
+                return ResourceManager.GetString("FieldNameMark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Note.
         /// </summary>
         public static string FieldNameNote {
             get {
                 return ResourceManager.GetString("FieldNameNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Phone Number.
+        /// </summary>
+        public static string FieldNamePhoneNumber {
+            get {
+                return ResourceManager.GetString("FieldNamePhoneNumber", resourceCulture);
             }
         }
         
@@ -421,6 +547,15 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to State.
+        /// </summary>
+        public static string FieldNameState {
+            get {
+                return ResourceManager.GetString("FieldNameState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Status.
         /// </summary>
         public static string FieldNameStatus {
@@ -435,6 +570,51 @@ namespace Group04_CMS.Common.Global {
         public static string FieldNameStatusId {
             get {
                 return ResourceManager.GetString("FieldNameStatusId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student.
+        /// </summary>
+        public static string FieldNameStudent {
+            get {
+                return ResourceManager.GetString("FieldNameStudent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student Code.
+        /// </summary>
+        public static string FieldNameStudentCode {
+            get {
+                return ResourceManager.GetString("FieldNameStudentCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student Course.
+        /// </summary>
+        public static string FieldNameStudentCourse {
+            get {
+                return ResourceManager.GetString("FieldNameStudentCourse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Final Marks.
+        /// </summary>
+        public static string FieldNameStudentCourseFinalMarks {
+            get {
+                return ResourceManager.GetString("FieldNameStudentCourseFinalMarks", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student Name.
+        /// </summary>
+        public static string FieldNameStudentName {
+            get {
+                return ResourceManager.GetString("FieldNameStudentName", resourceCulture);
             }
         }
         
@@ -475,6 +655,15 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Faculty.
+        /// </summary>
+        public static string ObjectFaculty {
+            get {
+                return ResourceManager.GetString("ObjectFaculty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User.
         /// </summary>
         public static string ObjectUser {
@@ -493,6 +682,24 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Faculty Management.
+        /// </summary>
+        public static string TitlePageFaculty {
+            get {
+                return ResourceManager.GetString("TitlePageFaculty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Faculty Course Management.
+        /// </summary>
+        public static string TitlePageFacultyCourse {
+            get {
+                return ResourceManager.GetString("TitlePageFacultyCourse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Manage.
         /// </summary>
         public static string TitlePageManageLarge {
@@ -507,6 +714,24 @@ namespace Group04_CMS.Common.Global {
         public static string TitlePageRole {
             get {
                 return ResourceManager.GetString("TitlePageRole", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student Management.
+        /// </summary>
+        public static string TitlePageStudent {
+            get {
+                return ResourceManager.GetString("TitlePageStudent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Student Course Management.
+        /// </summary>
+        public static string TitlePageStudentCourse {
+            get {
+                return ResourceManager.GetString("TitlePageStudentCourse", resourceCulture);
             }
         }
         

@@ -13,13 +13,10 @@ namespace Group04_CMS.Models
         [StringLength(255)]
         public string FacultyName { get; set; }
 
-        [Required]
-        [StringLength(1)]
-        public string FacultyStatus { get; set; }
-
         public virtual ICollection<User> Users { get; set; }
 
         public virtual ICollection<Course> Courses { get; set; }
+        public string Note { get; set; }
 
         [ForeignKey("GeneralStatus")]
         public int GeneralStatusId { get; set; }

@@ -7,13 +7,13 @@ namespace Group04_CMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitializeDatabase : IMigrationMetadata
+    public sealed partial class updateStudentTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitializeDatabase));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(updateStudentTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603221318041_InitializeDatabase"; }
+            get { return "201603281834559_updateStudentTable"; }
         }
         
         string IMigrationMetadata.Source

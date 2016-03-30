@@ -68,8 +68,9 @@ namespace Group04_CMS.Services
         }
 
         [HttpPost]
-        public HttpResponseMessage SaveUser(UserModel user)
+        public UserModel SaveUser(UserModel user)
         {
+            var result = new UserModel();
             var status = db.GeneralStatuses.Find(user.Status.StatusId);
             status.UpdateTime = DateTime.Now;
             status.StatusName = user.Status.StatusName;
@@ -82,12 +83,13 @@ namespace Group04_CMS.Services
             try
             {
                 db.SaveChanges();
+                result.Id = user.Id;
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                return new HttpResponseMessage(HttpStatusCode.NotFound);
+                return null;
             }
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return result;
         }
 
         [HttpPost]
@@ -168,11 +170,12 @@ namespace Group04_CMS.Services
         }
 
         [HttpPost]
-        public HttpResponseMessage SaveRole(RoleModel role)
+        public RoleModel SaveRole(RoleModel role)
         {
+            var result = new RoleModel();
             var status = db.GeneralStatuses.Find(role.GeneralStatus.StatusId);
             status.UpdateTime = DateTime.Now;
-            status.StatusName = role.GeneralStatus.StatusName;
+            status.StatusName = role.Status;
             db.Entry(status).State = EntityState.Modified;
             var updateRole = db.Roles.Find(role.RoleId);
             updateRole.RoleName = role.RoleName;
@@ -181,12 +184,13 @@ namespace Group04_CMS.Services
             try
             {
                 db.SaveChanges();
+                result.RoleId = role.RoleId;
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                return new HttpResponseMessage(HttpStatusCode.NotFound);
+                return null;
             }
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return result;
         }
 
         [HttpPost]
@@ -282,11 +286,12 @@ namespace Group04_CMS.Services
         }
 
         [HttpPost]
-        public HttpResponseMessage SaveUserRole(UserRoleModel userRole)
+        public UserRoleModel SaveUserRole(UserRoleModel userRole)
         {
+            var result = new UserRoleModel();
             var status = db.GeneralStatuses.Find(userRole.GeneralStatus.StatusId);
             status.UpdateTime = DateTime.Now;
-            status.StatusName = userRole.GeneralStatus.StatusName;
+            status.StatusName = userRole.Status;
             db.Entry(status).State = EntityState.Modified;
             var updateUserRole = db.UserRoles.Find(userRole.UserRoleId);
             updateUserRole.RoleId = userRole.RoleId;
@@ -296,12 +301,13 @@ namespace Group04_CMS.Services
             try
             {
                 db.SaveChanges();
+                result.UserRoleId = userRole.UserRoleId;
             }
             catch (DbUpdateConcurrencyException ex)
             {
-                return new HttpResponseMessage(HttpStatusCode.NotFound);
+                return null;
             }
-            return new HttpResponseMessage(HttpStatusCode.OK);
+            return result;
         }
 
         [HttpPost]

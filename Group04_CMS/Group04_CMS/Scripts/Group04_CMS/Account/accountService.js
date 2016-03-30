@@ -1,6 +1,6 @@
 ﻿cmsApp.factory('accountService', ['$http', function ($http) {
     var self = this;
-    var baseAddress = 'http://localhost:58504/';
+    //var baseAddress = 'http://localhost:58504/';
     self.createRole = function (role) {
         return $http.post(baseAddress + 'api/account/addrole', role);
     };
@@ -19,7 +19,8 @@
     self.editUser = function(user) {
         return $http({
             method: 'POST',
-            url: baseAddress + 'api/account/updateUser/' + user
+            url: baseAddress + 'api/account/SaveUser',
+            data: user
         });
     };
 

@@ -13,18 +13,18 @@ namespace Group04_CMS.Services
     {
         List<UserModel> GetUsers();
         UserModel CreateUser(UserQueryModel user);
-        HttpResponseMessage SaveUser(UserModel user);
+        UserModel SaveUser(UserModel user);
         UserModel GetUserDetails(int userId);
         ApiSimpleResult<UserModel> DeleteUser(UserModel user);
         List<RoleModel> GetRoles();
         RoleModel CreateRole(RoleModelQuery roleModelQuery);
         RoleModel GetRoleDetail(int roleId);
-        HttpResponseMessage SaveRole(RoleModel role);
+        RoleModel SaveRole(RoleModel role);
         ApiSimpleResult<RoleModel> DeleteRole(RoleModel role);
         ApiSimpleResult<UserRole> CreateUserRole(UserRoleModel userRole);
         List<UserRoleModel> GetUserRoles();
         UserRoleModel GetUserRoleDetail(int userRoleId);
         ApiSimpleResult<UserRoleModel> DeleteUserRole(UserRoleModel userRole);
-        HttpResponseMessage SaveUserRole(UserRoleModel userRole);
+        UserRoleModel SaveUserRole(UserRoleModel userRole);
     }
 }

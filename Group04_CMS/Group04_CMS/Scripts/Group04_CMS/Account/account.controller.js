@@ -23,16 +23,25 @@
             else {
                 role.Status = 'Inactive';
             }
-            accountService.createRole(role,
-                function (data) {
-                    $scope.newRole = data;
-                },
-                function(error) {
-                    // error
-                });
+            accountService.createRole(role).success(function (response) {
+                if (response != null && response.Data != null) {
+                    $scope.newRole = response.Data;
+                    $window.location.href = '/Account/Role';
+                }
+            });
+            //accountService.createRole(role,
+            //    function (data) {
+            //        $scope.newRole = data;
+            //        if (data != null && data.Data != null) {
+            //            $window.location.href = '/Account/Role';
+            //        }
+            //    },
+            //    function(error) {
+            //        // error
+            //    });
         };
 
-        // get role status
+        // get status
         $scope.statusData = [];
         accountService.getGeneralStatusList().success(function (response) {
             $scope.statusData = response.Data;
@@ -59,20 +68,25 @@
             else {
                 newUser.Status = 'Inactive';
             }
-            accountService.createUser(newUser,
-                function (data) {
-                    $scope.user = data;
-                },
-                function (error) {
-                    // error
-                });
-        };
-
-        $scope.saveUser = function() {
-            accountService.saveUser($scope.currentUser, function (response) {
-                
+            accountService.createUser(newUser).success(function (response) {
+                if (response != null && response.Data != null) {
+                    debugger;
+                    $scope.user = response.Data;
+                    $window.location.href = '/Account/Index';
+                }
             });
         };
+
+        $scope.saveUser = function () {
+            debugger;
+            var user = $scope.currentUser;
+            accountService.editUser(user).success(function (response) {
+                if (response != null && response.Data != null) {
+                    $window.location.href = '/Account/Index';
+                }
+            });
+        };
+
         // get user details
         $scope.currentUser = {};
         $scope.getCurrentUser = function () {
@@ -110,9 +124,22 @@
 
         // save role
         $scope.editRole = function () {
+            debugger;
             var role = $scope.currentRole;
-            accountService.saveRole(role, function (data) {
-
+            if (role.Status === "1") {
+                role.Status = "Active";
+            } else {
+                role.Status = "Inactive";
+            }
+            //accountService.saveRole(role, function (data) {
+            //    if (data != null && data.Data != null) {
+            //        $window.location.href = '/Account/Role';
+            //    }
+            //});
+            accountService.saveRole(role).success(function (response) {
+                if (response != null && response.Data != null) {
+                    $window.location.href = '/Account/Role';
+                }
             });
         };
 
@@ -141,6 +168,7 @@
             }
             accountService.createUserRole(userRoleModel).success(function (response) {
                 $scope.userRole = response.Data;
+                $window.location.href = '/Account/UserRole';
             });
         };
 
@@ -177,9 +205,18 @@
         };
         // save UserRole
         $scope.editUserRole = function () {
+            debugger;
             var currentUserRole = $scope.userRole;
-            accountService.saveUserRole(currentUserRole, function (data) {
-
+            if (currentUserRole.Status === "1") {
+                currentUserRole.Status = "Active";
+            } else {
+                currentUserRole.Status = "Inactive";
+            }
+            accountService.saveUserRole(currentUserRole).success(function (response) {
+                if (response != null && response.Data != null) {
+                    $window.location.href = '/Account/UserRole';
+                }
             });
+
         };
     }]);

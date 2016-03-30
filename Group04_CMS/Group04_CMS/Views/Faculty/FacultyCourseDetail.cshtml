@@ -1,30 +1,30 @@
 ﻿@using Group04_CMS.Common.Global
-@model Group04_CMS.ViewModels.RoleModel
+@model Group04_CMS.ViewModels.FacultyCourseModel
 
 @{
-    ViewBag.Title = @UIString.TitlePageRole;
+    ViewBag.Title = @UIString.TitlePageFacultyCourse;
 }
 
-@Scripts.Render("~/bundles/Account")
-<section class="content-header" ng-controller="accountController">
+@Scripts.Render("~/bundles/Faculty")
+<section class="content-header" ng-controller="facultytController">
     <h1 class="fa fa-list">
         @UIString.TitlePageManageLarge
-        <small> @UIString.FieldNameRoleId</small>
+        <small> @UIString.FieldNameFacultyCourseId</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
-        <li><a href="@Url.Action("Role", "Account")">@UIString.TitlePageRole</a></li>
+        <li><a href="@Url.Action("FacultyCourse", "Faculty")">@UIString.TitlePageFacultyCourse</a></li>
         <li class="active">@UIString.BreadCrumbDetails</li>
     </ol>
     <div class="box-tools">
         <p class="text-right btn-grid-group">
 
-            <a class="btn btn-default btn-view" href="@Url.Action("Role", "Account")" title="@UIString.ButtonBack">
+            <a class="btn btn-default btn-view" href="@Url.Action("FacultyCourse", "Faculty")" title="@UIString.ButtonBack">
                 <i class="fa fa-chevron-circle-left"></i>
                 @UIString.ButtonBack
             </a>
 
-            <a class="btn btn-info btn-view" href="@Url.Action("EditRole", "Account", new { id = Model.RoleId })" title="@UIString.ButtonEdit">
+            <a class="btn btn-info btn-view" href="@Url.Action("EditFacultyCourse", "Faculty", new { id = Model.FacultyCourseId })" title="@UIString.ButtonEdit">
                 <i class="fa fa-edit"></i>
                 @UIString.ButtonEdit
             </a>
@@ -39,7 +39,7 @@
                 <div class="box-header with-border">
                     <h3 class="box-title">
                         <i class="fa fa-eye"></i>
-                        @UIString.FieldNameRoleId @UIString.BreadCrumbDetails
+                        @UIString.FieldNameFacultyCourseId @UIString.BreadCrumbDetails
                     </h3>
                 </div>
                 <div class="box-body">
@@ -47,10 +47,10 @@
                         <table class="table table-striped table-bordered detail-view" id="w0">
                             <tbody class="table-hover">
                                 <tr class="odd">
-                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.RoleName)</th>
-                                    <td class="col-sm-4">@Html.DisplayFor(model => model.RoleName)</td>
-                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Note)</th>
-                                    <td colspan="3">@Html.DisplayFor(model => model.Note)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.FacultyName)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.FacultyName)</td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.CourseCode)</th>
+                                    <td class="col-sm-4">@Html.DisplayFor(model => model.CourseCode)</td>
                                 </tr>
                                 <tr class="even">
                                     <th class="col-sm-2">@Html.DisplayNameFor(model => model.GeneralStatus.CreateTime)</th>
@@ -61,6 +61,8 @@
                                 <tr class="odd">
                                     <th class="col-sm-2">@Html.DisplayNameFor(model => model.Status)</th>
                                     <td class="col-sm-4"><span class="label label-success">@Html.DisplayFor(model => model.GeneralStatus.StatusName)</span></td>
+                                    <th class="col-sm-2">@Html.DisplayNameFor(model => model.Note)</th>
+                                    <td colspan="3">@Html.DisplayFor(model => model.Note)</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -70,3 +72,5 @@
         </div>
     </div>
 </section>
+
+

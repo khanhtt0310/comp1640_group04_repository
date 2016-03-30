@@ -7,13 +7,13 @@ namespace Group04_CMS.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddStudentCourseMark : IMigrationMetadata
+    public sealed partial class InitializeData : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddStudentCourseMark));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitializeData));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603261157374_AddStudentCourseMark"; }
+            get { return "201603271037182_InitializeData"; }
         }
         
         string IMigrationMetadata.Source

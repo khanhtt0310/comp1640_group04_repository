@@ -64,6 +64,19 @@ namespace Group04_CMS.ApiControllers
             return result;
         }
 
+        [HttpPost]
+        public ApiSimpleResult<UserModel> SaveUser(UserModel user)
+        {
+            var result = new ApiSimpleResult<UserModel>();
+            var response = AccountSvc.SaveUser(user);
+            if (response != null)
+            {
+                result.Data = response;
+            }
+
+            return result;
+        }
+
         public ApiSimpleResult<List<UserModel>> GetUsers()
         {
             var response = AccountSvc.GetUsers();
@@ -138,12 +151,13 @@ namespace Group04_CMS.ApiControllers
         [HttpPost]
         public ApiSimpleResult<RoleModel> SaveRole(RoleModel role)
         {
+            var result = new ApiSimpleResult<RoleModel>();
             var response = AccountSvc.SaveRole(role);
-            var result = new ApiSimpleResult<RoleModel>
+            if (response != null)
             {
-                StatusString = response.StatusCode.ToString(),
-            };
-            
+                result.Data = response;
+            }
+
             return result;
         }
 
@@ -208,11 +222,12 @@ namespace Group04_CMS.ApiControllers
         [HttpPost]
         public ApiSimpleResult<UserRoleModel> SaveUserRole(UserRoleModel userRole)
         {
+            var result = new ApiSimpleResult<UserRoleModel>();
             var response = AccountSvc.SaveUserRole(userRole);
-            var result = new ApiSimpleResult<UserRoleModel>
+            if (response != null)
             {
-                StatusString = response.StatusCode.ToString(),
-            };
+                result.Data = response;
+            }
 
             return result;
         }

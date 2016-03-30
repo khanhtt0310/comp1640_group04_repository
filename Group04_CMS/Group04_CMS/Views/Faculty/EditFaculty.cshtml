@@ -1,63 +1,63 @@
 ﻿@using Group04_CMS.Common.Global
-@model Group04_CMS.ViewModels.UserModel
+@model Group04_CMS.ViewModels.FacultyModel
 
 @{
-    ViewBag.Title = @UIString.TitlePageUser;
+    ViewBag.Title = @UIString.TitlePageFaculty;
 }
 
-@Scripts.Render("~/bundles/Account")
+@Scripts.Render("~/bundles/Faculty")
 <section class="content-header">
     <h1 class="fa fa-list">
         @UIString.TitlePageManageLarge
-        <small> @UIString.FieldNameUserId</small>
+        <small> @UIString.FieldNameFacutyId</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
-        <li><a href="@Url.Action("Index", "Account")">@UIString.TitlePageUser</a></li>
+        <li><a href="@Url.Action("Index", "Faculty")">@UIString.TitlePageFaculty</a></li>
         <li class="active">@UIString.BreadCrumbEdit</li>
     </ol>
 </section>
 
-<section class="content" ng-controller="accountController">
+<section class="content" ng-controller="facultyController">
     <div class="row">
         <div class="col-md-12">
             <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">
                         <i class="fa fa-edit"></i>
-                        @UIString.BreadCrumbEdit @UIString.FieldNameUserId
+                        @UIString.BreadCrumbEdit @UIString.FieldNameFacutyId
                     </h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form ng-init="getCurrentUser()" name="userForm">
+                <form ng-init="getCurrentFaculty()" name="facultyForm">
                     <div class="box-body">
                         <div class="row">
                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                <label class="control-label">User Name</label>
-                                <input type="text" class="form-control" ng-model="currentUser.UserName" ng-required="true" />
+                                <label class="control-label">@UIString.FieldNameRole</label>
+                                <input type="text" class="form-control" ng-model="currentFaculty.FacultyName" ng-required="true" />
                             </div>
 
                             <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                                <label class="control-label">Status</label>
-                                <select ng-model="currentUser.Status.StatusName" class="form-control" ng-required="true">
-                                    <option data-ng-repeat="s in statusData" value="{{s.StatusName}}" ng-selected="currentUser.Status.StatusName==s.StatusName">{{s.StatusName}}</option>
+                                <label class="control-label">@UIString.FieldNameStatus</label>
+                                <select ng-model="currentFaculty.Status" class="form-control" ng-required="true">
+                                    <option data-ng-repeat="s in statusData" value="{{s.StatusName}}" ng-selected="currentFaculty.Status == s.StatusName">{{s.StatusName}}</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                                <label class="control-label">Email</label>
-                                <input type="text" class="form-control" ng-model="currentUser.Email" ng-required="true" />
+                                <label class="control-label">Note</label>
+                                <input type="text" class="form-control" ng-model="currentFaculty.Note" ng-required="true" />
                             </div>
                         </div>
                     </div>
                     <div class="box-footer">
-                        <a class="btn btn-default  btn-view " href="@Url.Action("Index", "Account")" title="@UIString.ButtonBack">
+                        <a class="btn btn-default  btn-view " href="@Url.Action("Index", "Faculty")" title="@UIString.ButtonBack">
                             <i class="fa fa-chevron-circle-left"></i>
                             @UIString.ButtonBack
                         </a>
-                        <button class="btn btn-info  btn-view" ng-click="userForm.$valid && saveUser()" title="@UIString.ButtonEdit">
+                        <button class="btn btn-info  btn-view" ng-click="facultyForm.$valid && saveFaculty()" title="@UIString.ButtonEdit">
                             <i class=" fa fa-edit"></i>
                             @UIString.ButtonEdit
                         </button>
@@ -69,5 +69,6 @@
         </div>
     </div>
 </section>
+
 
 

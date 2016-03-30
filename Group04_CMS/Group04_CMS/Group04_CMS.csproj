@@ -147,6 +147,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApiControllers\AccountController.cs" />
+    <Compile Include="ApiControllers\FacultyController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -154,6 +155,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\FacultyController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\ApplicationDbConfiguration.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
@@ -166,13 +168,13 @@
     <Compile Include="Helpers\GlobalString.cs" />
     <Compile Include="Helpers\Loggin\ILogger.cs" />
     <Compile Include="Helpers\Loggin\Logger.cs" />
-    <Compile Include="Migrations\201603221318041_InitializeDatabase.cs" />
-    <Compile Include="Migrations\201603221318041_InitializeDatabase.Designer.cs">
-      <DependentUpon>201603221318041_InitializeDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201603271037182_InitializeData.cs" />
+    <Compile Include="Migrations\201603271037182_InitializeData.Designer.cs">
+      <DependentUpon>201603271037182_InitializeData.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201603261157374_AddStudentCourseMark.cs" />
-    <Compile Include="Migrations\201603261157374_AddStudentCourseMark.Designer.cs">
-      <DependentUpon>201603261157374_AddStudentCourseMark.cs</DependentUpon>
+    <Compile Include="Migrations\201603281834559_updateStudentTable.cs" />
+    <Compile Include="Migrations\201603281834559_updateStudentTable.Designer.cs">
+      <DependentUpon>201603281834559_updateStudentTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Faculty.cs" />
@@ -187,12 +189,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Services\AccountService.cs" />
+    <Compile Include="Services\FacultyService.cs" />
     <Compile Include="Services\IAccountService.cs" />
+    <Compile Include="Services\IFacultyService.cs" />
     <Compile Include="ViewModels\ApiSimpleResult.cs" />
     <Compile Include="ViewModels\CourseModel.cs" />
+    <Compile Include="ViewModels\FacultyCourseModel.cs" />
+    <Compile Include="ViewModels\FacultyModel.cs" />
     <Compile Include="ViewModels\GeneralStatusModel.cs" />
     <Compile Include="ViewModels\RoleModel.cs" />
     <Compile Include="ViewModels\RoleModelQuery.cs" />
+    <Compile Include="ViewModels\StudentCourseModel.cs" />
+    <Compile Include="ViewModels\StudentModel.cs" />
     <Compile Include="ViewModels\UserModel.cs" />
     <Compile Include="ViewModels\UserQueryModel.cs" />
     <Compile Include="ViewModels\UserRoleModel.cs" />
@@ -340,6 +348,8 @@
     <Content Include="Scripts\Group04_CMS\Account\accountService.js" />
     <Content Include="Scripts\Group04_CMS\cms.config.js" />
     <Content Include="Scripts\Group04_CMS\cms.module.js" />
+    <Content Include="Scripts\Group04_CMS\Faculty\faculty.controller.js" />
+    <Content Include="Scripts\Group04_CMS\Faculty\facultyService.js" />
     <Content Include="Scripts\Group04_CMS\Role\role.controller.js" />
     <Content Include="Scripts\Group04_CMS\Role\role.directive.js" />
     <Content Include="Scripts\Group04_CMS\Role\roleService.js" />
@@ -1883,9 +1893,26 @@
     <Content Include="Views\Account\CreateUserRole.cshtml" />
     <Content Include="Views\Account\UserRoleDetail.cshtml" />
     <Content Include="Views\Account\EditUserRole.cshtml" />
+    <Content Include="Views\Faculty\Index.cshtml" />
+    <Content Include="Views\Faculty\CreateFaculty.cshtml" />
+    <Content Include="Views\Faculty\EditFaculty.cshtml" />
+    <Content Include="Views\Faculty\FacultyDetail.cshtml" />
+    <Content Include="Views\Faculty\FacultyCourse.cshtml" />
+    <Content Include="Views\Faculty\CreateFacultyCourse.cshtml" />
+    <Content Include="Views\Faculty\FacultyCourseDetail.cshtml" />
+    <Content Include="Views\Faculty\EditFacultyCourse.cshtml" />
+    <Content Include="Views\Faculty\Student.cshtml" />
+    <Content Include="Views\Faculty\CreateStudent.cshtml" />
+    <Content Include="Views\Faculty\StudentDetail.cshtml" />
+    <Content Include="Views\Faculty\EditStudent.cshtml" />
+    <Content Include="Views\Faculty\StudentCourse.cshtml" />
+    <Content Include="Views\Faculty\CreateStudentCourse.cshtml" />
+    <Content Include="Views\Faculty\StudentCourseDetail.cshtml" />
+    <Content Include="Views\Faculty\EditStudentCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -1901,11 +1928,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603221318041_InitializeDatabase.resx">
-      <DependentUpon>201603221318041_InitializeDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603271037182_InitializeData.resx">
+      <DependentUpon>201603271037182_InitializeData.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603261157374_AddStudentCourseMark.resx">
-      <DependentUpon>201603261157374_AddStudentCourseMark.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201603281834559_updateStudentTable.resx">
+      <DependentUpon>201603281834559_updateStudentTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
