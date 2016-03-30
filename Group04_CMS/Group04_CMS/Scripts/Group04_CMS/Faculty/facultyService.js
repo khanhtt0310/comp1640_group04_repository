@@ -116,10 +116,17 @@
     };
 
     // Student Course Mangement
-    self.getStudentCourses = function () {
+    self.getStudentCourses = function (id) {
+        return $http({
+            method: 'POST',
+            url: baseAddress + 'api/faculty/getStudentCourses/' + id
+        });
+    };
+
+    self.getGradeGroups = function() {
         return $http({
             method: 'GET',
-            url: baseAddress + 'api/faculty/getStudentCourses'
+            url: baseAddress + 'api/faculty/getGradeGroups'
         });
     };
 

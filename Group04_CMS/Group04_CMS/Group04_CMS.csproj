@@ -176,11 +176,20 @@
     <Compile Include="Migrations\201603281834559_updateStudentTable.Designer.cs">
       <DependentUpon>201603281834559_updateStudentTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603301613116_AddGradeGroupTable.cs" />
+    <Compile Include="Migrations\201603301613116_AddGradeGroupTable.Designer.cs">
+      <DependentUpon>201603301613116_AddGradeGroupTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201603301840309_updateStudentCourseTable.cs" />
+    <Compile Include="Migrations\201603301840309_updateStudentCourseTable.Designer.cs">
+      <DependentUpon>201603301840309_updateStudentCourseTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Faculty.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\FacultyCourse.cs" />
     <Compile Include="Models\GeneralStatus.cs" />
+    <Compile Include="Models\GradeGroup.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\Student.cs" />
     <Compile Include="Models\StudentCourse.cs" />
@@ -349,6 +358,7 @@
     <Content Include="Scripts\Group04_CMS\cms.config.js" />
     <Content Include="Scripts\Group04_CMS\cms.module.js" />
     <Content Include="Scripts\Group04_CMS\Faculty\faculty.controller.js" />
+    <Content Include="Scripts\Group04_CMS\Faculty\faculty.directive.js" />
     <Content Include="Scripts\Group04_CMS\Faculty\facultyService.js" />
     <Content Include="Scripts\Group04_CMS\Role\role.controller.js" />
     <Content Include="Scripts\Group04_CMS\Role\role.directive.js" />
@@ -1933,6 +1943,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603281834559_updateStudentTable.resx">
       <DependentUpon>201603281834559_updateStudentTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603301613116_AddGradeGroupTable.resx">
+      <DependentUpon>201603301613116_AddGradeGroupTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603301840309_updateStudentCourseTable.resx">
+      <DependentUpon>201603301840309_updateStudentCourseTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

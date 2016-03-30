@@ -189,16 +189,50 @@
     // Student Course Management
     $scope.currentStudentCourse = {};
     $scope.studentCourses = [];
-    $scope.getStudentCourses = function () {
-        facultyService.getStudentCourses().success(function (response) {
-            $scope.currentStudentCourse = response.Data;
+    $scope.getStudentCourses = function (courseId) {
+        debugger;
+        facultyService.getStudentCourses(courseId).success(function (response) {
+            debugger;
+            $scope.studentCourses = response.Data;
         });
     };
 
     // get status
     $scope.stateData = [{ "StatusId": 1, "StatusName": "Inprogress" }, { "StatusId": 1, "StatusName": "Quit" }, { "StatusId": 2, "StatusName": "Save" }, { "StatusId": 2, "StatusName": "Complete" }];
 
+    $scope.showEdit = false;
+    $scope.toggleShowEdit = function() {
+        $scope.showEdit = !$scope.showEdit;
+    };
+
+    $scope.gradeGroupData = [];
+    $scope.getGradeGroups = function() {
+        facultyService.getGradeGroups().success(function(response) {
+            if (response != null && response.Data != null) {
+                $scope.gradeGroupData = response.Data;
+            }
+        });
+    };
+
     $scope.addStudentCourse = function () {
+        debugger;
+        $scope.StudentCourseId = 0;
+        var addObject = {
+            StudentCourseId: $scope.StudentCourseId,
+            StudentId: $scope.selectedStudent,
+            CourseId: $scope.selectedCourse,
+            Status: $scope.selectedStatus
+        };
+        facultyService.createStudentCourse(addObject).success(function (response) {
+            if (response != null && response.Data != null) {
+                $scope.currentStudentCourse = response.Data;
+                $window.location.href = '/Faculty/StudentCourse';
+            }
+        });
+    };
+
+    $scope.updateStudentCourse = function () {
+        debugger;
         $scope.StudentCourseId = 0;
         var addObject = {
             StudentCourseId: $scope.StudentCourseId,

@@ -83,7 +83,8 @@ namespace Group04_CMS
 
             bundles.Add(new ScriptBundle("~/bundles/Faculty").Include(
                         "~/Scripts/Group04_CMS/Faculty/faculty.controller.js",
-                        "~/Scripts/Group04_CMS/Faculty/facultyService.js"
+                        "~/Scripts/Group04_CMS/Faculty/facultyService.js",
+                        "~/Scripts/Group04_CMS/Faculty/faculty.directive.js"
                     ));
 
         }

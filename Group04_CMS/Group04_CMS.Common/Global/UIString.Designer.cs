@@ -61,6 +61,15 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Assign Student &amp; Course.
+        /// </summary>
+        public static string AssignStudentCourse {
+            get {
+                return ResourceManager.GetString("AssignStudentCourse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create.
         /// </summary>
         public static string BreadCrumbCreate {
@@ -678,6 +687,15 @@ namespace Group04_CMS.Common.Global {
         public static string TitleDialogConfirmDelete {
             get {
                 return ResourceManager.GetString("TitleDialogConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assign Student Course Management.
+        /// </summary>
+        public static string TitlePageAssignStudentCourse {
+            get {
+                return ResourceManager.GetString("TitlePageAssignStudentCourse", resourceCulture);
             }
         }
         

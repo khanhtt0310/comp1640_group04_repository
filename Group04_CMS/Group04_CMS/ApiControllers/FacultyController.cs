@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Group04_CMS.Models;
 using Group04_CMS.Services;
 using Group04_CMS.ViewModels;
 using Microsoft.Practices.Unity;
@@ -203,12 +204,28 @@ namespace Group04_CMS.ApiControllers
             return result;
         }
 
+        [HttpPost]
         // Student Course Management
-        public ApiSimpleResult<List<StudentCourseModel>> GetStudentCourses()
+        public ApiSimpleResult<List<StudentCourseModel>> GetStudentCourses(int id)
         {
             var result = new ApiSimpleResult<List<StudentCourseModel>>();
-            var response = FacultySvc.GetStudentCourses();
+            var response = FacultySvc.GetStudentCourses(id);
             if (response.Any())
+            {
+                result.Data = response;
+            }
+            return result;
+        }
+
+        public ApiSimpleResult<List<GradeGroup>> GetGradeGroups()
+        {
+            var response = FacultySvc.GetGradeGroups();
+            var result = new ApiSimpleResult<List<GradeGroup>>
+            {
+                StatusString = "Successful",
+                Message = "Get all roles successfully"
+            };
+            if (response != null)
             {
                 result.Data = response;
             }

@@ -388,10 +388,11 @@ namespace Group04_CMS.Services
 
         // Student Course Management
         #region Student Course
-        public List<StudentCourseModel> GetStudentCourses()
+        public List<StudentCourseModel> GetStudentCourses(int id)
         {
             var response = new List<StudentCourseModel>();
             var items = from instance in DbContext.StudentCourses
+                        where instance.CourseId == id
                         select new StudentCourseModel
                         {
                             StudentCourseId = instance.StudentCourseId,
@@ -402,7 +403,8 @@ namespace Group04_CMS.Services
                             StudentCode = instance.Student.StudentCode,
                             Mark = instance.Mark,
                             Comment = instance.Comment,
-                            GradeGroup = instance.GradeGroup,
+                            GradeGroupId = instance.GradeGroup.Id,
+                            GradeGroupName = instance.GradeGroup.Name,
                             GeneralStatus = instance.GeneralStatus,
                             Status = instance.GeneralStatus.StatusName
                         };
@@ -412,6 +414,15 @@ namespace Group04_CMS.Services
             }
 
             return response;
+        }
+
+        public List<GradeGroup> GetGradeGroups()
+        {
+            var query = DbContext.GradeGroups;
+            if (query.Any())
+                return query.ToList();
+
+            return null;
         }
 
         public StudentCourseModel AddStudentCourse(StudentCourseModel queryModel)
@@ -430,7 +441,7 @@ namespace Group04_CMS.Services
                 CourseId = queryModel.CourseId,
                 Mark = queryModel.Mark,
                 Comment = queryModel.Comment,
-                GradeGroup = queryModel.GradeGroup,
+                GradeGroupId = queryModel.GradeGroupId,
                 GeneralStatusId = status.StatusId
             };
             DbContext.StudentCourses.Add(newItem);
@@ -451,7 +462,8 @@ namespace Group04_CMS.Services
                 response.StudentCode = detailItem.Student.StudentCode;
                 response.Mark = detailItem.Mark;
                 response.Comment = detailItem.Comment;
-                response.GradeGroup = detailItem.GradeGroup;
+                response.GradeGroupId = detailItem.GradeGroup.Id;
+                response.GradeGroupName = detailItem.GradeGroup.Name;
                 response.GeneralStatus = detailItem.GeneralStatus;
                 response.Status = detailItem.GeneralStatus.StatusName;
             }
@@ -473,7 +485,7 @@ namespace Group04_CMS.Services
                 editItem.CourseId = queryModel.CourseId;
                 editItem.Mark = queryModel.Mark;
                 editItem.Comment = queryModel.Comment;
-                editItem.GradeGroup = queryModel.GradeGroup;
+                editItem.GradeGroupId = queryModel.GradeGroupId;
                 DbContext.Entry(editItem).State = EntityState.Modified;
             }
             try

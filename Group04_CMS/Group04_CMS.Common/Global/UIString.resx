@@ -348,4 +348,10 @@
   <data name="TitlePageStudentCourse" xml:space="preserve">
     <value>Student Course Management</value>
   </data>
+  <data name="AssignStudentCourse" xml:space="preserve">
+    <value>Assign Student &amp; Course</value>
+  </data>
+  <data name="TitlePageAssignStudentCourse" xml:space="preserve">
+    <value>Assign Student Course Management</value>
+  </data>
 </root>

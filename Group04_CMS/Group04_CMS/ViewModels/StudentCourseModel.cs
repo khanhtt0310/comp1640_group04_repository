@@ -14,9 +14,10 @@ namespace Group04_CMS.ViewModels
         public string StudentCode { get; set; }
         public int CourseId { get; set; }
         public string CourseCode { get; set; }
-        public float Mark { get; set; }
+        public float? Mark { get; set; }
         public string Comment { get; set; }
-        public int? GradeGroup { get; set; }
+        public int? GradeGroupId { get; set; }
+        public string GradeGroupName { get; set; }
         public string Status { get; set; }
         public int GeneralStatusId { get; set; }
         public GeneralStatus GeneralStatus { get; set; }

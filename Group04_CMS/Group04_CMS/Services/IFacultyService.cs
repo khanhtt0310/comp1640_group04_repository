@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Group04_CMS.Models;
 using Group04_CMS.ViewModels;
 
 namespace Group04_CMS.Services
@@ -32,7 +33,8 @@ namespace Group04_CMS.Services
         ApiSimpleResult<StudentModel> DeleteStudent(StudentModel queryModel);
 
         // Student Course Management
-        List<StudentCourseModel> GetStudentCourses();
+        List<GradeGroup> GetGradeGroups();
+        List<StudentCourseModel> GetStudentCourses(int id);
         StudentCourseModel AddStudentCourse(StudentCourseModel queryModel);
         StudentCourseModel GetStudentCourseDetails(int id);
         StudentCourseModel SaveStudentCourse(StudentCourseModel queryModel);
