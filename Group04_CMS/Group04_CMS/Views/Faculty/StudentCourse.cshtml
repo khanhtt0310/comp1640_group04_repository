@@ -83,19 +83,17 @@
                                 <td>{{ item.StudentCode }}</td>
                                 <td>{{ item.FullName }}</td>
                                 <td>
-                                    <select ng-init="getGradeGroups()" ng-model="item.GradeGroupId" class="dropdown form-control" ng-required="true">
-                                        <option value="" selected>-- Choose status --</option>
-                                        <option ng-repeat="g in gradeGroupData" ng-selected="item.GradeGroupId == g.Id"
-                                                value="{{g.Id}}">
-                                            {{g.Name}}
-                                        </option>
+                                    <select ng-init="getGradeGroups()" ng-model="item.GradeGroupId"
+                                            ng-change="saveStudentCourse(item)"
+                                            ng-options="g.Id as g.Name for g in gradeGroupData"
+                                            class="dropdown form-control" ng-required="true">
+                                        <option value="">-- Choose status --</option>
                                     </select>
                                 </td>
                                 <td>
-                                    <input type="text" class="form-control" ng-bind="item.Mark" ng-required="true" />
-                                    @*<input ng-show="!showEdit" ng-dblclick="toggleShowEdit()" type="text" class="form-control" ng-bind="item.Mark" ng-required="true" />*@
+                                    <input type="text" class="form-control" ng-enter="saveStudentCourse(item)" ng-model="item.Mark" ng-required="true" />
                                 </td>
-                                <td><input type="text" class="form-control" ng-bind="item.Comment" ng-required="true" /></td>
+                                <td><input type="text" class="form-control" ng-enter="saveStudentCourse(item)" ng-model="item.Comment" /></td>
                                 <td class="row">
                                     <div class="col-sm-12">
                                         <a ng-really-message="Are you sure want to delete this record ?" ng-really-click="deleteStudentCourse(item)" item="item" title="@UIString.ButtonDelete"><span class="glyphicon glyphicon-trash"></span></a>

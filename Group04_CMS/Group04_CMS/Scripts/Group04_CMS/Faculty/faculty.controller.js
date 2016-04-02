@@ -190,9 +190,7 @@
     $scope.currentStudentCourse = {};
     $scope.studentCourses = [];
     $scope.getStudentCourses = function (courseId) {
-        debugger;
         facultyService.getStudentCourses(courseId).success(function (response) {
-            debugger;
             $scope.studentCourses = response.Data;
         });
     };
@@ -215,7 +213,6 @@
     };
 
     $scope.addStudentCourse = function () {
-        debugger;
         $scope.StudentCourseId = 0;
         var addObject = {
             StudentCourseId: $scope.StudentCourseId,
@@ -232,7 +229,6 @@
     };
 
     $scope.updateStudentCourse = function () {
-        debugger;
         $scope.StudentCourseId = 0;
         var addObject = {
             StudentCourseId: $scope.StudentCourseId,
@@ -262,11 +258,12 @@
         }
     };
 
-    $scope.saveStudentCourse = function () {
-        var editObject = $scope.currentStudentCourse;
+    debugger;
+    $scope.saveStudentCourse = function (editObject) {
+        debugger;
         facultyService.saveStudentCourse(editObject).success(function (response) {
             if (response != null && response.Data != null) {
-                $window.location.href = '/Faculty/StudentCourse';
+                //$window.location.href = '/Faculty/StudentCourse';
             }
         });
     };

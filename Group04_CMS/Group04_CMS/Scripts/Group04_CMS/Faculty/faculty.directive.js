@@ -1,12 +1,10 @@
-﻿cmsApp.directive('dlEnterKey', function() {
-    return function(scope, element, attrs) {
-        element.bind("Keydown Keypress", function(event) {
-            var keyCode = event.which || event.keyCode;
-
-            // if enter key is pressed
-            if (keyCode === 13) {
-                scope.$apply(function() {
-                    scope.$eval(attrs.dlEnterKey);
+﻿cmsApp.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        debugger;
+        element.bind("keydown keypress", function (event) {
+            if (event.which === 13) {
+                scope.$apply(function () {
+                    scope.$eval(attrs.ngEnter);
                 });
 
                 event.preventDefault();
