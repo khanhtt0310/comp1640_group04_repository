@@ -354,4 +354,19 @@
   <data name="TitlePageAssignStudentCourse" xml:space="preserve">
     <value>Assign Student Course Management</value>
   </data>
+  <data name="FieldNameDirector" xml:space="preserve">
+    <value>Director</value>
+  </data>
+  <data name="FieldNameProVice" xml:space="preserve">
+    <value>Pro-Vice</value>
+  </data>
+  <data name="FieldNameCourseLeader" xml:space="preserve">
+    <value>Course Leader</value>
+  </data>
+  <data name="FieldNameCourseModerator" xml:space="preserve">
+    <value>Course Moderator</value>
+  </data>
+  <data name="TitlePageCourse" xml:space="preserve">
+    <value>Course Management</value>
+  </data>
 </root>

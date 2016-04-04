@@ -47,6 +47,9 @@
       <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -59,6 +62,13 @@
     </Reference>
     <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention">
       <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\MicosoftReportViewerWebForms_v11.1.0.1\lib\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+    </Reference>
+    <Reference Include="ReportViewerForMvc">
+      <HintPath>..\packages\ReportViewerForMvc.1.0.1\lib\net45\ReportViewerForMvc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -168,21 +178,9 @@
     <Compile Include="Helpers\GlobalString.cs" />
     <Compile Include="Helpers\Loggin\ILogger.cs" />
     <Compile Include="Helpers\Loggin\Logger.cs" />
-    <Compile Include="Migrations\201603271037182_InitializeData.cs" />
-    <Compile Include="Migrations\201603271037182_InitializeData.Designer.cs">
-      <DependentUpon>201603271037182_InitializeData.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603281834559_updateStudentTable.cs" />
-    <Compile Include="Migrations\201603281834559_updateStudentTable.Designer.cs">
-      <DependentUpon>201603281834559_updateStudentTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603301613116_AddGradeGroupTable.cs" />
-    <Compile Include="Migrations\201603301613116_AddGradeGroupTable.Designer.cs">
-      <DependentUpon>201603301613116_AddGradeGroupTable.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603301840309_updateStudentCourseTable.cs" />
-    <Compile Include="Migrations\201603301840309_updateStudentCourseTable.Designer.cs">
-      <DependentUpon>201603301840309_updateStudentCourseTable.cs</DependentUpon>
+    <Compile Include="Migrations\201604042326173_InitializeDatabase.cs" />
+    <Compile Include="Migrations\201604042326173_InitializeDatabase.Designer.cs">
+      <DependentUpon>201604042326173_InitializeDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Faculty.cs" />
@@ -196,6 +194,16 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\GradeDistributionDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GradeDistributionDataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\StatisticalDataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StatisticalDataset.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\BaseRepository.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\FacultyService.cs" />
@@ -293,6 +301,7 @@
     <Content Include="img\user6-128x128.jpg" />
     <Content Include="img\user7-128x128.jpg" />
     <Content Include="img\user8-128x128.jpg" />
+    <Content Include="ReportViewerWebForm.aspx" />
     <Content Include="Scripts\AdminLTE\app.js" />
     <Content Include="Scripts\AdminLTE\app.min.js" />
     <Content Include="Scripts\angular-animate.js" />
@@ -351,6 +360,28 @@
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
     <Content Include="Scripts\Group04_CMS\Account\account.directive.js" />
+    <Content Include="Reports\GradeDistributionDataset.xsc">
+      <DependentUpon>GradeDistributionDataset.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\GradeDistributionDataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GradeDistributionDataset.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\GradeDistributionDataset.xss">
+      <DependentUpon>GradeDistributionDataset.xsd</DependentUpon>
+    </Content>
+    <Content Include="Reports\StatisticalDataset.xsc">
+      <DependentUpon>StatisticalDataset.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\StatisticalDataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StatisticalDataset.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\StatisticalDataset.xss">
+      <DependentUpon>StatisticalDataset.xsd</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DropDownAction.js" />
     <Content Include="Scripts\Group04_CMS\Account\account.controller.js" />
@@ -1919,6 +1950,7 @@
     <Content Include="Views\Faculty\CreateStudentCourse.cshtml" />
     <Content Include="Views\Faculty\StudentCourseDetail.cshtml" />
     <Content Include="Views\Faculty\EditStudentCourse.cshtml" />
+    <Content Include="Views\Faculty\Reports.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1938,18 +1970,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201603271037182_InitializeData.resx">
-      <DependentUpon>201603271037182_InitializeData.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604042326173_InitializeDatabase.resx">
+      <DependentUpon>201604042326173_InitializeDatabase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603281834559_updateStudentTable.resx">
-      <DependentUpon>201603281834559_updateStudentTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603301613116_AddGradeGroupTable.resx">
-      <DependentUpon>201603301613116_AddGradeGroupTable.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201603301840309_updateStudentCourseTable.resx">
-      <DependentUpon>201603301840309_updateStudentCourseTable.cs</DependentUpon>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\CourseMonotoringReport.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

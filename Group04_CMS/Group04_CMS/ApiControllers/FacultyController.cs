@@ -41,6 +41,15 @@ namespace Group04_CMS.ApiControllers
             return result;
         }
 
+        public ApiSimpleResult<List<UserModel>> GetUserByRole(string id)
+        {
+            var result = new ApiSimpleResult<List<UserModel>>();
+            var response = FacultySvc.GetUserByRole(id);
+            if (response != null)
+                result.Data = response;
+            return result;
+        }
+
         [HttpPost]
         public ApiSimpleResult<FacultyModel> GetFacultyDetails(int id)
         {

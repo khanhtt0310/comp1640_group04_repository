@@ -12,6 +12,7 @@ namespace Group04_CMS.Services
     public interface IFacultyService
     {
         List<FacultyModel> GetFaculties();
+        List<UserModel> GetUserByRole(string roleName);
         FacultyModel AddFaculty(FacultyModel faculty);
         FacultyModel GetFacultyDetails(int id);
         FacultyModel SaveFaculty(FacultyModel item);
@@ -35,6 +36,8 @@ namespace Group04_CMS.Services
         // Student Course Management
         List<GradeGroup> GetGradeGroups();
         List<StudentCourseModel> GetStudentCourses(int id);
+        List<StudentCourseModel> GetStudentCoursesByUserId(int id);
+        List<StudentCourseModel> GetAllStudentCourses();
         StudentCourseModel AddStudentCourse(StudentCourseModel queryModel);
         StudentCourseModel GetStudentCourseDetails(int id);
         StudentCourseModel SaveStudentCourse(StudentCourseModel queryModel);

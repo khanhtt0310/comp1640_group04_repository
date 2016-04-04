@@ -16,6 +16,13 @@
         });
     };
 
+    self.getUserByRole = function(roleName) {
+        return $http({
+            method: 'GET',
+            url: baseAddress + 'api/faculty/GetUserByRole/' + roleName
+        });
+    };
+
     self.getFacultyDetails = function (facultyId) {
         return $http.post(baseAddress + 'api/faculty/GetFacultyDetails/' + facultyId);
     };

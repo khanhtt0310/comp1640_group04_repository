@@ -11,26 +11,46 @@
     $scope.statusData = [{ "StatusId": 1, "StatusName": "Active" }, { "StatusId": 2, "StatusName": "Inactive" }];
 
     $scope.addFaculty = function () {
+        debugger;
         $scope.FacultyId = 0;
         var faculty = {
             FacultyId: $scope.FacultyId,
             FacultyName: $scope.FacultyName,
-            Note: $scope.Note
+            Note: $scope.Note,
+            DirectorId: $scope.selectedDirector,
+            ProViceId: $scope.selectedProVice
         };
-        facultyService.createFaculty(faculty,
-            function (response) {
-                if (response != null && response.Data != null) {
-                    $scope.currentFaculty = response.Data;
-                    $window.location.href = '/Faculty/Index';
-                }
-                
-
-            },
-            function (error) {
-                // error
-            });
+        facultyService.createFaculty(faculty).success(function (response) {
+            if (response != null && response.Data != null) {
+                debugger;
+                $scope.currentFaculty = response.Data;
+                $window.location.href = '/Faculty/Index';
+            }
+        });
     };
-    
+
+    $scope.directorData = [];
+    $scope.getDirectors = function () {
+        debugger;
+        var roleName = "Director";
+        facultyService.getUserByRole(roleName).success(function (response) {
+            if (response != null && response.Data != null) {
+                $scope.directorData = response.Data;
+            }
+        });
+    };
+
+    $scope.proViceData = [];
+    $scope.getProVices = function () {
+        debugger;
+        var roleName = "Pro-Vice";
+        facultyService.getUserByRole(roleName).success(function (response) {
+            if (response != null && response.Data != null) {
+                $scope.proViceData = response.Data;
+            }
+        });
+    };
+
     $scope.getCurrentFaculty = function () {
         var absoluteUrlPath = $window.location.href;
         var results = String(absoluteUrlPath).split('/');
@@ -258,9 +278,7 @@
         }
     };
 
-    debugger;
     $scope.saveStudentCourse = function (editObject) {
-        debugger;
         facultyService.saveStudentCourse(editObject).success(function (response) {
             if (response != null && response.Data != null) {
                 //$window.location.href = '/Faculty/StudentCourse';

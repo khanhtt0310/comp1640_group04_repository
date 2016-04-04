@@ -20,7 +20,6 @@ namespace Group04_CMS.Models
         [StringLength(100)]
         public string Password { get; set; }
         public virtual ICollection<Role> Roles { get; set; }
-        public virtual ICollection<Course> Courses { get; set; }
         public virtual GeneralStatus Status { get; set; }
     }
 }

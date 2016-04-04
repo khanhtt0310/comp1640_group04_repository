@@ -19,6 +19,7 @@ namespace Group04_CMS.Models
         public virtual Course Course { get; set; }
         public float? Mark { get; set; }
         public string Comment { get; set; }
+        public int? ReportState { get; set; }
         [ForeignKey("GradeGroup")]
         public int? GradeGroupId { get; set; }
         public virtual GradeGroup GradeGroup { get; set; }

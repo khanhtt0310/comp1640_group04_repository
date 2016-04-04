@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.AccessControl;
 
 namespace Group04_CMS.Models
@@ -20,7 +21,17 @@ namespace Group04_CMS.Models
         [StringLength(1)]
         public string CourseStatus { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        [ForeignKey("CourseLeader")]
+        public int CourseLeaderId { get; set; }
+
+        [ForeignKey("CourseModerator")]
+        public int CourseModeratorId { get; set; }
+        public virtual User CourseModerator { get; set; }
+
+        public virtual User CourseLeader { get; set; }
+
+        public int? ReportGroup { get; set; }
+
         public virtual ICollection<Faculty> Faculties { get; set; }
         public virtual ICollection<Student> Students { get; set; } 
     }

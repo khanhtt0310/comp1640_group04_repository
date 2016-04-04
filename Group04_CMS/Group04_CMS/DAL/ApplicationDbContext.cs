@@ -15,6 +15,7 @@ namespace Group04_CMS.DAL
             : base("Name=group04CMSConnection")
         {
             Database.SetInitializer<ApplicationDbContext>(null);
+            Database.SetInitializer<ApplicationDbContext>(new ApplicationDbInitializer());
         }
 
         public DbSet<Role> Roles { get; set; }
@@ -37,6 +38,7 @@ namespace Group04_CMS.DAL
         {
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
             
         }
     }

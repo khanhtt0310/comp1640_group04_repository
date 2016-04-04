@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CourseMonitoringReport" targetNamespace="http://tempuri.org/CourseMonitoringReport.xsd" xmlns:mstns="http://tempuri.org/CourseMonitoringReport.xsd" xmlns="http://tempuri.org/CourseMonitoringReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CourseMonitoringReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CourseMonitoringReport" msprop:Generator_UserDSName="CourseMonitoringReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="GradeDistributionDataTable" msprop:Generator_TableClassName="GradeDistributionDataTableDataTable" msprop:Generator_TableVarName="tableGradeDistributionDataTable" msprop:Generator_RowChangedName="GradeDistributionDataTableRowChanged" msprop:Generator_TablePropName="GradeDistributionDataTable" msprop:Generator_RowDeletingName="GradeDistributionDataTableRowDeleting" msprop:Generator_RowChangingName="GradeDistributionDataTableRowChanging" msprop:Generator_RowEvHandlerName="GradeDistributionDataTableRowChangeEventHandler" msprop:Generator_RowDeletedName="GradeDistributionDataTableRowDeleted" msprop:Generator_RowClassName="GradeDistributionDataTableRow" msprop:Generator_UserTableName="GradeDistributionDataTable" msprop:Generator_RowEvArgName="GradeDistributionDataTableRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CW0_9" msprop:Generator_ColumnVarNameInTable="columnCW0_9" msprop:Generator_ColumnPropNameInRow="CW0_9" msprop:Generator_ColumnPropNameInTable="CW0_9Column" msprop:Generator_UserColumnName="CW0_9" type="xs:string" minOccurs="0" />
+              <xs:element name="CW10_19" msprop:Generator_ColumnVarNameInTable="columnCW10_19" msprop:Generator_ColumnPropNameInRow="CW10_19" msprop:Generator_ColumnPropNameInTable="CW10_19Column" msprop:Generator_UserColumnName="CW10_19" type="xs:string" minOccurs="0" />
+              <xs:element name="CW20_29" msprop:Generator_ColumnVarNameInTable="columnCW20_29" msprop:Generator_ColumnPropNameInRow="CW20_29" msprop:Generator_ColumnPropNameInTable="CW20_29Column" msprop:Generator_UserColumnName="CW20_29" type="xs:string" minOccurs="0" />
+              <xs:element name="CW30_39" msprop:Generator_ColumnVarNameInTable="columnCW30_39" msprop:Generator_ColumnPropNameInRow="CW30_39" msprop:Generator_ColumnPropNameInTable="CW30_39Column" msprop:Generator_UserColumnName="CW30_39" type="xs:string" minOccurs="0" />
+              <xs:element name="CW40_49" msprop:Generator_ColumnVarNameInTable="columnCW40_49" msprop:Generator_ColumnPropNameInRow="CW40_49" msprop:Generator_ColumnPropNameInTable="CW40_49Column" msprop:Generator_UserColumnName="CW40_49" type="xs:string" minOccurs="0" />
+              <xs:element name="CW50_59" msprop:Generator_ColumnVarNameInTable="columnCW50_59" msprop:Generator_ColumnPropNameInRow="CW50_59" msprop:Generator_ColumnPropNameInTable="CW50_59Column" msprop:Generator_UserColumnName="CW50_59" type="xs:string" minOccurs="0" />
+              <xs:element name="CW60_69" msprop:Generator_ColumnVarNameInTable="columnCW60_69" msprop:Generator_ColumnPropNameInRow="CW60_69" msprop:Generator_ColumnPropNameInTable="CW60_69Column" msprop:Generator_UserColumnName="CW60_69" type="xs:string" minOccurs="0" />
+              <xs:element name="CW70_79" msprop:Generator_ColumnVarNameInTable="columnCW70_79" msprop:Generator_ColumnPropNameInRow="CW70_79" msprop:Generator_ColumnPropNameInTable="CW70_79Column" msprop:Generator_UserColumnName="CW70_79" type="xs:string" minOccurs="0" />
+              <xs:element name="CW80_89" msprop:Generator_ColumnVarNameInTable="columnCW80_89" msprop:Generator_ColumnPropNameInRow="CW80_89" msprop:Generator_ColumnPropNameInTable="CW80_89Column" msprop:Generator_UserColumnName="CW80_89" type="xs:string" minOccurs="0" />
+              <xs:element name="CW90_100" msprop:Generator_ColumnVarNameInTable="columnCW90_100" msprop:Generator_ColumnPropNameInRow="CW90_100" msprop:Generator_ColumnPropNameInTable="CW90_100Column" msprop:Generator_UserColumnName="CW90_100" type="xs:string" minOccurs="0" />
+              <xs:element name="CourseName" msprop:Generator_ColumnVarNameInTable="columnCourseName" msprop:Generator_ColumnPropNameInRow="CourseName" msprop:Generator_ColumnPropNameInTable="CourseNameColumn" msprop:Generator_UserColumnName="CourseName" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

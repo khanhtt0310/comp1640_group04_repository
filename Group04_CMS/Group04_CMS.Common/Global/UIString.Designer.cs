@@ -412,6 +412,24 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Course Leader.
+        /// </summary>
+        public static string FieldNameCourseLeader {
+            get {
+                return ResourceManager.GetString("FieldNameCourseLeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Moderator.
+        /// </summary>
+        public static string FieldNameCourseModerator {
+            get {
+                return ResourceManager.GetString("FieldNameCourseModerator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create By.
         /// </summary>
         public static string FieldNameCreateBy {
@@ -444,6 +462,15 @@ namespace Group04_CMS.Common.Global {
         public static string FieldNameDateOfBirth {
             get {
                 return ResourceManager.GetString("FieldNameDateOfBirth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Director.
+        /// </summary>
+        public static string FieldNameDirector {
+            get {
+                return ResourceManager.GetString("FieldNameDirector", resourceCulture);
             }
         }
         
@@ -534,6 +561,15 @@ namespace Group04_CMS.Common.Global {
         public static string FieldNamePhoneNumber {
             get {
                 return ResourceManager.GetString("FieldNamePhoneNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pro-Vice.
+        /// </summary>
+        public static string FieldNameProVice {
+            get {
+                return ResourceManager.GetString("FieldNameProVice", resourceCulture);
             }
         }
         
@@ -696,6 +732,15 @@ namespace Group04_CMS.Common.Global {
         public static string TitlePageAssignStudentCourse {
             get {
                 return ResourceManager.GetString("TitlePageAssignStudentCourse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Course Management.
+        /// </summary>
+        public static string TitlePageCourse {
+            get {
+                return ResourceManager.GetString("TitlePageCourse", resourceCulture);
             }
         }
         

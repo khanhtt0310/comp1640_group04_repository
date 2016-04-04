@@ -36,6 +36,26 @@ namespace Group04_CMS.Services
             return response;
         }
 
+        public List<UserModel> GetUserByRole(string roleName)
+        {
+            var response = new List<UserModel>();
+            var items = from u in DbContext.Users
+                join ur in DbContext.UserRoles on u.UserId equals ur.UserId
+                join r in DbContext.Roles on ur.RoleId equals r.RoleId
+                where r.RoleName == roleName
+                select new UserModel
+                {
+                    Id = u.UserId,
+                    UserName = u.UserName
+                };
+            if (items.Any())
+            {
+                response = items.ToList();
+            }
+
+            return response;
+        }
+
         public FacultyModel AddFaculty(FacultyModel faculty)
         {
             var result = new FacultyModel();
@@ -50,7 +70,9 @@ namespace Group04_CMS.Services
             {
                 FacultyName = faculty.FacultyName,
                 Note = faculty.Note,
-                GeneralStatusId = status.StatusId
+                GeneralStatusId = status.StatusId,
+                DirectorId = faculty.DirectorId,
+                ProViceId = faculty.ProViceId
             };
             DbContext.Faculties.Add(newFaculty);
             DbContext.SaveChanges();
@@ -86,6 +108,8 @@ namespace Group04_CMS.Services
             {
                 faculty.FacultyName = item.FacultyName;
                 faculty.Note = item.Note;
+                faculty.DirectorId = item.DirectorId;
+                faculty.ProViceId = item.ProViceId;
                 DbContext.Entry(faculty).State = EntityState.Modified;
             }
             try
@@ -389,6 +413,61 @@ namespace Group04_CMS.Services
         // Student Course Management
         #region Student Course
         public List<StudentCourseModel> GetStudentCourses(int id)
+        {
+            var response = new List<StudentCourseModel>();
+            var items = from instance in DbContext.StudentCourses
+                        where instance.CourseId == id
+                        select new StudentCourseModel
+                        {
+                            StudentCourseId = instance.StudentCourseId,
+                            StudentId = instance.StudentId,
+                            CourseId = instance.CourseId,
+                            CourseCode = instance.Course.CourseCode,
+                            FullName = instance.Student.FullName,
+                            StudentCode = instance.Student.StudentCode,
+                            Mark = instance.Mark,
+                            Comment = instance.Comment,
+                            GradeGroupId = instance.GradeGroup.Id,
+                            GradeGroupName = instance.GradeGroup.Name,
+                            GeneralStatus = instance.GeneralStatus,
+                            Status = instance.GeneralStatus.StatusName
+                        };
+            if (items.Any())
+            {
+                response = items.ToList();
+            }
+
+            return response;
+        }
+
+        public List<StudentCourseModel> GetAllStudentCourses()
+        {
+            var response = new List<StudentCourseModel>();
+            var items = from instance in DbContext.StudentCourses
+                        select new StudentCourseModel
+                        {
+                            StudentCourseId = instance.StudentCourseId,
+                            StudentId = instance.StudentId,
+                            CourseId = instance.CourseId,
+                            CourseCode = instance.Course.CourseCode,
+                            FullName = instance.Student.FullName,
+                            StudentCode = instance.Student.StudentCode,
+                            Mark = instance.Mark,
+                            Comment = instance.Comment,
+                            GradeGroupId = instance.GradeGroup.Id,
+                            GradeGroupName = instance.GradeGroup.Name,
+                            GeneralStatus = instance.GeneralStatus,
+                            Status = instance.GeneralStatus.StatusName
+                        };
+            if (items.Any())
+            {
+                response = items.ToList();
+            }
+
+            return response;
+        }
+
+        public List<StudentCourseModel> GetStudentCoursesByUserId(int id)
         {
             var response = new List<StudentCourseModel>();
             var items = from instance in DbContext.StudentCourses

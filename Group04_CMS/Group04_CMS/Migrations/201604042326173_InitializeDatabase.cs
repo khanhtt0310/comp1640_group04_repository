@@ -3,7 +3,7 @@ namespace Group04_CMS.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitializeData : DbMigration
+    public partial class InitializeDatabase : DbMigration
     {
         public override void Up()
         {
@@ -15,21 +15,42 @@ namespace Group04_CMS.Migrations
                         CourseCode = c.String(nullable: false, maxLength: 10),
                         CourseName = c.String(nullable: false, maxLength: 255),
                         CourseStatus = c.String(nullable: false, maxLength: 1),
+                        CourseLeaderId = c.Int(nullable: false),
+                        CourseModeratorId = c.Int(nullable: false),
+                        ReportGroup = c.Int(),
                     })
-                .PrimaryKey(t => t.CourseId);
+                .PrimaryKey(t => t.CourseId)
+                .ForeignKey("dbo.User", t => t.CourseLeaderId)
+                .ForeignKey("dbo.User", t => t.CourseModeratorId)
+                .Index(t => t.CourseLeaderId)
+                .Index(t => t.CourseModeratorId);
             
             CreateTable(
-                "dbo.Faculty",
+                "dbo.User",
                 c => new
                     {
-                        FacultyId = c.Int(nullable: false, identity: true),
-                        FacultyName = c.String(nullable: false, maxLength: 255),
-                        Note = c.String(),
-                        GeneralStatusId = c.Int(nullable: false),
+                        UserId = c.Int(nullable: false, identity: true),
+                        StatusId = c.Int(nullable: false),
+                        UserName = c.String(maxLength: 100),
+                        Email = c.String(maxLength: 150),
+                        Password = c.String(maxLength: 100),
                     })
-                .PrimaryKey(t => t.FacultyId)
-                .ForeignKey("dbo.GeneralStatus", t => t.GeneralStatusId)
-                .Index(t => t.GeneralStatusId);
+                .PrimaryKey(t => t.UserId)
+                .ForeignKey("dbo.GeneralStatus", t => t.StatusId)
+                .Index(t => t.StatusId);
+            
+            CreateTable(
+                "dbo.Role",
+                c => new
+                    {
+                        RoleId = c.Int(nullable: false, identity: true),
+                        RoleName = c.String(maxLength: 255),
+                        Note = c.String(),
+                        StatusId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.RoleId)
+                .ForeignKey("dbo.GeneralStatus", t => t.StatusId)
+                .Index(t => t.StatusId);
             
             CreateTable(
                 "dbo.GeneralStatus",
@@ -46,34 +67,23 @@ namespace Group04_CMS.Migrations
                 .PrimaryKey(t => t.StatusId);
             
             CreateTable(
-                "dbo.User",
+                "dbo.Faculty",
                 c => new
                     {
-                        UserId = c.Int(nullable: false, identity: true),
-                        StatusId = c.Int(nullable: false),
-                        UserName = c.String(maxLength: 100),
-                        Email = c.String(maxLength: 150),
-                        Password = c.String(maxLength: 100),
-                        Faculty_FacultyId = c.Int(),
-                    })
-                .PrimaryKey(t => t.UserId)
-                .ForeignKey("dbo.GeneralStatus", t => t.StatusId)
-                .ForeignKey("dbo.Faculty", t => t.Faculty_FacultyId)
-                .Index(t => t.StatusId)
-                .Index(t => t.Faculty_FacultyId);
-            
-            CreateTable(
-                "dbo.Role",
-                c => new
-                    {
-                        RoleId = c.Int(nullable: false, identity: true),
-                        RoleName = c.String(maxLength: 255),
+                        FacultyId = c.Int(nullable: false, identity: true),
+                        FacultyName = c.String(nullable: false, maxLength: 255),
                         Note = c.String(),
-                        StatusId = c.Int(nullable: false),
+                        DirectorId = c.Int(nullable: false),
+                        ProViceId = c.Int(nullable: false),
+                        GeneralStatusId = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.RoleId)
-                .ForeignKey("dbo.GeneralStatus", t => t.StatusId)
-                .Index(t => t.StatusId);
+                .PrimaryKey(t => t.FacultyId)
+                .ForeignKey("dbo.User", t => t.DirectorId)
+                .ForeignKey("dbo.GeneralStatus", t => t.GeneralStatusId)
+                .ForeignKey("dbo.User", t => t.ProViceId)
+                .Index(t => t.DirectorId)
+                .Index(t => t.ProViceId)
+                .Index(t => t.GeneralStatusId);
             
             CreateTable(
                 "dbo.Student",
@@ -83,10 +93,9 @@ namespace Group04_CMS.Migrations
                         StudentCode = c.String(),
                         Email = c.String(),
                         FullName = c.String(),
-                        DateOfBirth = c.DateTimeOffset(nullable: false, precision: 7),
+                        DateOfBirth = c.String(),
                         PhoneNumber = c.String(),
                         Address = c.String(),
-                        StudentStatus = c.Int(nullable: false),
                         GeneralStatusId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.StudentId)
@@ -112,23 +121,35 @@ namespace Group04_CMS.Migrations
                 .Index(t => t.GeneralStatusId);
             
             CreateTable(
+                "dbo.GradeGroup",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
                 "dbo.StudentCourse",
                 c => new
                     {
                         StudentCourseId = c.Int(nullable: false, identity: true),
                         StudentId = c.Int(nullable: false),
                         CourseId = c.Int(nullable: false),
-                        Mark = c.Single(nullable: false),
+                        Mark = c.Single(),
                         Comment = c.String(),
-                        GradeGroup = c.Int(),
+                        ReportState = c.Int(),
+                        GradeGroupId = c.Int(),
                         GeneralStatusId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.StudentCourseId)
                 .ForeignKey("dbo.Course", t => t.CourseId)
                 .ForeignKey("dbo.GeneralStatus", t => t.GeneralStatusId)
+                .ForeignKey("dbo.GradeGroup", t => t.GradeGroupId)
                 .ForeignKey("dbo.Student", t => t.StudentId)
                 .Index(t => t.StudentId)
                 .Index(t => t.CourseId)
+                .Index(t => t.GradeGroupId)
                 .Index(t => t.GeneralStatusId);
             
             CreateTable(
@@ -149,32 +170,6 @@ namespace Group04_CMS.Migrations
                 .Index(t => t.UserId)
                 .Index(t => t.StatusId);
             
-            CreateTable(
-                "dbo.UserCourse",
-                c => new
-                    {
-                        User_UserId = c.Int(nullable: false),
-                        Course_CourseId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.User_UserId, t.Course_CourseId })
-                .ForeignKey("dbo.User", t => t.User_UserId, cascadeDelete: true)
-                .ForeignKey("dbo.Course", t => t.Course_CourseId, cascadeDelete: true)
-                .Index(t => t.User_UserId)
-                .Index(t => t.Course_CourseId);
-            
-            CreateTable(
-                "dbo.RoleUser",
-                c => new
-                    {
-                        Role_RoleId = c.Int(nullable: false),
-                        User_UserId = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.Role_RoleId, t.User_UserId })
-                .ForeignKey("dbo.Role", t => t.Role_RoleId, cascadeDelete: true)
-                .ForeignKey("dbo.User", t => t.User_UserId, cascadeDelete: true)
-                .Index(t => t.Role_RoleId)
-                .Index(t => t.User_UserId);
-            
         }
         
         public override void Down()
@@ -183,48 +178,49 @@ namespace Group04_CMS.Migrations
             DropForeignKey("dbo.UserRole", "StatusId", "dbo.GeneralStatus");
             DropForeignKey("dbo.UserRole", "RoleId", "dbo.Role");
             DropForeignKey("dbo.StudentCourse", "StudentId", "dbo.Student");
+            DropForeignKey("dbo.StudentCourse", "GradeGroupId", "dbo.GradeGroup");
             DropForeignKey("dbo.StudentCourse", "GeneralStatusId", "dbo.GeneralStatus");
             DropForeignKey("dbo.StudentCourse", "CourseId", "dbo.Course");
             DropForeignKey("dbo.FacultyCourse", "GeneralStatusId", "dbo.GeneralStatus");
             DropForeignKey("dbo.FacultyCourse", "FacultyId", "dbo.Faculty");
             DropForeignKey("dbo.FacultyCourse", "CourseId", "dbo.Course");
             DropForeignKey("dbo.Student", "GeneralStatusId", "dbo.GeneralStatus");
-            DropForeignKey("dbo.User", "Faculty_FacultyId", "dbo.Faculty");
-            DropForeignKey("dbo.User", "StatusId", "dbo.GeneralStatus");
-            DropForeignKey("dbo.RoleUser", "User_UserId", "dbo.User");
-            DropForeignKey("dbo.RoleUser", "Role_RoleId", "dbo.Role");
-            DropForeignKey("dbo.Role", "StatusId", "dbo.GeneralStatus");
-            DropForeignKey("dbo.UserCourse", "Course_CourseId", "dbo.Course");
-            DropForeignKey("dbo.UserCourse", "User_UserId", "dbo.User");
+            DropForeignKey("dbo.StudentCourse1", "Course_CourseId", "dbo.Course");
+            DropForeignKey("dbo.StudentCourse1", "Student_StudentId", "dbo.Student");
+            DropForeignKey("dbo.Faculty", "ProViceId", "dbo.User");
             DropForeignKey("dbo.Faculty", "GeneralStatusId", "dbo.GeneralStatus");
-            DropIndex("dbo.RoleUser", new[] { "User_UserId" });
-            DropIndex("dbo.RoleUser", new[] { "Role_RoleId" });
-            DropIndex("dbo.UserCourse", new[] { "Course_CourseId" });
-            DropIndex("dbo.UserCourse", new[] { "User_UserId" });
+            DropForeignKey("dbo.Faculty", "DirectorId", "dbo.User");
+            DropForeignKey("dbo.Course", "CourseModeratorId", "dbo.User");
+            DropForeignKey("dbo.Course", "CourseLeaderId", "dbo.User");
+            DropForeignKey("dbo.User", "StatusId", "dbo.GeneralStatus");
+            DropForeignKey("dbo.Role", "StatusId", "dbo.GeneralStatus");
             DropIndex("dbo.UserRole", new[] { "StatusId" });
             DropIndex("dbo.UserRole", new[] { "UserId" });
             DropIndex("dbo.UserRole", new[] { "RoleId" });
             DropIndex("dbo.StudentCourse", new[] { "GeneralStatusId" });
+            DropIndex("dbo.StudentCourse", new[] { "GradeGroupId" });
             DropIndex("dbo.StudentCourse", new[] { "CourseId" });
             DropIndex("dbo.StudentCourse", new[] { "StudentId" });
             DropIndex("dbo.FacultyCourse", new[] { "GeneralStatusId" });
             DropIndex("dbo.FacultyCourse", new[] { "CourseId" });
             DropIndex("dbo.FacultyCourse", new[] { "FacultyId" });
             DropIndex("dbo.Student", new[] { "GeneralStatusId" });
-            DropIndex("dbo.Role", new[] { "StatusId" });
-            DropIndex("dbo.User", new[] { "Faculty_FacultyId" });
-            DropIndex("dbo.User", new[] { "StatusId" });
             DropIndex("dbo.Faculty", new[] { "GeneralStatusId" });
-            DropTable("dbo.RoleUser");
-            DropTable("dbo.UserCourse");
+            DropIndex("dbo.Faculty", new[] { "ProViceId" });
+            DropIndex("dbo.Faculty", new[] { "DirectorId" });
+            DropIndex("dbo.Role", new[] { "StatusId" });
+            DropIndex("dbo.User", new[] { "StatusId" });
+            DropIndex("dbo.Course", new[] { "CourseModeratorId" });
+            DropIndex("dbo.Course", new[] { "CourseLeaderId" });
             DropTable("dbo.UserRole");
             DropTable("dbo.StudentCourse");
+            DropTable("dbo.GradeGroup");
             DropTable("dbo.FacultyCourse");
             DropTable("dbo.Student");
+            DropTable("dbo.Faculty");
+            DropTable("dbo.GeneralStatus");
             DropTable("dbo.Role");
             DropTable("dbo.User");
-            DropTable("dbo.GeneralStatus");
-            DropTable("dbo.Faculty");
             DropTable("dbo.Course");
         }
     }

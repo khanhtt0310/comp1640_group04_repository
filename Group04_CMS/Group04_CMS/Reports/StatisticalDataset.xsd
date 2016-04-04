@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="StatisticalDataset" targetNamespace="http://tempuri.org/StatisticalDataset.xsd" xmlns:mstns="http://tempuri.org/StatisticalDataset.xsd" xmlns="http://tempuri.org/StatisticalDataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="StatisticalDataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="StatisticalDataset" msprop:Generator_UserDSName="StatisticalDataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="StatisticalDataTable" msprop:Generator_TableClassName="StatisticalDataTableDataTable" msprop:Generator_TableVarName="tableStatisticalDataTable" msprop:Generator_TablePropName="StatisticalDataTable" msprop:Generator_RowDeletingName="StatisticalDataTableRowDeleting" msprop:Generator_RowChangingName="StatisticalDataTableRowChanging" msprop:Generator_RowEvHandlerName="StatisticalDataTableRowChangeEventHandler" msprop:Generator_RowDeletedName="StatisticalDataTableRowDeleted" msprop:Generator_UserTableName="StatisticalDataTable" msprop:Generator_RowChangedName="StatisticalDataTableRowChanged" msprop:Generator_RowEvArgName="StatisticalDataTableRowChangeEvent" msprop:Generator_RowClassName="StatisticalDataTableRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CourseName" msprop:Generator_ColumnVarNameInTable="columnCourseName" msprop:Generator_ColumnPropNameInRow="CourseName" msprop:Generator_ColumnPropNameInTable="CourseNameColumn" msprop:Generator_UserColumnName="CourseName" type="xs:string" minOccurs="0" />
+              <xs:element name="CWMean" msprop:Generator_ColumnVarNameInTable="columnCWMean" msprop:Generator_ColumnPropNameInRow="CWMean" msprop:Generator_ColumnPropNameInTable="CWMeanColumn" msprop:Generator_UserColumnName="CWMean" type="xs:string" minOccurs="0" />
+              <xs:element name="CWMedian" msprop:Generator_ColumnVarNameInTable="columnCWMedian" msprop:Generator_ColumnPropNameInRow="CWMedian" msprop:Generator_ColumnPropNameInTable="CWMedianColumn" msprop:Generator_UserColumnName="CWMedian" type="xs:string" minOccurs="0" />
+              <xs:element name="CWStandardDeviation" msprop:Generator_ColumnVarNameInTable="columnCWStandardDeviation" msprop:Generator_ColumnPropNameInRow="CWStandardDeviation" msprop:Generator_ColumnPropNameInTable="CWStandardDeviationColumn" msprop:Generator_UserColumnName="CWStandardDeviation" type="xs:string" minOccurs="0" />
+              <xs:element name="Overal" msprop:Generator_ColumnVarNameInTable="columnOveral" msprop:Generator_ColumnPropNameInRow="Overal" msprop:Generator_ColumnPropNameInTable="OveralColumn" msprop:Generator_UserColumnName="Overal" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
