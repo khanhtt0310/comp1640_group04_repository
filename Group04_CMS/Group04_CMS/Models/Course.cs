@@ -24,11 +24,13 @@ namespace Group04_CMS.Models
         [ForeignKey("CourseLeader")]
         public int CourseLeaderId { get; set; }
 
+        public virtual User CourseLeader { get; set; }
+
+
         [ForeignKey("CourseModerator")]
         public int CourseModeratorId { get; set; }
-        public virtual User CourseModerator { get; set; }
 
-        public virtual User CourseLeader { get; set; }
+        public virtual User CourseModerator { get; set; }
 
         public int? ReportGroup { get; set; }
 

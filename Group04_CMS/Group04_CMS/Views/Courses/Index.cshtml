@@ -19,6 +19,8 @@
                     <th>Course Code</th>
                     <th class="hidden-xs">Course Name</th>
                     <th class="hidden-xs">Course Status</th>
+                    <th class="hidden-xs">Course Leader</th>
+                    <th class="hidden-xs">Course Moderator</th>
                     <th></th>
                 </tr>
 
@@ -47,6 +49,12 @@
                         {
                             <td class="hidden-xs"></td>
                         }
+                        <td>
+                            @item.CourseLeader.UserName
+                        </td>
+                        <td>
+                            @item.CourseModerator.UserName
+                        </td>
                         <td>
                             @Html.ActionLink("Edit", "Edit", new { id = item.CourseId }) |
                             @Html.ActionLink("Delete", "Delete", new { id = item.CourseId })

@@ -37,12 +37,14 @@ namespace Group04_CMS.Controllers
         public ActionResult Create()
         {
             ViewData["CourseStatusList"] = CreateCourseStatusDropdownlist();
+            ViewData["CourseLeadersList"] = CreateCourseLeadersDropdownlist();
+            ViewData["CourseModeratorsList"] = CreateCourseModeratorsDropdownlist();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CourseId,CourseCode,CourseName,CourseStatus")] Course course)
+        public ActionResult Create([Bind(Include = "CourseId,CourseCode,CourseName,CourseStatus,CourseLeaderId,CourseModeratorId")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -66,12 +68,14 @@ namespace Group04_CMS.Controllers
                 return HttpNotFound();
             }
             ViewData["CourseStatusList"] = CreateCourseStatusDropdownlist();
+            ViewData["CourseLeadersList"] = CreateCourseLeadersDropdownlist();
+            ViewData["CourseModeratorsList"] = CreateCourseModeratorsDropdownlist();
             return View(course);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CourseId,CourseCode,CourseName,CourseStatus")] Course course)
+        public ActionResult Edit([Bind(Include = "CourseId,CourseCode,CourseName,CourseStatus,CourseLeaderId,CourseModeratorId")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -127,6 +131,30 @@ namespace Group04_CMS.Controllers
                 CourseStatusList.Add(new SelectListItem() { Text = pair.Key, Value = pair.Value, Selected = false });
             }
             return CourseStatusList;
+        }
+
+        protected IList<SelectListItem> CreateCourseLeadersDropdownlist()
+        {
+            IList<SelectListItem> CourseLeadersList = new List<SelectListItem>();
+            var courseLeaders = db.Users.ToList();
+
+            foreach (var leader in courseLeaders)
+            {
+                CourseLeadersList.Add(new SelectListItem() { Text = leader.UserName, Value = leader.UserId.ToString(), Selected = false });
+            }
+            return CourseLeadersList;
+        }
+
+        protected IList<SelectListItem> CreateCourseModeratorsDropdownlist()
+        {
+            IList<SelectListItem> CourseModeratorsList = new List<SelectListItem>();
+            var courseModerators = db.Users.ToList();
+
+            foreach (var leader in courseModerators)
+            {
+                CourseModeratorsList.Add(new SelectListItem() { Text = leader.UserName, Value = leader.UserId.ToString(), Selected = false });
+            }
+            return CourseModeratorsList;
         }
     }
 }

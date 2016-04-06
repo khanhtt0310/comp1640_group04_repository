@@ -19,29 +19,45 @@
                 <div class="form-horizontal">
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group col-xs-12 col-md-6">
-                        @Html.LabelFor(model => model.CourseCode, "Course Code", htmlAttributes: new { @class = "control-label col-xs-12 col-md-3" })
-                        <div class="col-xs-12 col-md-9">
+                        @Html.LabelFor(model => model.CourseCode, "Course Code", htmlAttributes: new { @class = "control-label col-xs-12 col-md-4" })
+                        <div class="col-xs-12 col-md-8">
                             @Html.EditorFor(model => model.CourseCode, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.CourseCode, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group col-xs-12 col-md-6">
-                        @Html.LabelFor(model => model.CourseName, "Course Name", htmlAttributes: new { @class = "control-label col-xs-12 col-md-3" })
-                        <div class="col-xs-12 col-md-9">
+                        @Html.LabelFor(model => model.CourseName, "Course Name", htmlAttributes: new { @class = "control-label col-xs-12 col-md-4" })
+                        <div class="col-xs-12 col-md-8">
                             @Html.EditorFor(model => model.CourseName, new { htmlAttributes = new { @class = "form-control" } })
                             @Html.ValidationMessageFor(model => model.CourseName, "", new { @class = "text-danger" })
                         </div>
                     </div>
 
                     <div class="form-group col-xs-12 col-md-6">
-                        @Html.LabelFor(model => model.CourseStatus, "Course Status", htmlAttributes: new { @class = "control-label col-xs-12 col-md-3" })
-                        <div class="col-xs-12 col-md-9" style="padding-bottom: 15px">
+                        @Html.LabelFor(model => model.CourseStatus, "Course Status", htmlAttributes: new { @class = "control-label col-xs-12 col-md-4" })
+                        <div class="col-xs-12 col-md-8">
                             @Html.DropDownListFor(m => m.CourseStatus, ViewData["CourseStatusList"] as List<SelectListItem>, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.CourseStatus, "", new { @class = "text-danger" })
                         </div>
-                        <label class="col-xs-12 col-md-3"></label>
-                        <div class="col-xs-12 col-md-9">
+                    </div>
+
+                    <div class="form-group col-xs-12 col-md-6">
+                        @Html.LabelFor(model => model.CourseStatus, "Course Moderator", htmlAttributes: new { @class = "control-label col-xs-12 col-md-4" })
+                        <div class="col-xs-12 col-md-8">
+                            @Html.DropDownListFor(m => m.CourseModeratorId, ViewData["CourseModeratorsList"] as List<SelectListItem>, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CourseStatus, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group col-xs-12 col-md-6">
+                        @Html.LabelFor(model => model.CourseStatus, "Course Leader", htmlAttributes: new { @class = "control-label col-xs-12 col-md-4" })
+                        <div class="col-xs-12 col-md-8" style="padding-bottom: 15px">
+                            @Html.DropDownListFor(m => m.CourseLeaderId, ViewData["CourseLeadersList"] as List<SelectListItem>, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.CourseStatus, "", new { @class = "text-danger" })
+                        </div>
+                        <label class="col-xs-12 col-md-4"></label>
+                        <div class="col-xs-12 col-md-8">
                             <input type="submit" value="Add Course" class="btn btn-primary" />
                         </div>
                     </div>
