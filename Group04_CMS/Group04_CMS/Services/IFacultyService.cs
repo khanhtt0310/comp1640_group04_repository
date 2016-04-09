@@ -17,10 +17,15 @@ namespace Group04_CMS.Services
         FacultyModel GetFacultyDetails(int id);
         FacultyModel SaveFaculty(FacultyModel item);
         ApiSimpleResult<FacultyModel> DeleteFaculty(FacultyModel item);
-
+        UserModel GetUserById(int id);
+        
         // Faculty Course Management
         List<FacultyCourseModel> GetFacultyCourses();
         List<CourseModel> GetCourses();
+        List<CourseModel> GetCoursesByAccademicSession(int id);
+        List<AccademicSessionModel> GetAccademicSessions();
+        AccademicSessionModel GetAccademicSessionsById(int id);
+        List<CourseModel> GetCoursesByUser(int id);
         FacultyCourseModel AddFacultyCourse(FacultyCourseModel facultyCourse);
         FacultyCourseModel GetFacultyCourseDetails(int id);
         FacultyCourseModel SaveFacultyCourse(FacultyCourseModel item);

@@ -13,7 +13,7 @@ namespace Group04_CMS.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201604042326173_InitializeDatabase"; }
+            get { return "201604071732083_InitializeDatabase"; }
         }
         
         string IMigrationMetadata.Source

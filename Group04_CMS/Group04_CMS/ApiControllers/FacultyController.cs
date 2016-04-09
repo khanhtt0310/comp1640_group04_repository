@@ -98,6 +98,29 @@ namespace Group04_CMS.ApiControllers
             return result;
         }
 
+        [HttpPost]
+        public ApiSimpleResult<List<CourseModel>> GetCoursesByAccademicSession(int id)
+        {
+            var result = new ApiSimpleResult<List<CourseModel>>();
+            var response = FacultySvc.GetCoursesByAccademicSession(id);
+            if (response.Any())
+            {
+                result.Data = response;
+            }
+            return result;
+        }
+
+        public ApiSimpleResult<List<AccademicSessionModel>> GetAccademicSession()
+        {
+            var result = new ApiSimpleResult<List<AccademicSessionModel>>();
+            var response = FacultySvc.GetAccademicSessions();
+            if (response.Any())
+            {
+                result.Data = response;
+            }
+            return result;
+        }
+
         public ApiSimpleResult<List<CourseModel>> GetCourses()
         {
             var result = new ApiSimpleResult<List<CourseModel>>();

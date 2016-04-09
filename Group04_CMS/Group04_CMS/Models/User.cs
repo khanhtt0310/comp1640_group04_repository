@@ -16,6 +16,8 @@ namespace Group04_CMS.Models
         [StringLength(100)]
         public string UserName { get; set; }
         [StringLength(150)]
+        public string FullName { get; set; }
+        [StringLength(150)]
         public string Email { get; set; }
         [StringLength(100)]
         public string Password { get; set; }

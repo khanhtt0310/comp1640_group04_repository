@@ -33,6 +33,7 @@ namespace Group04_CMS.DAL
         public DbSet<StudentCourse> StudentCourses { get; set; }
         public DbSet<FacultyCourse> FacultyCourses { get; set; }
         public DbSet<GradeGroup> GradeGroups { get; set; }
+        public DbSet<AccademicSession> AccademicSessions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

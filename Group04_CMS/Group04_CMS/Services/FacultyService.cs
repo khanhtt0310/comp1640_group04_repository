@@ -172,6 +172,24 @@ namespace Group04_CMS.Services
             return response;
         }
 
+        public List<CourseModel> GetCoursesByUser(int id)
+        {
+            var response = new List<CourseModel>();
+            var courses = from f in DbContext.Courses where f.CourseLeaderId == id
+                          select new CourseModel
+                          {
+                              CourseId = f.CourseId,
+                              CourseCode = f.CourseCode,
+                              CourseName = f.CourseName,
+                              Status = f.CourseStatus
+                          };
+            if (courses.Any())
+            {
+                response = courses.ToList();
+            }
+
+            return response;
+        }
         public List<CourseModel> GetCourses()
         {
             var response = new List<CourseModel>();
@@ -189,6 +207,63 @@ namespace Group04_CMS.Services
             }
 
             return response;
+        }
+
+        public List<CourseModel> GetCoursesByAccademicSession(int id)
+        {
+            var response = new List<CourseModel>();
+            var courses = from f in DbContext.Courses where f.AccademicSessionId == id
+                          select new CourseModel
+                          {
+                              CourseId = f.CourseId,
+                              CourseCode = f.CourseCode,
+                              CourseName = f.CourseName,
+                              Status = f.CourseStatus
+                          };
+            if (courses.Any())
+            {
+                response = courses.ToList();
+            }
+
+            return response;
+        }
+
+        public List<AccademicSessionModel> GetAccademicSessions()
+        {
+            var response = new List<AccademicSessionModel>();
+            var items = from f in DbContext.AccademicSessions select new AccademicSessionModel{ AccId = f.AccademicSessionId, AccName = f.AccSessName};
+
+            if (items.Any())
+            {
+                response = items.ToList();
+            }
+
+            return response;
+        }
+
+        public AccademicSessionModel GetAccademicSessionsById(int id)
+        {
+            var response = new AccademicSessionModel();
+            var items = from f in DbContext.AccademicSessions select new AccademicSessionModel { AccId = f.AccademicSessionId, AccName = f.AccSessName };
+
+            if (items.Any())
+            {
+                response = items.First();
+            }
+
+            return response;
+        }
+
+        public UserModel GetUserById(int id)
+        {
+            UserModel results = new UserModel();
+            var query = from u in DbContext.Users where u.UserId == id
+                        select new UserModel { Id = u.UserId, UserName = u.UserName, Email = u.Email, Status = u.Status };
+            if (query.Any())
+            {
+                results = query.First();
+            }
+            return results;
         }
 
         public FacultyCourseModel AddFacultyCourse(FacultyCourseModel facultyCourse)

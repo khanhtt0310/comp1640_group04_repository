@@ -13,7 +13,7 @@ namespace Group04_CMS.ViewModels
 
         public string CourseName { get; set; }
 
-        public string Status { get; set; }
+        public int Status { get; set; }
 
         [Required]
         public IList<SelectListItem> CourseStatusList { get; set; }

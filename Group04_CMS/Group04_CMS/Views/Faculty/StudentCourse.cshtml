@@ -29,10 +29,9 @@
                     </h3>
                     <div class="box-tools">
                         <p class="text-right btn-grid-group">
-                            <a class="btn bg-orange btn-sm" href="#" title="@UIString.ButtonPDF">
+                            <a class="btn bg-orange btn-sm" ng-href="@Url.Action("Reports", "Faculty")/{{selectedAccSession.AccId}}" title="@UIString.ButtonPDF">
                                 <i class="fa fa-file-pdf-o "></i> @UIString.ButtonPDF
                             </a>
-
                             <a class="btn bg-teal btn-sm" href="#" title="@UIString.ButtonEXCEL">
                                 <i class="fa fa-file-excel-o"></i> @UIString.ButtonEXCEL
                             </a>
@@ -44,13 +43,23 @@
                     </div>
                 </div>
                 <div class="row" style="margin-left: 20px; margin-bottom: 10px">
-                    <div class="col-md-1 col-sm-1 col-xs-1">
+                    <div class="col-md-1 col-sm-2 col-xs-2">
+                        <label class="control-label">Accademic:</label>
+                    </div>
+                    <div class="form-group col-md-2 col-sm-2 col-xs-4">
+                        <select ng-init="getAccademicSession()" ng-model="selectedAccSession" ng-change="getCoursesByAccademicSession(selectedAccSession)" class="dropdown form-control" ng-required="true">
+                            <option ng-repeat="item in accademicSessions" ng-selected="item.AccId==selectedAccSession.AccId"
+                                    value="{{item.AccId}}">
+                                {{item.AccName}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-md-1 col-sm-2 col-xs-2">
                         <label class="control-label">Course:</label>
                     </div>
                     <div class="form-group col-md-2 col-sm-2 col-xs-4">
-                        <select ng-init="getCourses()" ng-model="selectedCourse" ng-change="getStudentCourses(selectedCourse)" class="dropdown form-control" ng-required="true">
-                            <option value="" selected>-- Choose status --</option>
-                            <option ng-repeat="item in courses"
+                        <select ng-model="selectedCourse" ng-change="getStudentCourses(selectedCourse)" class="dropdown form-control" ng-required="true">
+                            <option ng-repeat="item in coursesByAccSess" ng-selected="selectedCourse.CourseId==item.CourseId"
                                     value="{{item.CourseId}}">
                                 {{item.CourseCode}}
                             </option>
@@ -83,7 +92,7 @@
                                 <td>{{ item.StudentCode }}</td>
                                 <td>{{ item.FullName }}</td>
                                 <td>
-                                    <select ng-init="getGradeGroups()" ng-model="item.GradeGroupId"
+                                    <select ng-model="item.GradeGroupId"
                                             ng-change="saveStudentCourse(item)"
                                             ng-options="g.Id as g.Name for g in gradeGroupData"
                                             class="dropdown form-control" ng-required="true">

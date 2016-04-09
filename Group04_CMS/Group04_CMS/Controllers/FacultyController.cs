@@ -3,18 +3,19 @@ using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Group04_CMS.Services;
 using Group04_CMS.ViewModels;
-using Microsoft.Practices.Unity;
 using Microsoft.Reporting.WebForms;
 
 namespace Group04_CMS.Controllers
 {
     public class FacultyController : Controller
     {
-        [Dependency]
+        [Microsoft.Practices.Unity.Dependency]
         public IFacultyService FacultySvc { get; set; }
         // GET: Faculty
         #region Faculty
@@ -117,18 +118,27 @@ namespace Group04_CMS.Controllers
             return View(model);
         }
 
-        public ActionResult Reports(int id)
+        public ActionResult Reports(int? id)
         {
-            var studentCourses = FacultySvc.GetAllStudentCourses();
-            string reportPath = "~/Reports/CourseMonotoringReport.rdlc";
-
-            DataTable tblStatisticalDataTable = new DataTable("StatisticalDataTable");
-            tblStatisticalDataTable.Columns.Add("CourseName");
-            tblStatisticalDataTable.Columns.Add("CWMean");
-            tblStatisticalDataTable.Columns.Add("CWMedian");
-            tblStatisticalDataTable.Columns.Add("CWStandardDeviation");
-            tblStatisticalDataTable.Columns.Add("Overal");
-
+            List<StudentCourseModel> studentCourses = FacultySvc.GetAllStudentCourses();
+            List<CourseModel> courses;
+            UserModel user;
+            AccademicSessionModel accademic;
+            if (id != null)
+            {
+                courses = FacultySvc.GetCoursesByAccademicSession(id.Value);
+                accademic = FacultySvc.GetAccademicSessionsById(id.Value);
+                user = FacultySvc.GetUserById(1);
+            }
+            else
+            {
+                courses = FacultySvc.GetCourses();
+                user = FacultySvc.GetUserById(1);
+                accademic = new AccademicSessionModel(){AccName = ""};
+            }
+            
+            var totalAll = 0;
+            
             DataTable dt = new DataTable("GradeDistributionDataTable");
             dt.Columns.Add("CourseName");
             dt.Columns.Add("CW0_9");
@@ -141,52 +151,76 @@ namespace Group04_CMS.Controllers
             dt.Columns.Add("CW70_79");
             dt.Columns.Add("CW80_89");
             dt.Columns.Add("CW90_100");
-            int i = 1;
-            foreach (var item in studentCourses)
-            {
-                DataRow dr = dt.NewRow();
-                dr["CourseName"] = item.CourseCode;
-                dr["CW0_9"] = (item.Mark >= 0 && item.Mark <= 9) ? item.Mark.ToString() : string.Empty;
-                dr["CW10_19"] = (item.Mark >= 10 && item.Mark <= 19) ? item.Mark.ToString() : string.Empty;
-                dr["CW20_29"] = (item.Mark >= 20 && item.Mark <= 29) ? item.Mark.ToString() : string.Empty;
-                dr["CW30_39"] = (item.Mark >= 30 && item.Mark <= 39) ? item.Mark.ToString() : string.Empty;
-                dr["CW40_49"] = (item.Mark >= 40 && item.Mark <= 49) ? item.Mark.ToString() : string.Empty;
-                dr["CW50_59"] = (item.Mark >= 50 && item.Mark <= 59) ? item.Mark.ToString() : string.Empty;
-                dr["CW60_69"] = (item.Mark >= 60 && item.Mark <= 69) ? item.Mark.ToString() : string.Empty;
-                dr["CW70_79"] = (item.Mark >= 70 && item.Mark <= 79) ? item.Mark.ToString() : string.Empty;
-                dr["CW80_89"] = (item.Mark >= 80 && item.Mark <= 89) ? item.Mark.ToString() : string.Empty;
-                dr["CW90_100"] = (item.Mark >= 90 && item.Mark <= 99) ? item.Mark.ToString() : string.Empty;
-                dt.Rows.Add(dr);
-            }
 
+            var courseCode = "";
+            var accademicSession = "";
+            foreach (var course in courses)
+            {
+                courseCode += course.CourseCode + ", ";
+                DataRow dr = dt.NewRow();
+                dr["CourseName"] = course.CourseCode;
+                var currentCourse = studentCourses.Where(x =>x.CourseId == course.CourseId);
+                if (currentCourse.Any())
+                {
+                    var total = currentCourse.Count();
+                    totalAll += total;
+                    var c1 = studentCourses.Where(x => x.Mark >= 0 && x.Mark <= 9 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
+                    var c2 = studentCourses.Where(x => x.Mark >= 10 && x.Mark <= 19 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
+                    var c3 = studentCourses.Where(x => x.Mark >= 20 && x.Mark <= 29 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
+                    var c4 = studentCourses.Where(x => x.Mark >= 30 && x.Mark <= 39 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
+                    var c5 = studentCourses.Where(x => x.Mark >= 40 && x.Mark <= 49 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
+                    var c6 = studentCourses.Where(x => x.Mark >= 50 && x.Mark <= 59 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
+                    var c7 = studentCourses.Where(x => x.Mark >= 60 && x.Mark <= 69 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
+                    var c8 = studentCourses.Where(x => x.Mark >= 70 && x.Mark <= 79 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
+                    var c9 = studentCourses.Where(x => x.Mark >= 80 && x.Mark <= 89 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
+                    var c10 = studentCourses.Where(x => x.Mark >= 90 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
+                    dr["CW0_9"] = c1 * 100 / total + "%";
+                    dr["CW10_19"] = c2 * 100 / total + "%";
+                    dr["CW20_29"] = c3 * 100 / total + "%";
+                    dr["CW30_39"] = c4 * 100 / total + "%";
+                    dr["CW40_49"] = c5 * 100 / total + "%";
+                    dr["CW50_59"] = c6 * 100 / total + "%";
+                    dr["CW60_69"] = c7 * 100 / total + "%";
+                    dr["CW70_79"] = c8 * 100 / total + "%";
+                    dr["CW80_89"] = c9 * 100 / total + "%";
+                    dr["CW90_100"] = c10 * 100 / total + "%";
+                    dt.Rows.Add(dr);
+                }
+                
+            }
+            string reportPath = "~/Reports/CourseMonotoringReport.rdlc";
+
+            //DataTable tblStatisticalDataTable = new DataTable("StatisticalDataTable");
+            //tblStatisticalDataTable.Columns.Add("CourseName");
+            //tblStatisticalDataTable.Columns.Add("CWMean");
+            //tblStatisticalDataTable.Columns.Add("CWMedian");
+            //tblStatisticalDataTable.Columns.Add("CWStandardDeviation");
+            //tblStatisticalDataTable.Columns.Add("Overal");
+
+            //for (int j = 0; j < 10; j++)
+            //{
+            //    DataRow dr = tblStatisticalDataTable.NewRow();
+            //    dr[0] = "1";
+            //    dr[1] = "1";
+            //    dr[2] = "1";
+            //    dr[3] = "1";
+            //    dr[4] = "1";
+            //    tblStatisticalDataTable.Rows.Add(dr);
+            //}
+            var title = courseCode.Remove(courseCode.Length - 2) + " Report";
+            
             //set param
             List<ReportParameter> listParam = new List<ReportParameter>()
             {
-                new ReportParameter("paramAccdemicSession","abcccc"),
-                new ReportParameter("paramCourseCode", "CW1"),
-                new ReportParameter("paramCourseLeader","AFDF"),
-                new ReportParameter("paramStudentCount","120")
-                //new ReportParameter("pPhieuXuat",result.SoPhieuNhap.ToString()),
-                //new ReportParameter("pKhachHang",khachang),
-                //new ReportParameter("pDiaChiKhachHang",diachi),
-                //new ReportParameter("pNhanVien",result.CreatedBy.TenDayDu),
-                //new ReportParameter("pDienGiai",result.DienGiai),
-                //new ReportParameter("pTongTienHang",tongtienhang.ToString("#,##0")),
-                //new ReportParameter("pVAT",result.VAT.ToString("#,##0")),
-                //new ReportParameter("pNoCu",nocu.ToString("#,##0")),
-                //new ReportParameter("pTongTien",(nocu + result.TongTien).ToString("#,##0")),
-                //new ReportParameter("pDaTra",result.DaTra.ToString("#,##0")),                
-                //new ReportParameter("pConNo",(result.TongTien + nocu - result.DaTra).ToString("#,##0"))
+                new ReportParameter("paramAccdemicSession", accademic.AccName),
+                new ReportParameter("paramCourseCode", title),
+                new ReportParameter("paramCourseLeader", user.UserName),
+                new ReportParameter("paramStudentCount", totalAll.ToString())
             };
 
-            DataSet ds = new DataSet("CourseMonitoringReport");
-            ds.Tables.Add(tblStatisticalDataTable);
-            ds.Tables.Add(dt);
-
-            ReportViewer viewer = new ReportViewer();
-            viewer.ProcessingMode = ProcessingMode.Local;
+            ReportViewer viewer = new ReportViewer {ProcessingMode = ProcessingMode.Local};
             viewer.LocalReport.ReportPath = Server.MapPath(reportPath);
-            viewer.LocalReport.DataSources.Add(new ReportDataSource("StatisticalDataset", tblStatisticalDataTable));
+            //viewer.LocalReport.DataSources.Add(new ReportDataSource("StatisticalDataset", tblStatisticalDataTable));
             viewer.LocalReport.DataSources.Add(new ReportDataSource("GradeDistributionDataset", dt));
             viewer.LocalReport.SetParameters(listParam);
             byte[] bytes = viewer.LocalReport.Render("PDF");

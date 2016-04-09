@@ -165,5 +165,20 @@
         });
     };
 
+    self.getAccademicSession = function () {
+        return $http({
+            method: 'GET',
+            url: baseAddress + 'api/faculty/GetAccademicSession'
+        });
+    };
+
+    self.getCoursesByAccademicSession = function (id) {
+        return $http({
+            method: 'POST',
+            url: baseAddress + 'api/faculty/GetCoursesByAccademicSession/' + id
+        });
+        //return $http.get(baseAddress + 'api/faculty/GetCoursesByAccademicSession/' + id);
+    };
+
     return self;
 }]);

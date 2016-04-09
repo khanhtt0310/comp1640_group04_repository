@@ -52,9 +52,20 @@
                     </div>
 
                     <div class="form-group col-xs-12 col-md-6">
-                        @Html.LabelFor(model => model.CourseStatus, "Course Leader", htmlAttributes: new { @class = "control-label col-xs-12 col-md-4" })
+                        @Html.LabelFor(model => model.CourseStatus, "Course Leader", htmlAttributes: new {@class = "control-label col-xs-12 col-md-4"})
                         <div class="col-xs-12 col-md-8" style="padding-bottom: 15px">
-                            @Html.DropDownListFor(m => m.CourseLeaderId, ViewData["CourseLeadersList"] as List<SelectListItem>, new { @class = "form-control" })
+                            @Html.DropDownListFor(m => m.CourseLeaderId, ViewData["CourseLeadersList"] as List<SelectListItem>, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(model => model.CourseStatus, "", new {@class = "text-danger"})
+                        </div>
+                        <label class="col-xs-12 col-md-4"></label>
+                        <div class="col-xs-12 col-md-8">
+                            <input type="submit" value="Add Course" class="btn btn-primary"/>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-12 col-md-6">
+                        @Html.LabelFor(model => model.AccademicSessionId, "Accademic Session", htmlAttributes: new { @class = "control-label col-xs-12 col-md-4" })
+                        <div class="col-xs-12 col-md-8" style="padding-bottom: 15px">
+                            @Html.DropDownListFor(m => m.AccademicSessionId, ViewData["AccademicSessionList"] as List<SelectListItem>, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.CourseStatus, "", new { @class = "text-danger" })
                         </div>
                         <label class="col-xs-12 col-md-4"></label>

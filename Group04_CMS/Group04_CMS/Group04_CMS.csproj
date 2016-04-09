@@ -178,11 +178,16 @@
     <Compile Include="Helpers\GlobalString.cs" />
     <Compile Include="Helpers\Loggin\ILogger.cs" />
     <Compile Include="Helpers\Loggin\Logger.cs" />
-    <Compile Include="Migrations\201604042326173_InitializeDatabase.cs" />
-    <Compile Include="Migrations\201604042326173_InitializeDatabase.Designer.cs">
-      <DependentUpon>201604042326173_InitializeDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201604071732083_InitializeDatabase.cs" />
+    <Compile Include="Migrations\201604071732083_InitializeDatabase.Designer.cs">
+      <DependentUpon>201604071732083_InitializeDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201604071756572_updateAccademicSessionTable.cs" />
+    <Compile Include="Migrations\201604071756572_updateAccademicSessionTable.Designer.cs">
+      <DependentUpon>201604071756572_updateAccademicSessionTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccademicSession.cs" />
     <Compile Include="Models\Faculty.cs" />
     <Compile Include="Models\Course.cs" />
     <Compile Include="Models\FacultyCourse.cs" />
@@ -209,6 +214,7 @@
     <Compile Include="Services\FacultyService.cs" />
     <Compile Include="Services\IAccountService.cs" />
     <Compile Include="Services\IFacultyService.cs" />
+    <Compile Include="ViewModels\AccademicSessionModel.cs" />
     <Compile Include="ViewModels\ApiSimpleResult.cs" />
     <Compile Include="ViewModels\CourseModel.cs" />
     <Compile Include="ViewModels\FacultyCourseModel.cs" />
@@ -1970,8 +1976,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201604042326173_InitializeDatabase.resx">
-      <DependentUpon>201604042326173_InitializeDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201604071732083_InitializeDatabase.resx">
+      <DependentUpon>201604071732083_InitializeDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201604071756572_updateAccademicSessionTable.resx">
+      <DependentUpon>201604071756572_updateAccademicSessionTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\CourseMonotoringReport.rdlc" />
   </ItemGroup>

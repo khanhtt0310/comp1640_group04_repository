@@ -11,7 +11,6 @@
     $scope.statusData = [{ "StatusId": 1, "StatusName": "Active" }, { "StatusId": 2, "StatusName": "Inactive" }];
 
     $scope.addFaculty = function () {
-        debugger;
         $scope.FacultyId = 0;
         var faculty = {
             FacultyId: $scope.FacultyId,
@@ -31,7 +30,6 @@
 
     $scope.directorData = [];
     $scope.getDirectors = function () {
-        debugger;
         var roleName = "Director";
         facultyService.getUserByRole(roleName).success(function (response) {
             if (response != null && response.Data != null) {
@@ -42,7 +40,6 @@
 
     $scope.proViceData = [];
     $scope.getProVices = function () {
-        debugger;
         var roleName = "Pro-Vice";
         facultyService.getUserByRole(roleName).success(function (response) {
             if (response != null && response.Data != null) {
@@ -295,4 +292,25 @@
         });
     };
 
+    $scope.accademicSessions = [];
+    $scope.getAccademicSession = function () {
+        facultyService.getAccademicSession().success(function (response) {
+            if (response != null && response.Data != null) {
+                $scope.accademicSessions = response.Data;
+                $scope.selectedAccSession = $scope.accademicSessions[0];
+                $scope.getCoursesByAccademicSession($scope.selectedAccSession.AccId);
+            }
+        });
+    };
+
+    $scope.coursesByAccSess = [];
+    $scope.getCoursesByAccademicSession = function (id) {
+        facultyService.getCoursesByAccademicSession(id).success(function (response) {
+            if (response != null && response.Data != null) {
+                $scope.coursesByAccSess = response.Data;
+                $scope.selectedCourse = $scope.coursesByAccSess[0];
+                $scope.getStudentCourses($scope.selectedCourse.CourseId);
+            }
+        });
+    };
 }]);

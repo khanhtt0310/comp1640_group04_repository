@@ -39,12 +39,13 @@ namespace Group04_CMS.Controllers
             ViewData["CourseStatusList"] = CreateCourseStatusDropdownlist();
             ViewData["CourseLeadersList"] = CreateCourseLeadersDropdownlist();
             ViewData["CourseModeratorsList"] = CreateCourseModeratorsDropdownlist();
+            ViewData["AccademicSessionList"] = CreateAccademicSessionlist();
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CourseId,CourseCode,CourseName,CourseStatus,CourseLeaderId,CourseModeratorId")] Course course)
+        public ActionResult Create([Bind(Include = "CourseId,CourseCode,CourseName,CourseStatus,CourseLeaderId,CourseModeratorId,AccademicSessionId")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -70,12 +71,13 @@ namespace Group04_CMS.Controllers
             ViewData["CourseStatusList"] = CreateCourseStatusDropdownlist();
             ViewData["CourseLeadersList"] = CreateCourseLeadersDropdownlist();
             ViewData["CourseModeratorsList"] = CreateCourseModeratorsDropdownlist();
+            ViewData["AccademicSessionList"] = CreateAccademicSessionlist();
             return View(course);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CourseId,CourseCode,CourseName,CourseStatus,CourseLeaderId,CourseModeratorId")] Course course)
+        public ActionResult Edit([Bind(Include = "CourseId,CourseCode,CourseName,CourseStatus,CourseLeaderId,CourseModeratorId,AccademicSessionId")] Course course)
         {
             if (ModelState.IsValid)
             {
@@ -143,6 +145,19 @@ namespace Group04_CMS.Controllers
                 CourseLeadersList.Add(new SelectListItem() { Text = leader.UserName, Value = leader.UserId.ToString(), Selected = false });
             }
             return CourseLeadersList;
+        }
+
+        protected IList<SelectListItem> CreateAccademicSessionlist()
+        {
+            IList<SelectListItem> accademicSessionList = new List<SelectListItem>();
+            var accs = db.AccademicSessions.ToList();
+
+            foreach (var item in accs)
+            {
+                accademicSessionList.Add(new SelectListItem() { Text = item.AccSessName, Value = item.AccademicSessionId.ToString()
+                    , Selected = false });
+            }
+            return accademicSessionList;
         }
 
         protected IList<SelectListItem> CreateCourseModeratorsDropdownlist()

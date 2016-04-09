@@ -8,22 +8,34 @@ namespace Group04_CMS.Migrations
         public override void Up()
         {
             CreateTable(
+                "dbo.AccademicSession",
+                c => new
+                    {
+                        AccademicSessionId = c.Int(nullable: false, identity: true),
+                        FromDate = c.DateTime(nullable: false),
+                        ToDate = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.AccademicSessionId);
+            
+            CreateTable(
                 "dbo.Course",
                 c => new
                     {
                         CourseId = c.Int(nullable: false, identity: true),
                         CourseCode = c.String(nullable: false, maxLength: 10),
                         CourseName = c.String(nullable: false, maxLength: 255),
-                        CourseStatus = c.String(nullable: false, maxLength: 1),
+                        CourseStatus = c.Int(nullable: false),
                         CourseLeaderId = c.Int(nullable: false),
                         CourseModeratorId = c.Int(nullable: false),
-                        ReportGroup = c.Int(),
+                        AccademicSessionId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.CourseId)
+                .ForeignKey("dbo.AccademicSession", t => t.AccademicSessionId)
                 .ForeignKey("dbo.User", t => t.CourseLeaderId)
                 .ForeignKey("dbo.User", t => t.CourseModeratorId)
                 .Index(t => t.CourseLeaderId)
-                .Index(t => t.CourseModeratorId);
+                .Index(t => t.CourseModeratorId)
+                .Index(t => t.AccademicSessionId);
             
             CreateTable(
                 "dbo.User",
@@ -32,6 +44,7 @@ namespace Group04_CMS.Migrations
                         UserId = c.Int(nullable: false, identity: true),
                         StatusId = c.Int(nullable: false),
                         UserName = c.String(maxLength: 100),
+                        FullName = c.String(maxLength: 150),
                         Email = c.String(maxLength: 150),
                         Password = c.String(maxLength: 100),
                     })
@@ -170,6 +183,19 @@ namespace Group04_CMS.Migrations
                 .Index(t => t.UserId)
                 .Index(t => t.StatusId);
             
+            CreateTable(
+                "dbo.RoleUser",
+                c => new
+                    {
+                        Role_RoleId = c.Int(nullable: false),
+                        User_UserId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => new { t.Role_RoleId, t.User_UserId })
+                .ForeignKey("dbo.Role", t => t.Role_RoleId, cascadeDelete: true)
+                .ForeignKey("dbo.User", t => t.User_UserId, cascadeDelete: true)
+                .Index(t => t.Role_RoleId)
+                .Index(t => t.User_UserId);
+            
         }
         
         public override void Down()
@@ -185,15 +211,18 @@ namespace Group04_CMS.Migrations
             DropForeignKey("dbo.FacultyCourse", "FacultyId", "dbo.Faculty");
             DropForeignKey("dbo.FacultyCourse", "CourseId", "dbo.Course");
             DropForeignKey("dbo.Student", "GeneralStatusId", "dbo.GeneralStatus");
-            DropForeignKey("dbo.StudentCourse1", "Course_CourseId", "dbo.Course");
-            DropForeignKey("dbo.StudentCourse1", "Student_StudentId", "dbo.Student");
             DropForeignKey("dbo.Faculty", "ProViceId", "dbo.User");
             DropForeignKey("dbo.Faculty", "GeneralStatusId", "dbo.GeneralStatus");
             DropForeignKey("dbo.Faculty", "DirectorId", "dbo.User");
             DropForeignKey("dbo.Course", "CourseModeratorId", "dbo.User");
             DropForeignKey("dbo.Course", "CourseLeaderId", "dbo.User");
             DropForeignKey("dbo.User", "StatusId", "dbo.GeneralStatus");
+            DropForeignKey("dbo.RoleUser", "User_UserId", "dbo.User");
+            DropForeignKey("dbo.RoleUser", "Role_RoleId", "dbo.Role");
             DropForeignKey("dbo.Role", "StatusId", "dbo.GeneralStatus");
+            DropForeignKey("dbo.Course", "AccademicSessionId", "dbo.AccademicSession");
+            DropIndex("dbo.RoleUser", new[] { "User_UserId" });
+            DropIndex("dbo.RoleUser", new[] { "Role_RoleId" });
             DropIndex("dbo.UserRole", new[] { "StatusId" });
             DropIndex("dbo.UserRole", new[] { "UserId" });
             DropIndex("dbo.UserRole", new[] { "RoleId" });
@@ -210,8 +239,10 @@ namespace Group04_CMS.Migrations
             DropIndex("dbo.Faculty", new[] { "DirectorId" });
             DropIndex("dbo.Role", new[] { "StatusId" });
             DropIndex("dbo.User", new[] { "StatusId" });
+            DropIndex("dbo.Course", new[] { "AccademicSessionId" });
             DropIndex("dbo.Course", new[] { "CourseModeratorId" });
             DropIndex("dbo.Course", new[] { "CourseLeaderId" });
+            DropTable("dbo.RoleUser");
             DropTable("dbo.UserRole");
             DropTable("dbo.StudentCourse");
             DropTable("dbo.GradeGroup");
@@ -222,6 +253,7 @@ namespace Group04_CMS.Migrations
             DropTable("dbo.Role");
             DropTable("dbo.User");
             DropTable("dbo.Course");
+            DropTable("dbo.AccademicSession");
         }
     }
 }
