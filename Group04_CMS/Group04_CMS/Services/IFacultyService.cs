@@ -38,6 +38,13 @@ namespace Group04_CMS.Services
         StudentModel SaveStudent(StudentModel queryModel);
         ApiSimpleResult<StudentModel> DeleteStudent(StudentModel queryModel);
 
+        // Academic Management
+        List<AcademicModel> GetAcademics();
+        AcademicModel AddAcademic(AcademicModel queryModel);
+        AcademicModel GetAcademicDetails(int id);
+        AcademicModel SaveAcademic(AcademicModel queryModel);
+        ApiSimpleResult<AcademicModel> DeleteAcademic(AcademicModel queryModel);
+
         // Student Course Management
         List<GradeGroup> GetGradeGroups();
         List<StudentCourseModel> GetStudentCourses(int id);

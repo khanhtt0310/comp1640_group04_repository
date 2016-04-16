@@ -21,7 +21,7 @@
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/cmsApp")
 </head>
-<body class="skin-blue sidebar-mini">
+<body class="skin-red-lights sidebar-mini">
     <div class="wrapper">
         <header class="main-header">
             <a href="@Url.Action("IndexStudent", "Home")" class="logo">
@@ -75,8 +75,11 @@
                     <li><a href="@Url.Action("Index", "Home")"><i class="fa fa-home"></i> <span>Homepage</span></a></li>
                     <li class="treeview">
                         <a href="#">
-                            <i class="fa fa-university"></i> <span>Academics</span>
+                            <i class="fa fa-university"></i> <span>Academic Management</span>
                         </a>
+                        <ul class="treeview-menu">
+                            <li><a href="@Url.Action("Academic", "Faculty")"><i class="fa fa-university"></i> Academic Sessions</a></li>
+                        </ul>
                     </li>
                     <li class="treeview">
                         <a href="#">

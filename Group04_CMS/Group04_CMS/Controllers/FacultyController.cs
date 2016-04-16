@@ -118,6 +118,31 @@ namespace Group04_CMS.Controllers
             return View(model);
         }
 
+        #region Academic
+        public ActionResult Academic()
+        {
+            return View();
+        }
+
+        public ActionResult CreateAcademic()
+        {
+            return View();
+        }
+
+        public ActionResult AcademicDetail(int id)
+        {
+            var model = FacultySvc.GetAcademicDetails(id);
+            return View(model);
+        }
+
+        public ActionResult EditAcademic(int id)
+        {
+            var model = FacultySvc.GetAcademicDetails(id);
+            return View(model);
+        }
+
+        #endregion
+
         public ActionResult Reports(int? id)
         {
             List<StudentCourseModel> studentCourses = FacultySvc.GetAllStudentCourses();

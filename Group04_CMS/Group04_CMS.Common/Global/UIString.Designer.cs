@@ -268,6 +268,24 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Academic Session.
+        /// </summary>
+        public static string FieldNameAcademicSession {
+            get {
+                return ResourceManager.GetString("FieldNameAcademicSession", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Academic Session Name.
+        /// </summary>
+        public static string FieldNameAccSessName {
+            get {
+                return ResourceManager.GetString("FieldNameAccSessName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         public static string FieldNameAddress {
@@ -520,6 +538,15 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to From Date.
+        /// </summary>
+        public static string FieldNameFromDate {
+            get {
+                return ResourceManager.GetString("FieldNameFromDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Name.
         /// </summary>
         public static string FieldNameFullName {
@@ -664,6 +691,15 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to To Date.
+        /// </summary>
+        public static string FieldNameToDate {
+            get {
+                return ResourceManager.GetString("FieldNameToDate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update By.
         /// </summary>
         public static string FieldNameUpdateBy {
@@ -723,6 +759,15 @@ namespace Group04_CMS.Common.Global {
         public static string TitleDialogConfirmDelete {
             get {
                 return ResourceManager.GetString("TitleDialogConfirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Academic Session Management.
+        /// </summary>
+        public static string TitlePageAcademic {
+            get {
+                return ResourceManager.GetString("TitlePageAcademic", resourceCulture);
             }
         }
         

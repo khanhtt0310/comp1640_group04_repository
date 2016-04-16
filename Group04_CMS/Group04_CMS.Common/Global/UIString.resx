@@ -369,4 +369,19 @@
   <data name="TitlePageCourse" xml:space="preserve">
     <value>Course Management</value>
   </data>
+  <data name="FieldNameAcademicSession" xml:space="preserve">
+    <value>Academic Session</value>
+  </data>
+  <data name="FieldNameAccSessName" xml:space="preserve">
+    <value>Academic Session Name</value>
+  </data>
+  <data name="FieldNameFromDate" xml:space="preserve">
+    <value>From Date</value>
+  </data>
+  <data name="FieldNameToDate" xml:space="preserve">
+    <value>To Date</value>
+  </data>
+  <data name="TitlePageAcademic" xml:space="preserve">
+    <value>Academic Session Management</value>
+  </data>
 </root>

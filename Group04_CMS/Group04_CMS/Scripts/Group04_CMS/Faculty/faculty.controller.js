@@ -203,6 +203,72 @@
         });
     };
 
+    // Academic Management
+    $scope.currentAcademic = {};
+    $scope.academics = [];
+    $scope.getAcademics = function () {
+        facultyService.getAcademics().success(function (response) {
+            if(response != null && response.Data != null)
+            {
+                for (var i = 0; i < response.Data.length; i++) {
+                    var academic = response.Data[i];
+                    academic.FromDate = new Date(academic.FromDate);
+                    academic.ToDate = new Date(academic.ToDate);
+                    $scope.academics.push(academic);
+                }
+            }
+        });
+    };
+
+    $scope.addAcademic = function () {
+        $scope.AccademicSessionId = 0;
+        var addObject = {
+            AccademicSessionId: $scope.AccademicSessionId,
+            AccSessName: $scope.AccSessName,
+            FromDate: new Date($scope.FromDate),
+            ToDate: new Date($scope.ToDate)
+        };
+        facultyService.createAcademic(addObject).success(function (response) {
+            if (response != null && response.Data != null) {
+                $scope.currentAcademic = response.Data;
+                $window.location.href = '/Faculty/Academic';
+            }
+        });
+    };
+
+    $scope.getCurrentAcademic = function () {
+        var absoluteUrlPath = $window.location.href;
+        var results = String(absoluteUrlPath).split('/');
+        if (results != null && results.length > 0) {
+            var id = results[results.length - 1];
+            facultyService.getAcademicDetails(id).success(function (response) {
+                $scope.currentAcademic = response.Data;
+                $scope.currentAcademic.FromDate = new Date($scope.currentAcademic.FromDate);
+                $scope.currentAcademic.ToDate = new Date($scope.currentAcademic.ToDate);
+            });
+        }
+    };
+
+    $scope.saveAcademic = function () {
+        var editObject = $scope.currentAcademic;
+        $scope.currentAcademic.FromDate = new Date($scope.currentAcademic.FromDate);
+        $scope.currentAcademic.ToDate = new Date($scope.currentAcademic.ToDate);
+        facultyService.saveAcademic(editObject).success(function (response) {
+            if (response != null && response.Data != null) {
+                $window.location.href = '/Faculty/Academic';
+            }
+        });
+    };
+
+    $scope.deleteAcademic = function (deleteObject) {
+        facultyService.deleteAcademic(deleteObject).success(function (response) {
+            if (response != null && response.Data != null) {
+                var index = $scope.academics.indexOf(response.Data.AccademicSessionId);
+                $scope.academics.splice(index, 1);
+            }
+        });
+    };
+
     // Student Course Management
     $scope.currentStudentCourse = {};
     $scope.studentCourses = [];

@@ -1,0 +1,87 @@
+﻿@using Group04_CMS.Common.Global
+@model Group04_CMS.ViewModels.AcademicModel
+
+@{
+    ViewBag.Title = @UIString.TitlePageAcademic;
+}
+
+@Scripts.Render("~/bundles/Faculty")
+<section class="content-header">
+    <h1 class="fa fa-list">
+        @UIString.TitlePageManageLarge
+        <small> @UIString.FieldNameAcademicSession</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
+        <li><a href="@Url.Action("Academic", "Faculty")">@UIString.TitlePageAcademic</a></li>
+        <li class="active">@UIString.BreadCrumbEdit</li>
+    </ol>
+</section>
+
+<section class="content" ng-controller="facultyController">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">
+                        <i class="fa fa-edit"></i>
+                        @UIString.BreadCrumbEdit @UIString.FieldNameAcademicSession
+                    </h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form ng-init="getCurrentAcademic()" name="academicForm">
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="form-group col-md-4 col-sm-12 col-xs-12">
+                                <label class="control-label">@UIString.FieldNameAccSessName</label>
+                                <input class="form-control" ng-model="currentAcademic.AccSessName" ng-required="true" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+                                <label class="control-label">
+                                    @UIString.FieldNameFromDate
+                                </label>
+                                <input type="date"
+                                       id="fromDate"
+                                       name="fromDate"
+                                       ng-model="currentAcademic.FromDate"
+                                       required
+                                        />
+                            </div>
+                            <div class="form-group col-md-4 col-sm-4 col-xs-12">
+                                <label class="control-label">
+                                    @UIString.FieldNameToDate
+                                </label>
+                                <input type="date"
+                                       id="toDate"
+                                       name="toDate"
+                                       ng-model="currentAcademic.ToDate"
+                                       required
+                                       />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <a class="btn btn-default  btn-view " href="@Url.Action("Academic", "Faculty")" title="@UIString.ButtonBack">
+                            <i class="fa fa-chevron-circle-left"></i>
+                            @UIString.ButtonBack
+                        </a>
+                        <button class="btn btn-info  btn-view" ng-click="academicForm.$valid && saveAcademic()" title="@UIString.ButtonEdit">
+                            <i class=" fa fa-edit"></i>
+                            @UIString.ButtonEdit
+                        </button>
+
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+

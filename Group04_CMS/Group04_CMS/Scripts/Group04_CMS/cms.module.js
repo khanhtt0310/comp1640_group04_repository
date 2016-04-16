@@ -42,3 +42,25 @@ cmsApp.directive('ngReallyClick', ['$uibModal',
         }
     }
 ]);
+
+cmsApp.directive('customDatepicker', function($compile, $timeout) {
+    return {
+        replace: true,
+        //templateUrl: 'custom-datepicker.html',
+        scope: {
+            ngModel: '=',
+            dateOptions: '@',
+            dateDisabled: '@',
+            opened: '=',
+            min: '@',
+            max: '@',
+            popup: '@',
+            options: '@',
+            name: '@',
+            id: '@'
+        },
+        link: function($scope, $element, $attrs, $controller) {
+
+        }
+    };
+});

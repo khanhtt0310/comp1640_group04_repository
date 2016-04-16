@@ -236,6 +236,64 @@ namespace Group04_CMS.ApiControllers
             return result;
         }
 
+        // Academic Management
+        public ApiSimpleResult<List<AcademicModel>> GetAcademics()
+        {
+            var result = new ApiSimpleResult<List<AcademicModel>>();
+            var response = FacultySvc.GetAcademics();
+            if (response.Any())
+            {
+                result.Data = response;
+            }
+            return result;
+        }
+
+        [HttpPost]
+        public ApiSimpleResult<AcademicModel> AddAcademic(AcademicModel queryModel)
+        {
+            var result = new ApiSimpleResult<AcademicModel>();
+            var response = FacultySvc.AddAcademic(queryModel);
+            if (response != null)
+                result.Data = response;
+            return result;
+        }
+
+        [HttpPost]
+        public ApiSimpleResult<AcademicModel> GetAcademicDetails(int id)
+        {
+            var response = FacultySvc.GetAcademicDetails(id);
+            var result = new ApiSimpleResult<AcademicModel>
+            {
+                StatusString = "Successful",
+                Message = "Get all roles successfully"
+            };
+            if (response != null)
+            {
+                result.Data = response;
+            }
+            return result;
+        }
+
+        [HttpPost]
+        public ApiSimpleResult<AcademicModel> SaveAcademic(AcademicModel queryModel)
+        {
+            var result = new ApiSimpleResult<AcademicModel>();
+            var response = FacultySvc.SaveAcademic(queryModel);
+            if (response != null)
+                result.Data = response;
+            return result;
+        }
+
+        [HttpPost]
+        public ApiSimpleResult<AcademicModel> DeleteAcademic(AcademicModel queryModel)
+        {
+            var result = new ApiSimpleResult<AcademicModel>();
+            var response = FacultySvc.DeleteAcademic(queryModel);
+            if (response != null)
+                result = response;
+            return result;
+        }
+
         [HttpPost]
         // Student Course Management
         public ApiSimpleResult<List<StudentCourseModel>> GetStudentCourses(int id)

@@ -122,6 +122,42 @@
         });
     };
 
+    // Academic Mangement
+    self.getAcademics = function () {
+        return $http({
+            method: 'GET',
+            url: baseAddress + 'api/faculty/getAcademics'
+        });
+    };
+
+    self.createAcademic = function (addObject) {
+        return $http({
+            method: 'POST',
+            url: baseAddress + 'api/faculty/addAcademic',
+            data: addObject
+        });
+    };
+
+    self.getAcademicDetails = function (id) {
+        return $http.post(baseAddress + 'api/faculty/GetAcademicDetails/' + id);
+    };
+
+    self.saveAcademic = function (editObject) {
+        return $http({
+            method: 'POST',
+            url: baseAddress + 'api/faculty/saveAcademic',
+            data: editObject
+        });
+    };
+
+    self.deleteAcademic = function (deleteObject) {
+        return $http({
+            method: 'POST',
+            url: baseAddress + 'api/faculty/DeleteAcademic',
+            data: deleteObject
+        });
+    };
+
     // Student Course Mangement
     self.getStudentCourses = function (id) {
         return $http({

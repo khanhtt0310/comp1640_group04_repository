@@ -214,6 +214,7 @@
     <Compile Include="Services\FacultyService.cs" />
     <Compile Include="Services\IAccountService.cs" />
     <Compile Include="Services\IFacultyService.cs" />
+    <Compile Include="ViewModels\AcademicModel.cs" />
     <Compile Include="ViewModels\AccademicSessionModel.cs" />
     <Compile Include="ViewModels\ApiSimpleResult.cs" />
     <Compile Include="ViewModels\CourseModel.cs" />
@@ -1957,6 +1958,10 @@
     <Content Include="Views\Faculty\StudentCourseDetail.cshtml" />
     <Content Include="Views\Faculty\EditStudentCourse.cshtml" />
     <Content Include="Views\Faculty\Reports.cshtml" />
+    <Content Include="Views\Faculty\Academic.cshtml" />
+    <Content Include="Views\Faculty\CreateAcademic.cshtml" />
+    <Content Include="Views\Faculty\AcademicDetail.cshtml" />
+    <Content Include="Views\Faculty\EditAcademic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

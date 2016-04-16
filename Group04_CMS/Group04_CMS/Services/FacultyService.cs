@@ -484,7 +484,103 @@ namespace Group04_CMS.Services
         }
 
         #endregion
+        // Academic Management
+        #region Academic
+        public List<AcademicModel> GetAcademics()
+        {
+            var response = new List<AcademicModel>();
+            var items = from instance in DbContext.AccademicSessions
+                        select new AcademicModel
+                        {
+                            AccademicSessionId = instance.AccademicSessionId,
+                            AccSessName = instance.AccSessName,
+                            FromDate = instance.FromDate,
+                            ToDate = instance.ToDate,
+                        };
+            if (items.Any())
+            {
+                response = items.ToList();
+            }
 
+            return response;
+        }
+
+        public AcademicModel AddAcademic(AcademicModel queryModel)
+        {
+            var result = new AcademicModel();
+            var newItem = new AccademicSession
+            {
+                AccSessName = queryModel.AccSessName,
+                FromDate = queryModel.FromDate,
+                ToDate = queryModel.ToDate,
+            };
+            DbContext.AccademicSessions.Add(newItem);
+            DbContext.SaveChanges();
+            result.AccademicSessionId = newItem.AccademicSessionId;
+            return result;
+        }
+
+        public AcademicModel GetAcademicDetails(int id)
+        {
+            var response = new AcademicModel();
+            var detailItem = DbContext.AccademicSessions.Find(id);
+            if (detailItem != null)
+            {
+                response.AccademicSessionId = detailItem.AccademicSessionId;
+                response.AccSessName = detailItem.AccSessName;
+                response.FromDate = detailItem.FromDate;
+                response.ToDate = detailItem.ToDate;
+            }
+
+            return response;
+        }
+
+        public AcademicModel SaveAcademic(AcademicModel queryModel)
+        {
+            var result = new AcademicModel();
+            var editItem = DbContext.AccademicSessions.Find(queryModel.AccademicSessionId);
+            if (editItem != null)
+            {
+                editItem.AccSessName = queryModel.AccSessName;
+                editItem.FromDate = queryModel.FromDate;
+                editItem.ToDate = queryModel.ToDate;
+                
+                DbContext.Entry(editItem).State = EntityState.Modified;
+            }
+            try
+            {
+                DbContext.SaveChanges();
+                result.AccademicSessionId = queryModel.AccademicSessionId;
+                result.AccSessName = queryModel.AccSessName;
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return null;
+            }
+            return result;
+        }
+
+        public ApiSimpleResult<AcademicModel> DeleteAcademic(AcademicModel queryModel)
+        {
+            var deleteItem = DbContext.AccademicSessions.Find(queryModel.AccademicSessionId);
+            DbContext.Entry(deleteItem).State = EntityState.Deleted;
+            var result = new ApiSimpleResult<AcademicModel>();
+            try
+            {
+                DbContext.SaveChanges();
+                result.StatusString = "Successful";
+                result.Message = "Delete data successfully";
+                result.Data = queryModel;
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                result.Message = "Error";
+                result.StatusString = "Error";
+            }
+            return result;
+        }
+
+        #endregion
         // Student Course Management
         #region Student Course
         public List<StudentCourseModel> GetStudentCourses(int id)

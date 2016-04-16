@@ -68,10 +68,6 @@
                             @Html.DropDownListFor(m => m.AccademicSessionId, ViewData["AccademicSessionList"] as List<SelectListItem>, new { @class = "form-control" })
                             @Html.ValidationMessageFor(model => model.CourseStatus, "", new { @class = "text-danger" })
                         </div>
-                        <label class="col-xs-12 col-md-4"></label>
-                        <div class="col-xs-12 col-md-8">
-                            <input type="submit" value="Add Course" class="btn btn-primary" />
-                        </div>
                     </div>
                 </div>
             }
