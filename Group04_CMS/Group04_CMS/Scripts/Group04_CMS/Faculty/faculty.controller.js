@@ -88,11 +88,19 @@
     };
 
     $scope.courses = [];
-    $scope.getCourses = function() {
+    $scope.getCourses = function () {
         facultyService.getCourses().success(function (response) {
             $scope.courses = response.Data;
         });
     };
+
+    //$scope.courses = [];
+    //$scope.getCourses = function () {
+    //    debugger;
+    //    facultyService.getCourses().success(function (response) {
+    //        $scope.courses = response.Data;
+    //    });
+    //};
 
     $scope.addFacultyCourse = function () {
         $scope.FacultyCourseId = 0;
@@ -273,9 +281,13 @@
     $scope.currentStudentCourse = {};
     $scope.studentCourses = [];
     $scope.getStudentCourses = function (courseId) {
-        facultyService.getStudentCourses(courseId).success(function (response) {
-            $scope.studentCourses = response.Data;
-        });
+        if (courseId != undefined) {
+            facultyService.getStudentCourses(courseId).success(function(response) {
+                $scope.studentCourses = response.Data;
+            });
+        } else {
+            $scope.studentCourses = [];
+        }
     };
 
     // get status
@@ -287,7 +299,7 @@
     };
 
     $scope.gradeGroupData = [];
-    $scope.getGradeGroups = function() {
+    $scope.getGradeGroups = function () {
         facultyService.getGradeGroups().success(function(response) {
             if (response != null && response.Data != null) {
                 $scope.gradeGroupData = response.Data;
@@ -359,24 +371,30 @@
     };
 
     $scope.accademicSessions = [];
+    $scope.selectedAccSession = -1;
     $scope.getAccademicSession = function () {
         facultyService.getAccademicSession().success(function (response) {
             if (response != null && response.Data != null) {
+                $scope.selectedAccSession = response.Data[0].AccId;
                 $scope.accademicSessions = response.Data;
-                $scope.selectedAccSession = $scope.accademicSessions[0];
-                $scope.getCoursesByAccademicSession($scope.selectedAccSession.AccId);
+                $scope.getCoursesByAccademicSession($scope.selectedAccSession);
             }
         });
     };
 
     $scope.coursesByAccSess = [];
+    $scope.selectedCourse = -1;
     $scope.getCoursesByAccademicSession = function (id) {
         facultyService.getCoursesByAccademicSession(id).success(function (response) {
             if (response != null && response.Data != null) {
                 $scope.coursesByAccSess = response.Data;
-                $scope.selectedCourse = $scope.coursesByAccSess[0];
-                $scope.getStudentCourses($scope.selectedCourse.CourseId);
+                $scope.selectedCourse = $scope.coursesByAccSess[0].CourseId;
+                $scope.getStudentCourses($scope.selectedCourse);
+            } else {
+                $scope.coursesByAccSess = [];
+                $scope.studentCourses = [];
             }
         });
     };
+
 }]);

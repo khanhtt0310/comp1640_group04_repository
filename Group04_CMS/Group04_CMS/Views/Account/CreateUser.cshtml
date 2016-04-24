@@ -2,7 +2,7 @@
 @model Group04_CMS.ViewModels.UserModel
 
 @{
-    ViewBag.Title = @UIString.TitlePageRole;
+    ViewBag.Title = @UIString.TitlePageUser;
 }
 
 @Scripts.Render("~/bundles/Account")
@@ -11,11 +11,11 @@
     <h1>
         <i class="fa fa-list"></i>
         @UIString.TitlePageManageLarge
-        <small> @UIString.FieldNameRoleId</small>
+        <small> @UIString.FieldNameUserId</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> @UIString.BreadCrumbHome</a></li>
-        <li><a href="@Url.Action("Index", "Account")">@UIString.TitlePageRole</a></li>
+        <li><a href="@Url.Action("Index", "Account")">@UIString.TitlePageUser</a></li>
         <li class="active">@UIString.BreadCrumbCreate</li>
     </ol>
 </section>

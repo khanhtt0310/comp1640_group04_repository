@@ -370,6 +370,7 @@
     <Content Include="Reports\GradeDistributionDataset.xsc">
       <DependentUpon>GradeDistributionDataset.xsd</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\group04_cms.pubxml" />
     <None Include="Reports\GradeDistributionDataset.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>

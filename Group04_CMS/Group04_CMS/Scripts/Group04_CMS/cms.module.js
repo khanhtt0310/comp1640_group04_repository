@@ -1,5 +1,5 @@
 ﻿var cmsApp = angular.module('cmsApp', ['ui.bootstrap']);
-var baseAddress = 'http://localhost:58504/';
+var baseAddress = '/';
 cmsApp.directive('ngReallyClick', ['$uibModal',
     function ($uibModal) {
 
