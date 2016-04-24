@@ -189,26 +189,37 @@ namespace Group04_CMS.Controllers
                 {
                     var total = currentCourse.Count();
                     totalAll += total;
-                    var c1 = studentCourses.Where(x => x.Mark >= 0 && x.Mark <= 9 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
-                    var c2 = studentCourses.Where(x => x.Mark >= 10 && x.Mark <= 19 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
-                    var c3 = studentCourses.Where(x => x.Mark >= 20 && x.Mark <= 29 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
-                    var c4 = studentCourses.Where(x => x.Mark >= 30 && x.Mark <= 39 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
-                    var c5 = studentCourses.Where(x => x.Mark >= 40 && x.Mark <= 49 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
-                    var c6 = studentCourses.Where(x => x.Mark >= 50 && x.Mark <= 59 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
-                    var c7 = studentCourses.Where(x => x.Mark >= 60 && x.Mark <= 69 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
-                    var c8 = studentCourses.Where(x => x.Mark >= 70 && x.Mark <= 79 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
-                    var c9 = studentCourses.Where(x => x.Mark >= 80 && x.Mark <= 89 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
-                    var c10 = studentCourses.Where(x => x.Mark >= 90 && x.CourseId == course.CourseId).GroupBy(y => y.CourseCode).Count();
-                    dr["CW0_9"] = c1 * 100 / total + "%";
-                    dr["CW10_19"] = c2 * 100 / total + "%";
-                    dr["CW20_29"] = c3 * 100 / total + "%";
-                    dr["CW30_39"] = c4 * 100 / total + "%";
-                    dr["CW40_49"] = c5 * 100 / total + "%";
-                    dr["CW50_59"] = c6 * 100 / total + "%";
-                    dr["CW60_69"] = c7 * 100 / total + "%";
-                    dr["CW70_79"] = c8 * 100 / total + "%";
-                    dr["CW80_89"] = c9 * 100 / total + "%";
-                    dr["CW90_100"] = c10 * 100 / total + "%";
+                    float c1 = studentCourses.Where(x => x.Mark >= 0 && x.Mark <= 9 && x.CourseId == course.CourseId).ToList().Count();
+                    float c2 = studentCourses.Where(x => x.Mark >= 10 && x.Mark <= 19 && x.CourseId == course.CourseId).ToList().Count();
+                    float c3 = studentCourses.Where(x => x.Mark >= 20 && x.Mark <= 29 && x.CourseId == course.CourseId).ToList().Count();
+                    float c4 = studentCourses.Where(x => x.Mark >= 30 && x.Mark <= 39 && x.CourseId == course.CourseId).ToList().Count();
+                    float c5 = studentCourses.Where(x => x.Mark >= 40 && x.Mark <= 49 && x.CourseId == course.CourseId).ToList().Count();
+                    float c6 = studentCourses.Where(x => x.Mark >= 50 && x.Mark <= 59 && x.CourseId == course.CourseId).ToList().Count();
+                    float c7 = studentCourses.Where(x => x.Mark >= 60 && x.Mark <= 69 && x.CourseId == course.CourseId).ToList().Count();
+                    float c8 = studentCourses.Where(x => x.Mark >= 70 && x.Mark <= 79 && x.CourseId == course.CourseId).ToList().Count();
+                    float c9 = studentCourses.Where(x => x.Mark >= 80 && x.Mark <= 89 && x.CourseId == course.CourseId).ToList().Count();
+                    float c10 = studentCourses.Where(x => x.Mark >= 90 && x.CourseId == course.CourseId).ToList().Count();
+                    float per1 = (float)Math.Round(c1 * 100 / total, 2);
+                    float per2 = (float)Math.Round(c2 * 100 / total, 2);
+                    float per3 = (float)Math.Round(c3 * 100 / total, 2);
+                    float per4 = (float)Math.Round(c4 * 100 / total, 2);
+                    float per5 = (float)Math.Round(c5 * 100 / total, 2);
+                    float per6 = (float)Math.Round(c6 * 100 / total, 2);
+                    float per7 = (float)Math.Round(c7 * 100 / total, 2);
+                    float per8 = (float)Math.Round(c8 * 100 / total, 2);
+                    float per9 = (float)Math.Round(c9 * 100 / total, 2);
+                    float per10 = (float)Math.Round(c10 * 100 / total, 2);
+                    
+                    dr["CW0_9"] = per1 + "%";
+                    dr["CW10_19"] = per2 + "%";
+                    dr["CW20_29"] = per3 + "%";
+                    dr["CW30_39"] = per4 + "%";
+                    dr["CW40_49"] = per5 + "%";
+                    dr["CW50_59"] = per6 + "%";
+                    dr["CW60_69"] = per7 + "%";
+                    dr["CW70_79"] = per8 + "%";
+                    dr["CW80_89"] = per9 + "%";
+                    dr["CW90_100"] = per10 + "%";
                     dt.Rows.Add(dr);
                 }
                 

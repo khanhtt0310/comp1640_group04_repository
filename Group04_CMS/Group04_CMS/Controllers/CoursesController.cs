@@ -138,7 +138,11 @@ namespace Group04_CMS.Controllers
         protected IList<SelectListItem> CreateCourseLeadersDropdownlist()
         {
             IList<SelectListItem> CourseLeadersList = new List<SelectListItem>();
-            var courseLeaders = db.Users.ToList();
+            var courseLeaders = from ur in db.UserRoles
+                                    join u in db.Users on ur.UserId equals u.UserId
+                                    join r in db.Roles on ur.RoleId equals r.RoleId
+                                    where r.RoleName == "Course Leader"
+                                    select u;
 
             foreach (var leader in courseLeaders)
             {
@@ -163,7 +167,11 @@ namespace Group04_CMS.Controllers
         protected IList<SelectListItem> CreateCourseModeratorsDropdownlist()
         {
             IList<SelectListItem> CourseModeratorsList = new List<SelectListItem>();
-            var courseModerators = db.Users.ToList();
+            var courseModerators = from ur in db.UserRoles
+                                   join u in db.Users on ur.UserId equals u.UserId
+                                   join r in db.Roles on ur.RoleId equals r.RoleId
+                                   where r.RoleName == "Course Moderator"
+                                   select u;
 
             foreach (var leader in courseModerators)
             {
