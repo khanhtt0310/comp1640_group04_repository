@@ -68,7 +68,7 @@ namespace Group04_CMS.Controllers
             {
                 return HttpNotFound();
             }
-            ViewData["CourseStatusList"] = CreateCourseStatusDropdownlist();
+            ViewData["CourseStatusList"] = EditCourseStatusDropdownlist();
             ViewData["CourseLeadersList"] = CreateCourseLeadersDropdownlist();
             ViewData["CourseModeratorsList"] = CreateCourseModeratorsDropdownlist();
             ViewData["AccademicSessionList"] = CreateAccademicSessionlist();
@@ -125,9 +125,24 @@ namespace Group04_CMS.Controllers
         {
             Dictionary<string, string> courseStatus = new Dictionary<string, string>();
             IList<SelectListItem> CourseStatusList = new List<SelectListItem>();
-            courseStatus.Add("Activated", "0");
-            courseStatus.Add("De-activated", "1");
+            courseStatus.Add("Active", "1");
+            courseStatus.Add("Inactive", "0");
+            foreach (KeyValuePair<string, string> pair in courseStatus)
+            {
+                CourseStatusList.Add(new SelectListItem() { Text = pair.Key, Value = pair.Value, Selected = false });
+            }
+            return CourseStatusList;
+        }
+
+        protected IList<SelectListItem> EditCourseStatusDropdownlist()
+        {
+            Dictionary<string, string> courseStatus = new Dictionary<string, string>();
+            IList<SelectListItem> CourseStatusList = new List<SelectListItem>();
+            courseStatus.Add("Active", "1");
+            courseStatus.Add("Inactive", "0");
             courseStatus.Add("Deleted", "2");
+            courseStatus.Add("Pending Approval", "3");
+            courseStatus.Add("Approved", "4");
             foreach (KeyValuePair<string, string> pair in courseStatus)
             {
                 CourseStatusList.Add(new SelectListItem() { Text = pair.Key, Value = pair.Value, Selected = false });

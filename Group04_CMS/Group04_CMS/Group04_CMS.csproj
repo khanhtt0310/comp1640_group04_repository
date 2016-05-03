@@ -217,7 +217,9 @@
     <Compile Include="ViewModels\AcademicModel.cs" />
     <Compile Include="ViewModels\AccademicSessionModel.cs" />
     <Compile Include="ViewModels\ApiSimpleResult.cs" />
+    <Compile Include="ViewModels\CourseApprovalQuery.cs" />
     <Compile Include="ViewModels\CourseModel.cs" />
+    <Compile Include="ViewModels\CourseStatusEnum.cs" />
     <Compile Include="ViewModels\FacultyCourseModel.cs" />
     <Compile Include="ViewModels\FacultyModel.cs" />
     <Compile Include="ViewModels\GeneralStatusModel.cs" />

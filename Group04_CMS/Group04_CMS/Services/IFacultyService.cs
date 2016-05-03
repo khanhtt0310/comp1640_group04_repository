@@ -22,7 +22,7 @@ namespace Group04_CMS.Services
         // Faculty Course Management
         List<FacultyCourseModel> GetFacultyCourses();
         List<CourseModel> GetCourses();
-        List<CourseModel> GetCoursesByAccademicSession(int id);
+        List<CourseModel> GetCoursesByAccademicSession(int id, string role);
         List<AccademicSessionModel> GetAccademicSessions();
         AccademicSessionModel GetAccademicSessionsById(int id);
         List<CourseModel> GetCoursesByUser(int id);
@@ -30,6 +30,8 @@ namespace Group04_CMS.Services
         FacultyCourseModel GetFacultyCourseDetails(int id);
         FacultyCourseModel SaveFacultyCourse(FacultyCourseModel item);
         ApiSimpleResult<FacultyCourseModel> DeleteFacultyCourse(FacultyCourseModel item);
+        CourseModel SaveCourse(CourseApprovalQuery item);
+        string GetCourseStatus(int id);
 
         // Student Management
         List<StudentModel> GetStudents();

@@ -384,4 +384,7 @@
   <data name="TitlePageAcademic" xml:space="preserve">
     <value>Academic Session Management</value>
   </data>
+  <data name="ButtonSendingApproval" xml:space="preserve">
+    <value>Send To Approval</value>
+  </data>
 </root>

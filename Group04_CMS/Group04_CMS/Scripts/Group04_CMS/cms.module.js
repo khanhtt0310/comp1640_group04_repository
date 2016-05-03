@@ -64,3 +64,33 @@ cmsApp.directive('customDatepicker', function($compile, $timeout) {
         }
     };
 });
+
+cmsApp.directive('ngDisabled', function () {
+    return {
+        controller: function ($scope, $attrs) {
+            var self = this;
+            $scope.$watch($attrs.ngDisabled, function (isDisabled) {
+                self.isDisabled = isDisabled;
+            });
+        }
+    };
+});
+
+function reactToParentNgDisabled(tagName) {
+    cmsApp.directive(tagName, function () {
+        return {
+            restrict: 'E',
+            require: '?^ngDisabled',
+            link: function (scope, element, attrs, ngDisabledController) {
+                if (!ngDisabledController) return;
+                scope.$watch(function () {
+                    return ngDisabledController.isDisabled;
+                }, function (isDisabled) {
+                    element.prop('disabled', isDisabled);
+                });
+            }
+        };
+    });
+}
+
+['input', 'select', 'button', 'textarea'].forEach(reactToParentNgDisabled);

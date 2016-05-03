@@ -99,10 +99,10 @@ namespace Group04_CMS.ApiControllers
         }
 
         [HttpPost]
-        public ApiSimpleResult<List<CourseModel>> GetCoursesByAccademicSession(int id)
+        public ApiSimpleResult<List<CourseModel>> GetCoursesByAccademicSession(int id, string role)
         {
             var result = new ApiSimpleResult<List<CourseModel>>();
-            var response = FacultySvc.GetCoursesByAccademicSession(id);
+            var response = FacultySvc.GetCoursesByAccademicSession(id, role);
             if (response.Any())
             {
                 result.Data = response;
@@ -365,6 +365,31 @@ namespace Group04_CMS.ApiControllers
             var response = FacultySvc.DeleteStudentCourse(queryModel);
             if (response != null)
                 result = response;
+            return result;
+        }
+
+        [HttpPost]
+        public ApiSimpleResult<CourseModel> SaveCourse(CourseApprovalQuery queryModel)
+        {
+            var result = new ApiSimpleResult<CourseModel>();
+            var response = FacultySvc.SaveCourse(queryModel);
+            if (response != null)
+                result.Data = response;
+            return result;
+        }
+
+        public ApiSimpleResult<string> GetCourseStatus(int id)
+        {
+            var response = FacultySvc.GetCourseStatus(id);
+            var result = new ApiSimpleResult<string>
+            {
+                StatusString = "Successful",
+                Message = "Get all roles successfully"
+            };
+            if (response != null)
+            {
+                result.Data = response;
+            }
             return result;
         }
     }

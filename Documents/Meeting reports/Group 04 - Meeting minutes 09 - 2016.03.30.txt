@@ -1,0 +1,24 @@
+2016.03.30 - COMP1640 - Meeting minutes 09
+1. Participated members:
+- KhanhTT
+- HoangLS
+2. Progress reports:
+- Done tasks: 
+	+ KhanhTT:
+		* Manage Students
+		* Manage Faculties
+		* Manage FacultyCourses  
+		* Manage StudentCourses
+- Inprogress tasks:
+	+ KhanhTT:
+		* Requirement workshop
+		* Sprint 04 Document
+		* Manage AcademicSessions  
+		* Create Report
+	+ HoangLS
+		* Create Chart Report
+3. Next meeting:
+	+ Date: 2016.04.06
+	+ Items to complete:
+		* Report progress.
+		* Sprint 04 review

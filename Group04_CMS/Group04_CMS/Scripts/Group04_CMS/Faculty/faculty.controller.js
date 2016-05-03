@@ -1,6 +1,8 @@
 ﻿cmsApp.controller('facultyController', ['$scope', 'facultyService', '$window', function ($scope, facultyService, $window) {
     $scope.currentFaculty = {};
     $scope.faculties = [];
+    $scope.disabled = false;
+
     $scope.getFaculties = function() {
         facultyService.getFaculties().success(function(response) {
             $scope.faculties = response.Data;
@@ -282,6 +284,7 @@
     $scope.studentCourses = [];
     $scope.getStudentCourses = function (courseId) {
         if (courseId != undefined) {
+            $scope.getCourseStatus($scope.selectedCourse);
             facultyService.getStudentCourses(courseId).success(function(response) {
                 $scope.studentCourses = response.Data;
             });
@@ -361,6 +364,38 @@
         });
     };
 
+    $scope.approvalStatus = '';
+    $scope.sendToApproval = function () {
+        var editObject = { CourseId: $scope.selectedCourse, Status: 3 };
+        if ($scope.approvalStatus === 'Active') {
+            facultyService.saveCourse(editObject).success(function (response) {
+                if (response != null && response.Data != null) {
+                    if (response.Data.Status == 3) {
+                        $scope.disabled = true;
+                        $scope.approvalStatus = 'Pending Approval';
+                    }
+                    else if (response.Data.Status == 4)
+                        $scope.approvalStatus = 'Approved';
+                }
+            });
+        }
+    };
+    $scope.approve = function () {
+        var editObject = { CourseId: $scope.selectedCourse, Status: 4 };
+        if ($scope.approvalStatus === 'Pending Approval') {
+            facultyService.saveCourse(editObject).success(function (response) {
+                if (response != null && response.Data != null) {
+                    if (response.Data.Status == 3) {
+                        $scope.disabled = true;
+                        $scope.approvalStatus = 'Pending Approval';
+                    }
+                    else if (response.Data.Status == 4)
+                        $scope.approvalStatus = 'Approved';
+                }
+            });
+        }
+    };
+
     $scope.deleteStudentCourse = function (deleteObject) {
         facultyService.deleteStudentCourse(deleteObject).success(function (response) {
             if (response != null && response.Data != null) {
@@ -385,7 +420,8 @@
     $scope.coursesByAccSess = [];
     $scope.selectedCourse = -1;
     $scope.getCoursesByAccademicSession = function (id) {
-        facultyService.getCoursesByAccademicSession(id).success(function (response) {
+        var role = $scope.roleShowCourse;
+        facultyService.getCoursesByAccademicSession(id, role).success(function (response) {
             if (response != null && response.Data != null) {
                 $scope.coursesByAccSess = response.Data;
                 $scope.selectedCourse = $scope.coursesByAccSess[0].CourseId;
@@ -395,6 +431,37 @@
                 $scope.studentCourses = [];
             }
         });
+    };
+
+    $scope.getCourseStatus = function (id) {
+        $scope.disabled = false;
+        facultyService.getCourseStatus(id).success(function (response) {
+            if (response != null && response.Data != null) {
+                $scope.approvalStatus = response.Data;
+                if ($scope.approvalStatus === 'Pending Approval')
+                    $scope.disabled = true;
+            }
+        });
+        $scope.getUIForCurrentRole();
+    };
+
+    $scope.roleShowCourse = "guest";
+    $scope.getUIForCurrentRole = function () {
+        $scope.getGradeGroups();
+        var absoluteUrlPath = $window.location.href;
+        var results = String(absoluteUrlPath).split('/');
+        if (results != null && results.length > 0) {
+            var id = results[results.length - 1];
+
+            if (id != null) {
+                $scope.roleShowCourse = id;
+                if ($scope.roleShowCourse === "Guest" || $scope.roleShowCourse === "Director"
+                    || $scope.roleShowCourse === "guest" || $scope.roleShowCourse === "director"
+                    || $scope.roleShowCourse.toLowerCase() === "pvc" || $scope.roleShowCourse.toLowerCase() === "cmanager")
+                    $scope.disabled = true;
+            }
+
+        }
     };
 
 }]);

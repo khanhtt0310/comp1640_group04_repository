@@ -209,10 +209,16 @@ namespace Group04_CMS.Services
             return response;
         }
 
-        public List<CourseModel> GetCoursesByAccademicSession(int id)
+        public List<CourseModel> GetCoursesByAccademicSession(int id, string role)
         {
             var response = new List<CourseModel>();
-            var courses = from f in DbContext.Courses where f.AccademicSessionId == id
+            IEnumerable<CourseModel> courses;
+            
+            if (role.ToLower() == "cleader")
+            {
+                courses = from f in DbContext.Courses
+                          where f.AccademicSessionId == id
+                              && f.CourseStatus != 0 && f.CourseStatus != 2
                           select new CourseModel
                           {
                               CourseId = f.CourseId,
@@ -220,6 +226,34 @@ namespace Group04_CMS.Services
                               CourseName = f.CourseName,
                               Status = f.CourseStatus
                           };
+            }
+            else if (role.ToLower() == "cmanager")
+            {
+                courses = from f in DbContext.Courses
+                          where f.AccademicSessionId == id
+                              && f.CourseStatus != 0 && f.CourseStatus != 2 && f.CourseStatus != 1
+                          select new CourseModel
+                          {
+                              CourseId = f.CourseId,
+                              CourseCode = f.CourseCode,
+                              CourseName = f.CourseName,
+                              Status = f.CourseStatus
+                          };
+            }
+            else
+            {
+                courses = from f in DbContext.Courses
+                          where f.AccademicSessionId == id
+                              && f.CourseStatus != 0 && f.CourseStatus != 2 && f.CourseStatus == (int)CourseStatusEnum.Approved
+                          select new CourseModel
+                          {
+                              CourseId = f.CourseId,
+                              CourseCode = f.CourseCode,
+                              CourseName = f.CourseName,
+                              Status = f.CourseStatus
+                          };
+            }
+
             if (courses.Any())
             {
                 response = courses.ToList();
@@ -768,6 +802,58 @@ namespace Group04_CMS.Services
             {
                 result.Message = "Error";
                 result.StatusString = "Error";
+            }
+            return result;
+        }
+
+        public CourseModel SaveCourse(CourseApprovalQuery item)
+        {
+            var result = new CourseModel();
+            var editItem = DbContext.Courses.Find(item.CourseId);
+            if (editItem != null)
+            {
+                editItem.CourseStatus = item.Status;
+                DbContext.Entry(editItem).State = EntityState.Modified;
+                result.CourseId = editItem.CourseId;
+                result.CourseCode = editItem.CourseCode;
+                result.CourseName = editItem.CourseName;
+                result.Status = editItem.CourseStatus;
+            }
+            try
+            {
+                DbContext.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return null;
+            }
+            return result;
+        }
+
+        public string GetCourseStatus(int id)
+        {
+            var result = "";
+            var editItem = DbContext.Courses.Find(id);
+            if (editItem != null)
+            {
+                if(editItem.CourseStatus == 0)
+                    result = "Inactive";
+                else if (editItem.CourseStatus == 1)
+                    result = "Active";
+                        else if (editItem.CourseStatus == 2)
+                                    result = "Deleted";
+                             else if (editItem.CourseStatus == 3)
+                                     result = "Pending Approval";
+                                  else if (editItem.CourseStatus == 4)
+                                            result = "Approved";
+            }
+            try
+            {
+                DbContext.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                return null;
             }
             return result;
         }

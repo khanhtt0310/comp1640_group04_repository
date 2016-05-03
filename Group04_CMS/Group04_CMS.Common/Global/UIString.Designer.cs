@@ -205,6 +205,15 @@ namespace Group04_CMS.Common.Global {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Send To Approval.
+        /// </summary>
+        public static string ButtonSendingApproval {
+            get {
+                return ResourceManager.GetString("ButtonSendingApproval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Submit.
         /// </summary>
         public static string ButtonSubmit {

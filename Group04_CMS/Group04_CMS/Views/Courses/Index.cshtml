@@ -34,17 +34,25 @@
                         <td class="hidden-xs">
                             @Html.DisplayFor(modelItem => item.CourseName)
                         </td>
-                        @if (item.CourseStatus == 1)
+                        @if (item.CourseStatus == 0)
                         {
-                            <td class="hidden-xs">Activated</td>
+                            <td class="hidden-xs">Inactive</td>
+                        }
+                        else if (item.CourseStatus == 1)
+                        {
+                            <td class="hidden-xs">Active</td>
                         }
                         else if (item.CourseStatus == 2)
                         {
-                            <td class="hidden-xs">De-activated</td>
+                            <td class="hidden-xs">Deleted</td>
                         }
                         else if (item.CourseStatus == 3)
                         {
-                            <td class="hidden-xs">Deleted</td>
+                            <td class="hidden-xs">Pending Approval</td>
+                        }
+                        else if (item.CourseStatus == 4)
+                        {
+                            <td class="hidden-xs">Approved</td>
                         }
                         else
                         {
@@ -60,8 +68,7 @@
                             @item.AccademicSession.AccSessName
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.CourseId }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.CourseId })
+                            @Html.ActionLink("Edit", "Edit", new { id = item.CourseId })
                         </td>
                     </tr>
                 }

@@ -193,6 +193,21 @@
         });
     };
 
+    self.saveCourse = function (editObject) {
+        return $http({
+            method: 'POST',
+            url: baseAddress + 'api/faculty/SaveCourse',
+            data: editObject
+        });
+    };
+
+    self.getCourseStatus = function (id) {
+        return $http({
+            method: 'GET',
+            url: baseAddress + 'api/faculty/GetCourseStatus/' + id
+        });
+    };
+
     self.deleteStudentCourse = function (deleteObject) {
         return $http({
             method: 'POST',
@@ -208,10 +223,10 @@
         });
     };
 
-    self.getCoursesByAccademicSession = function (id) {
+    self.getCoursesByAccademicSession = function (id, role) {
         return $http({
             method: 'POST',
-            url: baseAddress + 'api/faculty/GetCoursesByAccademicSession/' + id
+            url: baseAddress + 'api/faculty/GetCoursesByAccademicSession/' + id + '/' + role
         });
         //return $http.get(baseAddress + 'api/faculty/GetCoursesByAccademicSession/' + id);
     };
